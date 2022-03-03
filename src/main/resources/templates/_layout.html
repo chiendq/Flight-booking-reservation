@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:layout="http://www.ultraq.net/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8" />
+<!--    <title>Page 1 Title</title>-->
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+    <header layout:fragment=”header”>
+        <a th:href="@{/login}">Log In</a>
+        <a th:href="@{/join}">Sign Up</a>
+    </header>
+    <div layout:fragment=”content”>
+
+    </div>
+    <footer>
+        <p layout:fragment=”footer”>
+            &copy; 2021 ChieesnDdafo & Friends
+        </p>
+    </footer>
+</body>
+</html>

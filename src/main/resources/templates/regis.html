@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<h1>Account Register</h1>
+<form action="#" th:action="@{/join/save}" th:object="${user}" method="post">
+    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"  class="error"/>
+    <label for="username">User name:</label>
+    <input type="text" id="username" placeholder="User name" name="username" th:field="${user.username}"></br>
+
+    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"  class="error"/>
+    <label for="password">Password:</label>
+    <input type="password" id="password" placeholder="Password" name="password" th:field="${user.password}"></br>
+
+    <p th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}"  class="error"/>
+    <label for="fullname">Full Name:</label>
+    <input type="text" id="fullname" placeholder="Full Name" name="fullname" th:field="${user.fullname}"></br>
+
+    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"  class="error"/>
+    <label for="email">Email:</label>
+    <input type="text" id="email" placeholder="email" name="email"  th:field="${user.email}"></br>
+
+<!--    <p th:if="${#fields.hasErrors('dateofbirth')}" th:errors="*{dateofbirth}" class="error"/>-->
+<!--    <label for="dateofbirth">Date of birth:</label>-->
+<!--    <input type="date" id="dateofbirth" placeholder="Date of birth" name="dateofbirth" th:field="${user.dateofbirth}"></br>-->
+
+    <input type="submit" value="REGISTER">
+<!--    <div th:if="${error}">-->
+<!--        <div class="alert alert-danger">-->
+<!--            Username already exist!-->
+<!--        </div>-->
+<!--    </div>-->
+</form>
+</body>
+</html>
