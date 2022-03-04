@@ -12,6 +12,7 @@ import vn.hanu.fit.dto.LoginDTO;
 import vn.hanu.fit.dto.RegisterDTO;
 import vn.hanu.fit.entity.User;
 import vn.hanu.fit.repository.UserRepository;
+import vn.hanu.fit.service.UserMappingDTOService;
 
 import javax.validation.Valid;
 import java.sql.Date;
@@ -50,24 +51,9 @@ public class UserController {
             registerDTO.setStatus(true);
             return "register";
         }
-
-        User userUpdated = userRepository.save(mappingLoginDTO(registerDTO));
+        User userUpdated = userRepository.save(UserMappingDTOService.mapping(registerDTO));
         LOGGER.info("/join: NEW ACCOUNT CREATED " + userUpdated.toString());
         return "redirect:/";
-    }
-
-    private User mappingLoginDTO(RegisterDTO registerDTO){
-        User user = new User();
-        user.setUsername(registerDTO.getUsername());
-        user.setPassword(registerDTO.getPassword());
-        user.setFullname(registerDTO.getFullname());
-        user.setPhone(registerDTO.getPhone());
-        user.setDateofbirth(registerDTO.getDateofbirth());
-        user.setPhone(registerDTO.getPhone());
-        user.setGender(registerDTO.isGender());
-        user.setRole("USER");
-        user.setEmail(registerDTO.getEmail());
-        return user;
     }
 
     @GetMapping("/login")
