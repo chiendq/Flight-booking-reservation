@@ -20,22 +20,22 @@ public class User {
     private Long id;
 
     @Column(name = "username")
-    @NotNull
-    @Size(min = 8, max = 255, message = "Username is required")
+//    @NotNull
+//    @Size(min = 8, max = 255, message = "Username is required")
     private String username;
 
     @Column(name = "password")
-    @NotNull
-    @Size(min = 8, max = 255, message = "Password is required")
+//    @NotNull
+//    @Size(min = 8, max = 255, message = "Password is required")
     private String password;
 
-    @NotNull
+//    @NotNull
     @Column(name = "fullname")
-    @Size(min = 8, max = 255, message = "Fullname is required")
+//    @Size(min = 8, max = 255, message = "Fullname is required")
     private String fullname;
 
     @Column(name = "phone")
-    @Size(min = 10, max = 11, message = "Username is required")
+//    @Size(min = 10, max = 11, message = "Username is required")
     private String phone;
 
     @Column(name = "dateofbirth")
@@ -50,7 +50,7 @@ public class User {
     private String role;
 
     @Column(name = "email")
-    @Email(message = "Email is not valid")
+//    @Email(message = "Email is not valid")
     private String email;
 
 
