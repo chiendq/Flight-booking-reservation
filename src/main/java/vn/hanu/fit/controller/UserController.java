@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import vn.hanu.fit.dto.LoginDTO;
+import vn.hanu.fit.dto.RegisterDTO;
 import vn.hanu.fit.entity.User;
 import vn.hanu.fit.repository.UserRepository;
 
@@ -28,31 +29,45 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @PostMapping(value="/join/save")
-    public String saveAccount(@Valid User user, BindingResult result){
+    @GetMapping("/join")
+    public String showRegisForm(Model model){
+        LOGGER.info("/join called");
+        model.addAttribute("registerdto", new RegisterDTO());
+        return "register";
+    }
+
+    @PostMapping(value="/join")
+    public String saveAccount( @Valid @ModelAttribute("registerdto") RegisterDTO registerDTO, BindingResult result){
         if(result.hasErrors()){
             List<FieldError> errors = result.getFieldErrors();
             for (FieldError error : errors ) {
-                LOGGER.error("/join/save: "+error.getDefaultMessage());
+                LOGGER.error("/join: "+error.getDefaultMessage());
             }
             return "register";
         }
-//        if(userRepository.existsByUsername(user.getUsername())){
-//            model.addAttribute("error",true);
-//            return "regis";
-//        }
 //        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setDateofbirth(new Date(1));
-        user.setPhone("6969696969");
-        user.setRole("USER");
-        User userUpdated = userRepository.save(user);
+        if(userRepository.existsByUsername(registerDTO.getUsername())){
+            registerDTO.setStatus(true);
+            return "register";
+        }
+
+        User userUpdated = userRepository.save(mappingLoginDTO(registerDTO));
+        LOGGER.info("/join: NEW ACCOUNT CREATED " );
         return "redirect:/";
     }
 
-    @RequestMapping("/join")
-    public String showRegisForm(Model model){
-        model.addAttribute(new User());
-        return "register";
+    private User mappingLoginDTO(RegisterDTO registerDTO){
+        User user = new User();
+        user.setUsername(registerDTO.getUsername());
+        user.setPassword(registerDTO.getPassword());
+        user.setFullname(registerDTO.getFullname());
+        user.setPhone(registerDTO.getPhone());
+        user.setDateofbirth(new Date(1));
+        user.setPhone(registerDTO.getPhone());
+        user.setGender(true);
+        user.setRole("USER");
+        user.setEmail(registerDTO.getEmail());
+        return user;
     }
 
     @GetMapping("/login")
