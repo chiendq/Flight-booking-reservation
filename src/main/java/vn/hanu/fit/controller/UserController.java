@@ -67,7 +67,7 @@ public class UserController {
         if(result.hasErrors()){
             List<FieldError> errors = result.getFieldErrors();
             for (FieldError error : errors ) {
-                LOGGER.error("/join/save: "+error.getDefaultMessage());
+                LOGGER.warn("/join/save: "+error.getDefaultMessage());
             }
             return "login";
         }
