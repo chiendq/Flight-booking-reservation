@@ -15,10 +15,10 @@ import javax.validation.constraints.Size;
 @Setter
 @NoArgsConstructor
 public class RegisterDTO {
-    @Min(value = 8, message = "Username must at least 8 characters ")
+    @Size(min = 8, message = "Username must at least 8 characters ")
     private String username;
 
-    @Min(value = 8, message = "Password must at least 8 characters ")
+    @Size(min = 8, message = "Password must at least 8 characters ")
     private String password;
 
     @NotEmpty( message = "Full name must at least 8 characters ")
@@ -27,12 +27,11 @@ public class RegisterDTO {
     @Size(min = 10, max = 11, message = "Incorrect phone number type")
     private String phone;
 
-    @NotEmpty(message = "Gender can't left blank")
+//    @NotEmpty(message = "Gender can't left blank")
     private boolean gender;
 
     @Email
     private String email;
-
 
     private boolean status = false;
 
