@@ -52,7 +52,7 @@ public class UserController {
         }
 
         User userUpdated = userRepository.save(mappingLoginDTO(registerDTO));
-        LOGGER.info("/join: NEW ACCOUNT CREATED " );
+        LOGGER.info("/join: NEW ACCOUNT CREATED " + userUpdated.toString());
         return "redirect:/";
     }
 
@@ -64,7 +64,7 @@ public class UserController {
         user.setPhone(registerDTO.getPhone());
         user.setDateofbirth(new Date(1));
         user.setPhone(registerDTO.getPhone());
-        user.setGender(true);
+        user.setGender(registerDTO.isGender());
         user.setRole("USER");
         user.setEmail(registerDTO.getEmail());
         return user;
