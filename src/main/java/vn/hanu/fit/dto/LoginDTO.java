@@ -21,9 +21,5 @@ public class LoginDTO {
 
     private boolean status = false;
 
-    public LoginDTO(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
 
 }
