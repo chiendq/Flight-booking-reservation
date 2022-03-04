@@ -33,9 +33,8 @@
         <label for="email">Email:</label>
         <input type="text" id="email" placeholder="email" name="email"  th:field="${registerdto.email}"></br>
 
-    <!--    <p th:if="${#fields.hasErrors('dateofbirth')}" th:errors="*{dateofbirth}" class="error"/>-->
-    <!--    <label for="dateofbirth">Date of birth:</label>-->
-    <!--    <input type="date" id="dateofbirth" placeholder="Date of birth" name="dateofbirth" th:field="${user.dateofbirth}"></br>-->
+        <label for="dateofbirth">Date of birth:</label>
+        <input type="date" id="dateofbirth" name="dateofbirth" th:field="${registerdto.dateofbirth}" required></br>
         <div th:if="*{status}" class="error">Username already exist!</div>
         <input type="submit" value="REGISTER">
 

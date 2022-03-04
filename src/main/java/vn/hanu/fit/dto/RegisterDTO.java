@@ -9,6 +9,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.sql.Date;
 
 
 @Getter
@@ -29,6 +30,8 @@ public class RegisterDTO {
 
 //    @NotEmpty(message = "Gender can't left blank")
     private boolean gender;
+
+    private Date dateofbirth;
 
     @Email
     private String email;

@@ -62,7 +62,7 @@ public class UserController {
         user.setPassword(registerDTO.getPassword());
         user.setFullname(registerDTO.getFullname());
         user.setPhone(registerDTO.getPhone());
-        user.setDateofbirth(new Date(1));
+        user.setDateofbirth(registerDTO.getDateofbirth());
         user.setPhone(registerDTO.getPhone());
         user.setGender(registerDTO.isGender());
         user.setRole("USER");
