@@ -13,12 +13,10 @@ import javax.validation.constraints.NotEmpty;
 @Setter
 @NoArgsConstructor
 public class LoginDTO {
-//    @NotEmpty(message = "Username can't left blank")
-//    @Min(value = 8, message = "Username must at least 8 characters ")
+    @Min(value = 8, message = "Username must at least 8 characters ")
     private String username;
 
-//    @NotEmpty(message = "Password can't left blank")
-//    @Min(value = 8, message = "Password must at least 8 characters ")
+    @Min(value = 8, message = "Password must at least 8 characters ")
     private String password;
 
     private boolean status = false;
