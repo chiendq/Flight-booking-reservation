@@ -64,14 +64,14 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String loginValidate(@ModelAttribute("logindto") LoginDTO loginDTO){
-////        if(result.hasErrors()){
-//            List<FieldError> errors = result.getFieldErrors();
-//            for (FieldError error : errors ) {
-//                LOGGER.error("/join/save: "+error.getDefaultMessage());
-//            }
-//            return "login";
-//        }
+    public String loginValidate( @Valid @ModelAttribute("logindto") LoginDTO loginDTO, BindingResult result){
+        if(result.hasErrors()){
+            List<FieldError> errors = result.getFieldErrors();
+            for (FieldError error : errors ) {
+                LOGGER.error("/join/save: "+error.getDefaultMessage());
+            }
+            return "login";
+        }
 
         String username = loginDTO.getUsername();
         String password = loginDTO.getPassword();
