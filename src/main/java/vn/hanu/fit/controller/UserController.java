@@ -3,7 +3,6 @@ package vn.hanu.fit.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,7 +35,7 @@ public class UserController {
             for (FieldError error : errors ) {
                 LOGGER.error("/join/save: "+error.getDefaultMessage());
             }
-            return "regis";
+            return "register";
         }
 //        if(userRepository.existsByUsername(user.getUsername())){
 //            model.addAttribute("error",true);
@@ -53,7 +52,7 @@ public class UserController {
     @RequestMapping("/join")
     public String showRegisForm(Model model){
         model.addAttribute(new User());
-        return "regis";
+        return "register";
     }
 
     @GetMapping("/login")
