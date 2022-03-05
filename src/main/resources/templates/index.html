@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net/thymeleaf/layout" layout:decorate="_layout">
+      xmlns:layout="http://www.ultraq.net/thymeleaf/layout" >
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Flight Booking</title>
 </head>
 <body>
+<header>
+    <div>
+        <div>
+            <a>Flight Booking</a>
+            <a th:href="@{/login}">Log In</a>
+            <a th:href="@{/join}">Sign Up</a>
+            <a th:href="@{/admin}">ADMIN</a>
+
+        </div>
+
+    </div>
+</header>
+
 </body>
 </html>
