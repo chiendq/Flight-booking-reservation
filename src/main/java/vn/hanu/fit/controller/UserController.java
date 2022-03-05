@@ -70,13 +70,12 @@ public class UserController {
             for (FieldError error : errors ) {
                 LOGGER.warn("/join/save: "+error.getDefaultMessage());
             }
+            LOGGER.info("BINDINGRESULT: Username :" + loginDTO.getUsername() + " , Password:" + loginDTO.getPassword());
             return "login";
         }
 
         String username = loginDTO.getUsername();
         String password = loginDTO.getPassword();
-//        String passwordEncoded = passwordEncoder.encode(password);
-        LOGGER.info("LOGGIN IN : Username :" + username + " , Password:" + password);
         if(!userRepository.existsByUsernameAndPassword(username, password)){
             LOGGER.info("INCORRECT Username :" + username + " , Password:" + password);
             loginDTO.setStatus(true);
