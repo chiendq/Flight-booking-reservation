@@ -16,22 +16,10 @@
         </div>
 
     <div>
-        <label for="from">From:</label>
-
-        <select name="from" id="from">
-            <option value="HAN">Hà Nội (HAN) - Sân bay Nội Bài</option>
-            <option value="SGB">Hồ Chí Minh (SGN) - Sân bay Tân Sơn NHất</option>
-            <option value="DAD">Đà Nẵng (DAD) - Sân bay Quốc tế Đà Nẵng</option>
-            <option value="CXR">Nha Trang (CXR) - Sân Bay Cam Ranh</option>
-            <option value="PQC">Phú Quốc (PQC) - Sân bay Quốc tế Phú Quốc</option>
-            <option value="HUI">Huế (HUI) - Sân bay Quốc tế Phú Bài</option>
-            <option value="HPH">Hải Phòng (HPH) - Sân bay Quốc tế Cát Bi</option>
-        </select>
-
         <form action="#" th:object="${ticket}">
             <fieldset>
                 <legend>Flight booking</legend>
-                <label for="from">From:</label>
+                <label>From:</label>
                 <select>
                     <option th:each="location : ${locations}"
                             th:value="${location.code}"
@@ -39,7 +27,7 @@
                             th:text="${location.city}+'-'+${location.airport}">
                     </option>
                 </select></br>
-                <label for="from">To:</label>
+                <label>To:</label>
                 <select>
                     <option th:each="location : ${locations}"
                             th:value="${location.code}"
@@ -47,14 +35,21 @@
                             th:text="${location.city}+'-'+${location.airport}">
                     </option>
                 </select></br>
-                <label for="from">Departure time:</label>
+                <label>Departure time:</label>
                 <input type="date" th:field="${ticket.departureTime}" id="departuretime" ></br>
                 <label for="arrivaltime">Departure time:</label>
                 <input type="date" th:field="${ticket.arrivalTime}" id="arrivaltime" ></br>
-                <label for="passengernumber">Number of passenger:</label>
-                <input type="number" id="passengernumber" min="1" max="5" value="1" >
+                <label>Number of passenger:</label></br>
+                <a>Adult: </a><input type="number" name="adult" min="1" max="5" value="1" >
+                <a>Child: </a><input type="number" name="child" min="0" max="5" value="0" >
+                <a>Baby: </a><input type="number" name="baby" min="0" max="5" value="0" ></br>
+                <label>Class: </label></br>
+                <input type="checkbox" checked ><a>-Phổ thông - Bay tiết kiệm, đáp ứng mọi nhu cầu cơ bản</a></br>
+                <input type="checkbox"  ><a>-Phổ thông đặc biệt - Chi phí hợp lý với bữa ăn ngon và chỗ để chân rộng rãi.</a></br>
+                <input type="checkbox"  ><a>-Thương gia - Bay đẳng cấp, với quầy làm thủ tục và khu ghế ngồi riêng.</a></br>
+                <input type="checkbox"  ><a>-Hạng nhất - Hạng cao cấp nhất, với dịch vụ 5 sao được cá nhân hoá.</a></br>
+                <input type="submit" value="Search">
             </fieldset>
-
         </form>
     </div>
 </header>
