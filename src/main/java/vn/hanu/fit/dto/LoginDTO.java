@@ -15,5 +15,4 @@ public class LoginDTO {
 
     private boolean status = false;
 
-
 }

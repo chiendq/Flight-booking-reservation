@@ -4,18 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Flight Booking</title>
+
 </head>
 <body>
 <header>
-    <div>
-        <div>
+        <div class="nav-list">
             <a>Flight Booking</a>
             <a th:href="@{/login}">Log In</a>
             <a th:href="@{/join}">Sign Up</a>
             <a th:href="@{/admin}">ADMIN</a>
-
         </div>
 
+    <div>
+        <label for="from">From:</label>
+
+        <select name="from" id="from">
+            <option value="HAN">Hà Nội (HAN) - Sân bay Nội Bài</option>
+            <option value="SGB">Hồ Chí Minh (SGN) - Sân bay Tân Sơn NHất</option>
+            <option value="DAD">Đà Nẵng (DAD) - Sân bay Quốc tế Đà Nẵng</option>
+            <option value="CXR">Nha Trang (CXR) - Sân Bay Cam Ranh</option>
+            <option value="PQC">Phú Quốc (PQC) - Sân bay Quốc tế Phú Quốc</option>
+            <option value="HUI">Huế (HUI) - Sân bay Quốc tế Phú Bài</option>
+            <option value="HPH">Hải Phòng (HPH) - Sân bay Quốc tế Cát Bi</option>
+        </select>
+
+        <form action="#" th:object="${ticket}">
+            <fieldset>
+                <legend>Flight booking</legend>
+                <label for="from">From:</label>
+                <select>
+                    <option th:each="location : ${locations}"
+                            th:value="${location.code}"
+                            th:selected="${location.id}"
+                            th:text="${location.city}+'-'+${location.airport}">
+                    </option>
+                </select></br>
+                <label for="from">To:</label>
+                <select>
+                    <option th:each="location : ${locations}"
+                            th:value="${location.code}"
+                            th:selected="${location.id}"
+                            th:text="${location.city}+'-'+${location.airport}">
+                    </option>
+                </select></br>
+                <label for="from">Departure time:</label>
+                <input type="date" th:field="${ticket.departureTime}" id="departuretime" ></br>
+                <label for="arrivaltime">Departure time:</label>
+                <input type="date" th:field="${ticket.arrivalTime}" id="arrivaltime" ></br>
+                <label for="passengernumber">Number of passenger:</label>
+                <input type="number" id="passengernumber" min="1" max="5" value="1" >
+            </fieldset>
+
+        </form>
     </div>
 </header>
 

@@ -31,31 +31,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-//        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-
-        return new BCryptPasswordEncoder();
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth)
-            throws Exception {
-        LOGGER.info("WEBSECURITYCONFIG");
-        auth.userDetailsService(userService); // Provide userservice for spring security
-//                .passwordEncoder(passwordEncoder()); // Provide password encoder
-    }
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+////        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+//
+//        return new BCryptPasswordEncoder();
+//    }
+//
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth)
+//            throws Exception {
+//        LOGGER.info("WEBSECURITYCONFIG");
+////        auth.userDetailsService(userService); // Provide userservice for spring security
+////                .passwordEncoder(passwordEncoder()); // Provide password encoder
+//    }
 
 
     // Override this method and left empty to disable default setting of Spring Boot Security
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .antMatchers("/").permitAll() // Allow every one access to this address
-                .antMatchers("/join").permitAll() // Allow every one access to this address
-                .antMatchers("/login").permitAll() // Allow every one access to this address
-                .anyRequest().authenticated(); // All other request must be authenticated
+//        http
+//                .authorizeRequests()
+//                .antMatchers("/").permitAll() // Allow every one access to this address
+//                .antMatchers("/join").permitAll() // Allow every one access to this address
+//                .antMatchers("/login").permitAll() // Allow every one access to this address
+//                .anyRequest().authenticated(); // All other request must be authenticated
 //                .and();
 //
 //                .permitAll() // Tất cả đều được truy cập vào địa chỉ này
