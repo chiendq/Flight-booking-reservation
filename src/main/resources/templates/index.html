@@ -15,38 +15,38 @@
         </div>
 
     <div>
-        <form action="#" th:object="${ticket}">
+        <form action="#" th:action="@{/search}" th:object="${ticketSearchDTO}" method="post">
             <fieldset>
                 <legend>Flight booking</legend>
                 <label>From:</label>
-                <select>
+                <select th:field="${ticketSearchDTO.fromLocationCode}">
                     <option th:each="location : ${locations}"
                             th:value="${location.code}"
-                            th:selected="${location.id}"
+                            th:selected="${location.code}"
                             th:text="${location.city}+'-'+${location.airport}">
                     </option>
                 </select></br>
                 <label>To:</label>
-                <select>
+                <select th:field="${ticketSearchDTO.toLocationCode}">
                     <option th:each="location : ${locations}"
                             th:value="${location.code}"
                             th:selected="${location.id}"
                             th:text="${location.city}+'-'+${location.airport}">
                     </option>
                 </select></br>
-                <label>Departure time:</label>
-                <input type="date" th:field="${ticket.departureTime}" id="departuretime" ></br>
-                <label for="arrivaltime">Departure time:</label>
-                <input type="date" th:field="${ticket.arrivalTime}" id="arrivaltime" ></br>
+                <label for="departuretime">Departure time:</label>
+                <input type="date" th:field="${ticketSearchDTO.departureTime}" id="departuretime"></br>
+                <label for="arrivaltime">Arrival time:</label>
+                <input type="date" th:field="${ticketSearchDTO.arrivalTime}" id="arrivaltime"></br>
                 <label>Number of passenger:</label></br>
                 <a>Adult: </a><input type="number" name="adult" min="1" max="5" value="1" >
                 <a>Child: </a><input type="number" name="child" min="0" max="5" value="0" >
                 <a>Baby: </a><input type="number" name="baby" min="0" max="5" value="0" ></br>
                 <label>Class: </label></br>
-                <input type="checkbox" checked ><a>-Phổ thông - Bay tiết kiệm, đáp ứng mọi nhu cầu cơ bản</a></br>
-                <input type="checkbox"  ><a>-Phổ thông đặc biệt - Chi phí hợp lý với bữa ăn ngon và chỗ để chân rộng rãi.</a></br>
-                <input type="checkbox"  ><a>-Thương gia - Bay đẳng cấp, với quầy làm thủ tục và khu ghế ngồi riêng.</a></br>
-                <input type="checkbox"  ><a>-Hạng nhất - Hạng cao cấp nhất, với dịch vụ 5 sao được cá nhân hoá.</a></br>
+                <input type="checkbox" th:field="${ticketSearchDTO.economyClass}" th:value="${true}"><a>-Phổ thông - Bay tiết kiệm, đáp ứng mọi nhu cầu cơ bản</a></br>
+                <input type="checkbox" th:field="${ticketSearchDTO.specialEconomyClass}" th:value="${true}" ><a>-Phổ thông đặc biệt - Chi phí hợp lý với bữa ăn ngon và chỗ để chân rộng rãi.</a></br>
+                <input type="checkbox" th:field="${ticketSearchDTO.businessClass}" th:value="${true}" ><a>-Thương gia - Bay đẳng cấp, với quầy làm thủ tục và khu ghế ngồi riêng.</a></br>
+                <input type="checkbox" th:field="${ticketSearchDTO.firstClass}" th:value="${true}" ><a>-Hạng nhất - Hạng cao cấp nhất, với dịch vụ 5 sao được cá nhân hoá.</a></br>
                 <input type="submit" value="Search">
             </fieldset>
         </form>
