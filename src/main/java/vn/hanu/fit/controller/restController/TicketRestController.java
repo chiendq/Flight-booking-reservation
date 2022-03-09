@@ -1,4 +1,4 @@
-package vn.hanu.fit.controller;
+package vn.hanu.fit.controller.restController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
