@@ -13,6 +13,7 @@ import vn.hanu.fit.dto.TicketSearchDTO;
 import vn.hanu.fit.entity.Location;
 import vn.hanu.fit.entity.Ticket;
 import vn.hanu.fit.repository.LocationRepository;
+import vn.hanu.fit.repository.TicketRepository;
 
 import java.util.List;
 
@@ -23,17 +24,22 @@ public class IndexController {
     @Autowired
     LocationRepository locationRepository;
 
-    @RequestMapping("")
+    @Autowired
+    TicketRepository ticketRepository;
+
+    @RequestMapping({"","/home"})
     public String home(Model model){
         List<Location> locations = locationRepository.findAll();
-        model.addAttribute("locations", locations);
-        model.addAttribute("ticketSearchDTO", new TicketSearchDTO());
+        TicketSearchDTO ticketSearchDTO = new TicketSearchDTO();
+        ticketSearchDTO.setLocations(locations);
+        model.addAttribute("ticketSearchDTO", ticketSearchDTO);
         return "index";
     }
 
-    @PostMapping("/search")
-    public String search(@ModelAttribute("ticketSearchDTO") TicketSearchDTO ticketSearchDTO){
-        LOGGER.info(ticketSearchDTO.toString());
-        return "index";
+    @RequestMapping("/search")
+    public String search(@ModelAttribute("ticketSearchDTO") TicketSearchDTO ticketSearchDTO, Model model){
+        model.addAttribute("ticketSearchDTO", ticketSearchDTO);
+        model.addAttribute("tickets", ticketRepository.findAll());
+        return "searchTicket";
     }
 }

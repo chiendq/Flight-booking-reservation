@@ -3,11 +3,12 @@ package vn.hanu.fit.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Table(name = "location")
 @Entity
 @Data
-public class Location {
+public class Location implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

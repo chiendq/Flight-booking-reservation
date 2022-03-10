@@ -9,13 +9,14 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.sql.Date;
 
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class RegisterDTO {
+public class RegisterDTO implements Serializable {
     @Size(min = 8, message = "Username must at least 8 characters ")
     private String username;
 

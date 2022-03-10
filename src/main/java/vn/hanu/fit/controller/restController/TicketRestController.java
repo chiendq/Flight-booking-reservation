@@ -44,16 +44,7 @@ public class TicketRestController {
             ,@Valid @RequestBody Ticket ticketDetails) throws ResourceNotFoundException{
         Ticket ticket = ticketRepository.findById(ticketId)
                 .orElseThrow(() -> new ResourceNotFoundException("This ticket does not exist: " + ticketId));
-        ticket.setCode(ticketDetails.getCode());
-        ticket.setDeparture(ticketDetails.getDeparture());
-        ticket.setArrival(ticketDetails.getArrival());
-        ticket.setDepartureTime(ticketDetails.getDepartureTime());
-        ticket.setArrivalTime(ticketDetails.getArrivalTime());
-        ticket.setHandLuggage(ticketDetails.getHandLuggage());
-        ticket.setSeat(ticketDetails.getSeat());
-        ticket.setCabinClass(ticketDetails.getCabinClass());
-        ticket.setRegisteredLuggage(ticketDetails.getRegisteredLuggage());
-        ticket.setFlightNumber(ticketDetails.getFlightNumber());
+
         ticket.setCost(ticketDetails.getCost());
 
         final Ticket updatedTicket = ticketRepository.save(ticket);

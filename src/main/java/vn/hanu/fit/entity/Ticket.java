@@ -4,46 +4,49 @@ package vn.hanu.fit.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
 @Data
-public class Ticket {
+@Table(name = "ticket")
+public class Ticket implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "code")
-    private String code;
+    @ManyToOne
+    private Airlines airlines;
 
-    @Column(name = "departure")
-    private String departure;
+    private String airplane;
 
-    @Column(name = "arrival")
-    private String arrival;
-
-    @Column(name = "departure_time")
     private Timestamp departureTime;
 
-    @Column(name = "arrival_time")
+    @ManyToOne
+    private Location departureLocation;
+
+    @ManyToOne
+    private Location arrivalLocation;
+
     private Timestamp arrivalTime;
 
-    @Column(name = "hand_luggage")
+    private int estimatedTime;
+
     private Integer handLuggage;
 
-    @Column(name = "seat")
-    private String seat;
-
-    @Column(name = "cabin_class")
-    private String cabinClass;
-
-    @Column(name = "registered_luggage")
     private Integer registeredLuggage;
 
-    @Column(name = "flight_number")
-    private String flightNumber;
+    private Integer taxes;
 
-    @Column(name = "cost")
-    private String cost;
+    private Integer fees;
+
+    private Integer serviceCharge;
+
+    private Integer cost;
+
+    private String luggageIconURL;
+
+    @ManyToOne
+    private FlyClass flyClass;
 }

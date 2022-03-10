@@ -8,11 +8,11 @@
 </head>
 <body>
 <header>
-        <div class="nav-list">
-            <a>Flight Booking</a>
-            <a th:href="@{/login}">Log In</a>
-            <a th:href="@{/join}">Sign Up</a>
-        </div>
+    <div class="nav-list">
+        <a>Flight Booking</a>
+        <a th:href="@{/login}">Log In</a>
+        <a th:href="@{/join}">Sign Up</a>
+    </div>
 
     <div>
         <form action="#" th:action="@{/search}" th:object="${ticketSearchDTO}" method="get">
@@ -53,6 +53,35 @@
                 <input type="submit" value="Search">
             </fieldset>
         </form>
+    </div>
+
+    <div th:each="ticket  : ${tickets}">
+        <fieldset>
+            <legend>Ticket List</legend>
+            <div>
+                <img th:src="${ticket.airlines.imgAPI}" style="height: 30px; width: 94px">
+                <a th:text="${ticket.airlines.name}"></a>
+                <a th:text="${ticket.airplane}"></a>
+            </div>
+            <div th:text="${ticket.departureTime.toGMTString()}"></div><a th:text="${ticket.departureLocation.code}"/>
+            <div th:text="${ticket.arrivalTime.toGMTString()}"></div><a th:text="${ticket.arrivalLocation.code}"/>
+            <div>
+                Estimate time:
+                <a th:text="${ticket.estimatedTime}"></a>
+            </div>
+            <div>
+                <a th:text="${ticket.flyClass.name}"></a>
+
+                <img th:src="${ticket.luggageIconURL}" style="height: 30px; width: 30px">
+                <a>Hand Luggage:</a>
+                <a th:text="${ticket.handLuggage} +'kg'"></a>
+                <a>Registered Luggage:</a>
+                <a th:text="${ticket.registeredLuggage}+'kg'"></a>
+                <a>Cost: </a>
+                <a th:text="${ticket.cost}+'đ'"></a>
+                <button type="button" th:onclick="|'/booking'|">Select</button>
+            </div>
+        </fieldset>
     </div>
 </header>
 

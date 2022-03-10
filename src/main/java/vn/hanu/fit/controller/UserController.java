@@ -82,7 +82,7 @@ public class UserController {
             return "login";
         }
         LOGGER.info("LOG IN SUCCESSFUL : Username :" + username + " , Password:" + password);
-        return "index";
+        return "rediret:index";
     }
 
 //    @RequestMapping(value = "/login/validate")
