@@ -6,12 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import vn.hanu.fit.dto.TicketSearchDTO;
 import vn.hanu.fit.entity.Location;
-import vn.hanu.fit.entity.Ticket;
 import vn.hanu.fit.repository.LocationRepository;
 import vn.hanu.fit.repository.TicketRepository;
 
@@ -30,16 +29,26 @@ public class IndexController {
     @RequestMapping({"","/home"})
     public String home(Model model){
         List<Location> locations = locationRepository.findAll();
-        TicketSearchDTO ticketSearchDTO = new TicketSearchDTO();
-        ticketSearchDTO.setLocations(locations);
-        model.addAttribute("ticketSearchDTO", ticketSearchDTO);
+        model.addAttribute("locations", locations);
+        model.addAttribute("ticketSearchDTO", new TicketSearchDTO());
         return "index";
     }
 
     @RequestMapping("/search")
     public String search(@ModelAttribute("ticketSearchDTO") TicketSearchDTO ticketSearchDTO, Model model){
-        model.addAttribute("ticketSearchDTO", ticketSearchDTO);
+        model.addAttribute("locations", locationRepository.findAll());
         model.addAttribute("tickets", ticketRepository.findAll());
+//        LOGGER.info(ticketSearchDTO.toString());
         return "searchTicket";
+    }
+
+
+    @RequestMapping("/booking/{id}")
+    public String booking(@ModelAttribute("ticketSearchDTO") TicketSearchDTO ticketSearchDTO,
+                          Model model,
+                          @PathVariable("id")Long id){
+        model.addAttribute("ticketSearchDTO",ticketSearchDTO);
+        LOGGER.info(ticketSearchDTO.toString());
+        return "payment";
     }
 }

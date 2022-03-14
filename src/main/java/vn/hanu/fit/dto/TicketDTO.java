@@ -17,9 +17,9 @@ public class TicketDTO implements Serializable {
 
     private String airplane;
 
-    private Timestamp departureTime;
+    private Timestamp fromTime;
 
-    private Timestamp arrivalTime;
+    private Timestamp toTime;
 
     private int estimatedTime;
 

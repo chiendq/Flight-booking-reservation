@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import vn.hanu.fit.entity.Location;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
@@ -16,8 +17,6 @@ public class TicketSearchDTO implements Serializable {
     private String fromLocationCode;
 
     private String toLocationCode;
-
-    private List<Location> locations;
 
     private Date departureTime;
 
@@ -37,13 +36,11 @@ public class TicketSearchDTO implements Serializable {
 
     private boolean firstClass;
 
-
     @Override
     public String toString() {
         return "TicketSearchDTO{" +
                 "fromLocationCode='" + fromLocationCode + '\'' +
                 ", toLocationCode='" + toLocationCode + '\'' +
-                ", locations=" + locations +
                 ", departureTime=" + departureTime +
                 ", arrivalTime=" + arrivalTime +
                 ", adultPassengerNumber=" + adultPassengerNumber +

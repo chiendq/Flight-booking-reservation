@@ -1,8 +1,11 @@
 package vn.hanu.fit.controller.restController;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vn.hanu.fit.controller.UserController;
 import vn.hanu.fit.repository.TicketRepository;
 import vn.hanu.fit.entity.Ticket;
 import vn.hanu.fit.exception.ResourceNotFoundException;
@@ -11,13 +14,15 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/ticket")
 public class TicketRestController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     TicketRepository ticketRepository;
-
 
     @GetMapping()
     public List<Ticket> getAllTicket(){
@@ -63,5 +68,17 @@ public class TicketRestController {
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;
+    }
+
+    @GetMapping("/find")
+    public Ticket find(){
+
+        return ticketRepository.findTicketByDepartureLocation_Id(4l);
+    }
+
+    @GetMapping("/test")
+    public String test(){
+        LOGGER.info("????????????");
+        return "ok";
     }
 }

@@ -47,6 +47,9 @@ public class Ticket implements Serializable {
 
     private String luggageIconURL;
 
+    private boolean sold;
+
     @ManyToOne
     private FlyClass flyClass;
+
 }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net/thymeleaf/layout" >
+<head>
+    <meta charset="UTF-8">
+    <title>Flight Booking</title>
+
+</head>
+<body>
+<header>
+    <div class="nav-list">
+        <a>Flight Booking</a>
+        <a th:href="@{/login}">Log In</a>
+        <a th:href="@{/join}">Sign Up</a>
+    </div>
+    <form th:object="${ticketSearchDTO}">
+        <div>
+            <h3>Customer Information</h3>
+            <select>
+                <option th:text="'Male'" selected></option>
+                <option th:text="'Female'"></option>
+            </select>
+            <input type="text" placeholder="Full name">
+        </div>
+
+        <div>
+            <h3>Contact information</h3>
+            <a>Reservation code will be sent to the contact information below</a></br>
+            <select>
+                <option th:text="'Mr'" th:selected="'Male'"></option>
+                <option th:text="'Mrs'"></option>
+                <input type="text" placeholder="Full name"></br>
+                <input type="text" placeholder="Phone number">
+                <input type="email" placeholder="Email">
+            </select>
+        </div>
+
+        <div>
+            <h3>Buy insurance</h3>
+            <input type="checkbox"><a th:text="'Buy insurance(30.000đ/person)'"></a>
+            <a th:text="'x ' + (*{adultPassengerNumber} + *{childPassengerNumber})+' person'"></a>
+        </div>
+
+        <div>
+            <h3>Price details</h3>
+            <a th:text="'Adult x'+ *{adultPassengerNumber}"></a><a th:text="(*{adultPassengerNumber}*360000) + 'đ'"></a></br>
+            <a th:text="'Child x'+ *{childPassengerNumber}"></a><a th:text="(*{adultPassengerNumber}*250000) + 'đ'"></a></br>
+            <a th:text="'Baby x'+ *{babyPassengerNumber}"></a><a th:text="'FREE'"></a></br>
+            <a th:text="'Airport taxes and fees'"></a><a th:text="160000 + 'đ'"></a></br>
+            <a th:text="'Service charge'"></a><a th:text="35000 + 'đ'"></a></br>
+            <a th:text="'Tổng giá chiều đi'"></a><a th:text="(*{adultPassengerNumber}*360000+ *{adultPassengerNumber}*250000 + 160000+35000) + 'đ'"></a></br>
+            <h4 th:text="'Total   '"></h4><h4 th:text="(*{adultPassengerNumber}*360000+ *{adultPassengerNumber}*250000 + 160000+35000) + 'đ'"></h4></br>
+        </div>
+
+        <input type="submit" value="Continue">
+    </form>
+</header>
+
+</body>
+</html>

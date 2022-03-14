@@ -7,7 +7,6 @@
 
 </head>
 <body>
-<header>
     <div class="nav-list">
         <a>Flight Booking</a>
         <a th:href="@{/login}">Log In</a>
@@ -16,13 +15,12 @@
 
     <div>
         <form action="#" th:action="@{/search}" th:object="${ticketSearchDTO}" method="get">
-            <input type="hidden" th:field="${ticketSearchDTO.locations}" th:value="${ticketSearchDTO.locations}">
             <fieldset>
                 <div>
                     <legend>Flight booking</legend>
                     <label>From:</label>
                     <select th:field="${ticketSearchDTO.fromLocationCode}">
-                        <option th:each="location : ${ticketSearchDTO.locations}"
+                        <option th:each="location : ${locations}"
                                 th:value="${location.code}"
                                 th:selected="${location.code}"
                                 th:text="${location.city}+'-'+${location.airport}">
@@ -30,7 +28,7 @@
                     </select></br>
                     <label>To:</label>
                     <select th:field="${ticketSearchDTO.toLocationCode}">
-                        <option th:each="location : ${ticketSearchDTO.locations}"
+                        <option th:each="location : ${locations}"
                                 th:value="${location.code}"
                                 th:selected="${location.id}"
                                 th:text="${location.city}+'-'+${location.airport}">
@@ -54,36 +52,46 @@
             </fieldset>
         </form>
     </div>
-
     <div th:each="ticket  : ${tickets}">
         <fieldset>
-            <legend>Ticket List</legend>
-            <div>
-                <img th:src="${ticket.airlines.imgAPI}" style="height: 30px; width: 94px">
-                <a th:text="${ticket.airlines.name}"></a>
-                <a th:text="${ticket.airplane}"></a>
-            </div>
-            <div th:text="${ticket.departureTime.toGMTString()}"></div><a th:text="${ticket.departureLocation.code}"/>
-            <div th:text="${ticket.arrivalTime.toGMTString()}"></div><a th:text="${ticket.arrivalLocation.code}"/>
-            <div>
-                Estimate time:
-                <a th:text="${ticket.estimatedTime}"></a>
-            </div>
-            <div>
-                <a th:text="${ticket.flyClass.name}"></a>
+                <div>
+                    <img th:src="${ticket.airlines.imgAPI}" style="height: 30px; width: 94px">
+                    <a th:text="${ticket.airlines.name}"></a>
+                    <a th:text="${ticket.airplane}"></a>
+                </div>
+                <div th:text="${ticket.departureTime.toGMTString()}"></div><a th:text="${ticket.departureLocation.code}"/>
+                <div th:text="${ticket.arrivalTime.toGMTString()}"></div><a th:text="${ticket.arrivalLocation.code}"/>
+                <div>
+                    Estimate time:
+                    <a th:text="${ticket.estimatedTime}"></a>
+                </div>
+                <div>
+                    <a th:text="${ticket.flyClass.name}"></a>
 
-                <img th:src="${ticket.luggageIconURL}" style="height: 30px; width: 30px">
-                <a>Hand Luggage:</a>
-                <a th:text="${ticket.handLuggage} +'kg'"></a>
-                <a>Registered Luggage:</a>
-                <a th:text="${ticket.registeredLuggage}+'kg'"></a>
-                <a>Cost: </a>
-                <a th:text="${ticket.cost}+'đ'"></a>
-                <button type="button" th:onclick="|'/booking'|">Select</button>
-            </div>
+                    <img th:src="${ticket.luggageIconURL}" style="height: 30px; width: 30px">
+                    <a>Hand Luggage:</a>
+                    <a th:text="${ticket.handLuggage} +'kg'"></a>
+                    <a>Registered Luggage:</a>
+                    <a th:text="${ticket.registeredLuggage}+'kg'"></a>
+                    <a>Cost: </a>
+                    <a th:text="${ticket.cost}+'đ'"></a>
+                </div>
+            <form action="#" th:action="'/booking/' + ${ticket.id}" th:object="${ticketSearchDTO}" method="get">
+                <input type="hidden" th:field="${ticketSearchDTO.fromLocationCode}">
+                <input type="hidden" th:field="${ticketSearchDTO.toLocationCode}">
+                <input type="hidden" th:field="${ticketSearchDTO.departureTime}"></br>
+                <input type="hidden" th:field="${ticketSearchDTO.arrivalTime}"></br>
+                <input type="hidden" th:field="${ticketSearchDTO.adultPassengerNumber}">
+                <input type="hidden" name="child" th:min="0" th:max="3" th:field="${ticketSearchDTO.childPassengerNumber}">
+                <input type="hidden" name="baby"   th:min="0" th:max="1" th:field="${ticketSearchDTO.babyPassengerNumber}">
+                <input type="hidden" th:field="${ticketSearchDTO.economyClass}" th:value="${true}">
+                <input type="hidden" th:field="${ticketSearchDTO.specialEconomyClass}" th:value="${true}" >
+                <input type="hidden" th:field="${ticketSearchDTO.businessClass}" th:value="${true}" >
+                <input type="hidden" th:field="${ticketSearchDTO.firstClass}" th:value="${true}" >
+                <input type="submit" value="Select">
+            </form>
         </fieldset>
     </div>
-</header>
 
 </body>
 </html>

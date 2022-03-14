@@ -16,13 +16,12 @@
 
     <div>
         <form action="#" th:action="@{/search}" th:object="${ticketSearchDTO}" method="get">
-            <input type="hidden" th:field="${ticketSearchDTO.locations}" th:value="${ticketSearchDTO.locations}">
             <fieldset>
                 <div>
                     <legend>Flight booking</legend>
                     <label>From:</label>
                     <select th:field="${ticketSearchDTO.fromLocationCode}">
-                        <option th:each="location : ${ticketSearchDTO.locations}"
+                        <option th:each="location : ${locations}"
                                 th:value="${location.code}"
                                 th:selected="${location.code}"
                                 th:text="${location.city}+'-'+${location.airport}">
@@ -30,7 +29,7 @@
                     </select></br>
                     <label>To:</label>
                     <select th:field="${ticketSearchDTO.toLocationCode}">
-                        <option th:each="location : ${ticketSearchDTO.locations}"
+                        <option th:each="location : ${locations}"
                                 th:value="${location.code}"
                                 th:selected="${location.id}"
                                 th:text="${location.city}+'-'+${location.airport}">
@@ -46,7 +45,7 @@
                 <a>Child: </a><input type="number" name="child" th:min="0" th:max="3" th:field="${ticketSearchDTO.childPassengerNumber}">
                 <a>Baby: </a><input type="number" name="baby"   th:min="0" th:max="1" th:field="${ticketSearchDTO.babyPassengerNumber}"></br>
                 <label>Class: </label></br>
-                <input type="checkbox" th:field="${ticketSearchDTO.economyClass}" th:value="${true}"><a>-Phổ thông - Bay tiết kiệm, đáp ứng mọi nhu cầu cơ bản</a></br>
+                <input type="checkbox" th:field="${ticketSearchDTO.economyClass}" th:value="${true}" th:checked><a>-Phổ thông - Bay tiết kiệm, đáp ứng mọi nhu cầu cơ bản</a></br>
                 <input type="checkbox" th:field="${ticketSearchDTO.specialEconomyClass}" th:value="${true}" ><a>-Phổ thông đặc biệt - Chi phí hợp lý với bữa ăn ngon và chỗ để chân rộng rãi.</a></br>
                 <input type="checkbox" th:field="${ticketSearchDTO.businessClass}" th:value="${true}" ><a>-Thương gia - Bay đẳng cấp, với quầy làm thủ tục và khu ghế ngồi riêng.</a></br>
                 <input type="checkbox" th:field="${ticketSearchDTO.firstClass}" th:value="${true}" ><a>-Hạng nhất - Hạng cao cấp nhất, với dịch vụ 5 sao được cá nhân hoá.</a></br>
