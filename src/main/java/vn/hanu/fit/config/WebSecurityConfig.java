@@ -40,9 +40,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return authProvider;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new BCryptPasswordEncoder().matches("123","$2a$10$94SrHjVk2T8GM6jMPTqtSei6QHeuVsqk9Iasd2Kw2ZJ26..UVzMqy"));
-    }
+//    public static void main(String[] args) {
+//        System.out.println(new BCryptPasswordEncoder().matches("123","$2a$10$94SrHjVk2T8GM6jMPTqtSei6QHeuVsqk9Iasd2Kw2ZJ26..UVzMqy"));
+//    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

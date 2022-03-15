@@ -66,8 +66,7 @@
                     <a th:text="${ticket.estimatedTime}"></a>
                 </div>
                 <div>
-                    <a th:text="${ticket.flyClass.name}"></a>
-
+                    <a th:text="${ticket.flightClass.name}"></a>
                     <img th:src="${ticket.luggageIconURL}" style="height: 30px; width: 30px">
                     <a>Hand Luggage:</a>
                     <a th:text="${ticket.handLuggage} +'kg'"></a>

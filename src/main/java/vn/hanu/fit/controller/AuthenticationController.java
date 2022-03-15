@@ -24,11 +24,6 @@ import java.util.List;
 
 @Controller
 public class AuthenticationController {
-
-//    @RequestMapping("/login")
-//    public String showLogin(){
-//        return "login";
-//    }
     @Autowired
     UserRepository userRepository;
 
