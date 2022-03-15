@@ -50,6 +50,6 @@ public class Ticket implements Serializable {
     private boolean sold;
 
     @ManyToOne
-    private FlyClass flyClass;
+    private FlightClass flyClass;
 
 }

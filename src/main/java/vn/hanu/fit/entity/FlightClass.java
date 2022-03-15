@@ -7,12 +7,12 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Table(name = "FlyClass")
+@Table(name = "FlightClass")
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-public class FlyClass implements Serializable {
+public class FlightClass implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

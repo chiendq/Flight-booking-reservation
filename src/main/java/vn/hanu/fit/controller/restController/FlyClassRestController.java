@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import vn.hanu.fit.entity.FlyClass;
+import vn.hanu.fit.entity.FlightClass;
 import vn.hanu.fit.repository.FlyClassRepository;
 
 @RestController
@@ -15,7 +15,7 @@ public class FlyClassRestController {
     @Autowired
     FlyClassRepository flyClassRepository;
     @PostMapping("/add")
-    public FlyClass createFlyClass(@RequestBody FlyClass flyClass){
+    public FlightClass createFlyClass(@RequestBody FlightClass flyClass){
         return flyClassRepository.save(flyClass);
     }
 }
