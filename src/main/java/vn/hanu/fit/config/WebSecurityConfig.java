@@ -57,11 +57,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .anyRequest().permitAll()
             .and()
             .formLogin()// Cho phép người dùng xác thực bằng form login
-            .loginPage("/join")
+            .loginPage("/login")
+            .failureUrl("/login?error")
             .permitAll() // Tất cả đều được truy cập vào địa chỉ này
             .and()
             .logout() // Cho phép logout
-            .logoutUrl("/home/logout")
+            .logoutUrl("/logout")
             .permitAll();
     }
 }
