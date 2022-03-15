@@ -19,7 +19,6 @@ create table fly_class
     code        varchar(255) null,
     description varchar(255) null,
     name        varchar(255) null,
-    constraint UK_xx5cuhr4urgdndwovarm3bd2
         unique (code)
 );
 
@@ -55,33 +54,6 @@ create table roles
 INSERT INTO flightbooking.roles (role_id, name) VALUES (1, 'USER');
 INSERT INTO flightbooking.roles (role_id, name) VALUES (2, 'ADMIN');
 
-create table tickets
-(
-    id                    bigint auto_increment
-        primary key,
-    airlines              varchar(255) null,
-    airplane              varchar(255) null,
-    arrival_time          datetime     null,
-    cost                  int          null,
-    departure_time        datetime     null,
-    estimated_time        int          not null,
-    sold                  bit          not null,
-    hand_luggage          int          null,
-    registered_luggage    int          null,
-    service_charge        int          null,
-    taxes                 int          null,
-    fly_class_id          bigint       null,
-    arrival_location_id   bigint       null,
-    departure_location_id bigint       null,
-    fly_class_code        varchar(255) null,
-    airlines_id           bigint       null,
-    luggage_iconurl       varchar(255) null,
-    fees                  int          null
-);
-
-INSERT INTO flightbooking.tickets (id, airlines, airplane, arrival_time, cost, departure_time, estimated_time, sold, hand_luggage, registered_luggage, service_charge, taxes, fly_class_id, arrival_location_id, departure_location_id, fly_class_code, airlines_id, luggage_iconurl, fees) VALUES (1, 'VietName Arilines', 'Airbus A320', '2022-03-10 16:00:00', 250000, '2022-03-11 16:06:02', 2, false, 7, 0, 35000, 25000, 1, 2, 4, 'ECL', 1, 'https://www.iconpacks.net/icons/2/free-baggage-icon-1834-thumb.png', 10000);
-INSERT INTO flightbooking.tickets (id, airlines, airplane, arrival_time, cost, departure_time, estimated_time, sold, hand_luggage, registered_luggage, service_charge, taxes, fly_class_id, arrival_location_id, departure_location_id, fly_class_code, airlines_id, luggage_iconurl, fees) VALUES (2, 'Vietjet Air', 'VJ139', '2022-03-10 16:21:24', 300000, '2022-03-10 16:21:28', 3, false, 20, 1, 29000, 15000, 2, 3, 5, 'FCL', 2, 'https://www.iconpacks.net/icons/2/free-baggage-icon-1834-thumb.png', 11000);
-
 create table users
 (
     user_id     bigint auto_increment
@@ -113,3 +85,30 @@ create table users_roles
 
 INSERT INTO flightbooking.users_roles (user_id, role_id) VALUES (1, 1);
 INSERT INTO flightbooking.users_roles (user_id, role_id) VALUES (2, 2);
+
+create table tickets
+(
+    id                    bigint auto_increment
+        primary key,
+    airlines              varchar(255) null,
+    airplane              varchar(255) null,
+    arrival_time          datetime     null,
+    cost                  int          null,
+    departure_time        datetime     null,
+    estimated_time        int          not null,
+    sold                  bit          not null,
+    hand_luggage          int          null,
+    registered_luggage    int          null,
+    service_charge        int          null,
+    taxes                 int          null,
+    fly_class_id          bigint       null,
+    arrival_location_id   bigint       null,
+    departure_location_id bigint       null,
+    fly_class_code        varchar(255) null,
+    airlines_id           bigint       null,
+    luggage_iconurl       varchar(255) null,
+    fees                  int          null
+);
+
+INSERT INTO flightbooking.tickets (id, airlines, airplane, arrival_time, cost, departure_time, estimated_time, sold, hand_luggage, registered_luggage, service_charge, taxes, fly_class_id, arrival_location_id, departure_location_id, fly_class_code, airlines_id, luggage_iconurl, fees) VALUES (1, 'VietName Arilines', 'Airbus A320', '2022-03-10 16:00:00', 250000, '2022-03-11 16:06:02', 2, false, 7, 0, 35000, 25000, 1, 2, 4, 'ECL', 1, 'https://www.iconpacks.net/icons/2/free-baggage-icon-1834-thumb.png', 10000);
+INSERT INTO flightbooking.tickets (id, airlines, airplane, arrival_time, cost, departure_time, estimated_time, sold, hand_luggage, registered_luggage, service_charge, taxes, fly_class_id, arrival_location_id, departure_location_id, fly_class_code, airlines_id, luggage_iconurl, fees) VALUES (2, 'Vietjet Air', 'VJ139', '2022-03-10 16:21:24', 300000, '2022-03-10 16:21:28', 3, false, 20, 1, 29000, 15000, 2, 3, 5, 'FCL', 2, 'https://www.iconpacks.net/icons/2/free-baggage-icon-1834-thumb.png', 11000);
