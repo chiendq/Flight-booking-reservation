@@ -110,5 +110,6 @@ create table users_roles
     primary key (user_id, role_id)
 );
 
+
 INSERT INTO flightbooking.users_roles (user_id, role_id) VALUES (1, 1);
 INSERT INTO flightbooking.users_roles (user_id, role_id) VALUES (2, 2);
