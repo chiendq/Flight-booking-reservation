@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net/thymeleaf/layout" >
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>Flight Booking</title>
-    <script type="text/javascript" th:src="@{/js/actions.js}"></script>
+<!--    <script type="text/javascript" th:src="@{/js/actions.js}"></script>-->
 
 </head>
 <body>
 <header>
-        <div class="nav-list">
-            <a>Flight Booking</a>
-            <a th:href="@{/login}">Log In</a>
-            <a th:href="@{/join}">Sign Up</a>
-        </div>
+    <div class="nav-list">
+        <a>Flight Booking</a>
+
+        <a th:href="@{/login}">Log In</a>
+        <a th:href="@{/join}">Sign Up</a>
+    </div>
+
+    <div sec:authorize="isAuthenticated()">
+    Welcome <b><span sec:authentication="name">Username</span></b>
+    &nbsp;
+    <i><span sec:authentication="principal.authorities">Roles</span></i>
+</div>
 
     <div>
         <form action="#" th:action="@{/search}" th:object="${ticketSearchDTO}" method="get">
@@ -54,8 +61,7 @@
             </fieldset>
         </form>
     </div>
-    <button type="button" th:onclick="showAlert()">Show Alert</button>
-
+<!--    <button type="button" th:onclick="showAlert()">Show Alert</button>-->
 </header>
 
 </body>
