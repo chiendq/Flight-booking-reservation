@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Table(name = "location")
+@Table(name = "locations")
 @Entity
 @Data
 public class Location implements Serializable {
