@@ -5,18 +5,18 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Table(name = "locations")
-@Entity
 @Data
-public class Location implements Serializable {
-
+@Table(name = "airports")
+@Entity
+public class Airport implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String code;
 
+    private String name;
+
     private String city;
 
-    private String airport;
 }

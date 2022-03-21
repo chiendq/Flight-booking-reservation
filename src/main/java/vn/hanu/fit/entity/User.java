@@ -20,9 +20,22 @@ import java.util.Set;
 public class User implements Serializable {
 
     @Id
-    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+//    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JoinTable(
+//            name = "users_roles",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id")
+//    )
+    @ManyToOne
+//            (cascade = CascadeType.ALL)
+//    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    private Role role ;
+
+    @NotEmpty( message = "Full name must at least 8 characters ")
+    private String fullName;
 
     @Size(min = 8, message = "Username must at least 8 characters ")
     private String username;
@@ -30,15 +43,12 @@ public class User implements Serializable {
     @Size(min = 8, message = "Password must at least 8 characters ")
     private String password;
 
-    @NotEmpty( message = "Full name must at least 8 characters ")
-    private String fullname;
-
     @Size(min = 10, max = 11, message = "Incorrect phone number type")
     private String phone;
 
     private boolean gender;
 
-    private Date dateofbirth;
+    private Date dateOfBirth;
 
     @Email
     private String email;
@@ -47,11 +57,7 @@ public class User implements Serializable {
 
     private boolean isExist;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Role> roles = new HashSet<>();
+    private String identityNumber;
+
+
 }

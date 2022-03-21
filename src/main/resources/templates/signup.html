@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-    <link rel="stylesheet" th:href="@{/css/main.css}">
+<!--    <link rel="stylesheet" th:href="@{/css/main.css}">-->
 </head>
 <body>
 <h1>Account Register</h1>
@@ -17,9 +17,9 @@
         <label for="password">Password*:</label>
         <input type="password" id="password" placeholder="Password" name="password" th:field="${newUser.password}"></br>
 
-        <p th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}"  class="error"/>
+        <p th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"  class="error"/>
         <label for="fullname">Full Name*:</label>
-        <input type="text" id="fullname" placeholder="Full Name" name="fullname" th:field="${newUser.fullname}"></br>
+        <input type="text" id="fullname" placeholder="Full Name" name="fullname" th:field="${newUser.fullName}"></br>
 
         <p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"  class="error"/>
         <label for="phone">Phone number*:</label>
@@ -34,7 +34,7 @@
         <input type="text" id="email" placeholder="email" name="email"  th:field="${newUser.email}"></br>
 
         <label for="dateofbirth">Date of birth*:</label>
-        <input type="date" id="dateofbirth" name="dateofbirth" th:field="${newUser.dateofbirth}" required></br>
+        <input type="date" id="dateofbirth" name="dateofbirth" th:field="${newUser.dateOfBirth}" required></br>
         <div th:if="*{isExist}" class="error">Username already exist!</div>
         <input type="submit" value="Sign Up">
 

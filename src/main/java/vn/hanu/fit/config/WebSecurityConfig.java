@@ -40,9 +40,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return authProvider;
     }
 
-//    public static void main(String[] args) {
-//        System.out.println(new BCryptPasswordEncoder().matches("123","$2a$10$94SrHjVk2T8GM6jMPTqtSei6QHeuVsqk9Iasd2Kw2ZJ26..UVzMqy"));
-//    }
+    public static void main(String[] args) {
+        System.out.println(new BCryptPasswordEncoder().encode("12345678"));
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -52,7 +52,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     // Override this method and left empty to disable default setting of Spring Boot Security
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+
+        http.cors().and().csrf().disable();
+                http
             .authorizeRequests()
             .anyRequest().permitAll()
             .and()
@@ -62,7 +64,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .permitAll() // Tất cả đều được truy cập vào địa chỉ này
             .and()
             .logout() // Cho phép logout
-            .logoutUrl("/logout")
             .permitAll();
     }
 }

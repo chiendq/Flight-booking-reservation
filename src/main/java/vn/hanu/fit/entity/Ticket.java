@@ -17,19 +17,28 @@ public class Ticket implements Serializable {
     private Long id;
 
     @ManyToOne
-    private Airlines airlines;
+    private Airline airline;
 
-    private String airplane;
+    @ManyToOne
+    private Airport departureAirport;
+
+    @ManyToOne
+    private Airport arrivalAirport;
+
+    @ManyToOne
+    private FlightClass flightClass;
+
+    @OneToOne
+    private Passenger passenger;
+
+    @OneToOne
+    private Airplane airplane;
 
     private Timestamp departureTime;
 
-    @ManyToOne
-    private Location departureLocation;
-
-    @ManyToOne
-    private Location arrivalLocation;
-
     private Timestamp arrivalTime;
+
+    private Integer cost;
 
     private int estimatedTime;
 
@@ -37,19 +46,13 @@ public class Ticket implements Serializable {
 
     private Integer registeredLuggage;
 
+    private Integer serviceCharge;
+
     private Integer taxes;
 
     private Integer fees;
 
-    private Integer serviceCharge;
+    private boolean available;
 
-    private Integer cost;
-
-    private String luggageIconURL;
-
-    private boolean sold;
-
-    @ManyToOne
-    private FlightClass flightClass;
-
+    private boolean isRoundTrip;
 }

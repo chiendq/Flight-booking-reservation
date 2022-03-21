@@ -7,7 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Table(name = "FlightClass")
+@Table(name = "flight_class")
 @Entity
 @Getter
 @Setter
@@ -23,4 +23,5 @@ public class FlightClass implements Serializable {
     private String name;
 
     private String description;
+
 }

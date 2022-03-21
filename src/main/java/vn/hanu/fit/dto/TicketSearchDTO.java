@@ -3,20 +3,21 @@ package vn.hanu.fit.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import vn.hanu.fit.entity.Location;
+import lombok.ToString;
 
-import javax.validation.constraints.NotEmpty;
+
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
+
 
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class TicketSearchDTO implements Serializable {
-    private String fromLocationCode;
+    private String departureAirportCode;
 
-    private String toLocationCode;
+    private String arrivalAirportCode;
 
     private Date departureTime;
 
@@ -36,20 +37,4 @@ public class TicketSearchDTO implements Serializable {
 
     private boolean firstClass;
 
-    @Override
-    public String toString() {
-        return "TicketSearchDTO{" +
-                "fromLocationCode='" + fromLocationCode + '\'' +
-                ", toLocationCode='" + toLocationCode + '\'' +
-                ", departureTime=" + departureTime +
-                ", arrivalTime=" + arrivalTime +
-                ", adultPassengerNumber=" + adultPassengerNumber +
-                ", childPassengerNumber=" + childPassengerNumber +
-                ", babyPassengerNumber=" + babyPassengerNumber +
-                ", economyClass=" + economyClass +
-                ", specialEconomyClass=" + specialEconomyClass +
-                ", businessClass=" + businessClass +
-                ", firstClass=" + firstClass +
-                '}';
-    }
 }

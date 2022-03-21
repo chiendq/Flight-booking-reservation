@@ -4,10 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Flight Booking</title>
-    <meta name ="viewport" content="width=device-width, initial-scale=1">
 
-    <!--    <script type="text/javascript" th:src="@{/js/actions.js}"></script>-->
-    <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 <body>
 <header>
@@ -20,53 +17,71 @@
         <div sec:authorize="isAuthenticated()">
             <a th:href="@{/logout}">Log Out</a>
         </div>
-    <div sec:authorize="isAuthenticated()">
-    Welcome <b><span sec:authentication="name">Username</span></b>
-<!--    &nbsp;-->
+        <div sec:authorize="isAuthenticated()">
+        Welcome <b><span sec:authentication="name">Username</span></b>
+        </div>
+    </div>
+        <!--    &nbsp;-->
 <!--    <i><span sec:authentication="principal.authorities">Roles</span></i>-->
-</div>
+
 
     <div>
         <form action="#" th:action="@{/search}" th:object="${ticketSearchDTO}" method="get">
             <fieldset>
-                <div>
+
+                <div >
                     <legend>Flight booking</legend>
-                    <label>From:</label>
-                    <select th:field="${ticketSearchDTO.fromLocationCode}">
-                        <option th:each="location : ${locations}"
-                                th:value="${location.code}"
-                                th:selected="${location.code}"
-                                th:text="${location.city}+'-'+${location.airport}">
-                        </option>
-                    </select></br>
-                    <label>To:</label>
-                    <select th:field="${ticketSearchDTO.toLocationCode}">
-                        <option th:each="location : ${locations}"
-                                th:value="${location.code}"
-                                th:selected="${location.id}"
-                                th:text="${location.city}+'-'+${location.airport}">
-                        </option>
-                    </select></br>
+                        <label>From:</label>
+                        <select th:field="${ticketSearchDTO.departureAirportCode}">
+                            <option th:each="airport : ${airports}"
+                                    th:value="${airport.code}"
+                                    th:selected="${airport.code}"
+                                    th:text="${airport.city}+' - '+${airport.name}">
+                            </option>
+                        </select></br>
+                        <label>To:</label>
+                        <select th:field="${ticketSearchDTO.arrivalAirportCode}">
+                            <option th:each="airport : ${airports}"
+                                    th:value="${airport.code}"
+                                    th:selected="${airport.code}"
+                                    th:text="${airport.city}+'-'+${airport.name}">
+                            </option>
+                        </select></br>
                 </div>
-                <label for="departuretime">Departure time:</label>
-                <input type="date" th:field="${ticketSearchDTO.departureTime}"  id="departuretime"></br>
-                <label for="arrivaltime">Arrival time:</label>
-                <input type="date" th:field="${ticketSearchDTO.arrivalTime}"   id="arrivaltime"></br>
+                <label for="departure-time">Departure time:</label>
+                <input type="date" th:field="${ticketSearchDTO.departureTime}"  id="departure-time"
+                       th:min="2022-01-01" th:max="2022-12-31" th:required="required"></br>
+
+                <label for="arrival-time">Arrival time:</label>
+                <input type="date" th:field="${ticketSearchDTO.arrivalTime}"   id="arrival-time"
+                       th:min="2022-01-01" th:max="2022-12-31" th:required="required"></br>
                 <label>Number of passenger:</label></br>
-                <a>Adult: </a><input type="number" name="adult" th:min="1" th:max="9" th:field="${ticketSearchDTO.adultPassengerNumber}">
-                <a>Child: </a><input type="number" name="child" th:min="0" th:max="3" th:field="${ticketSearchDTO.childPassengerNumber}">
-                <a>Baby: </a><input type="number" name="baby"   th:min="0" th:max="1" th:field="${ticketSearchDTO.babyPassengerNumber}"></br>
+                <a>Adult: </a><input type="number" name="adult" th:required="required"
+                                     th:min="1" th:max="9" th:field="${ticketSearchDTO.adultPassengerNumber}" th:onKeyDown="return false">
+                <a>Child: </a><input type="number" name="child"
+                                     th:min="0" th:max="3" th:field="${ticketSearchDTO.childPassengerNumber}" th:onkeydown="return false">
+                <a>Baby: </a><input type="number" name="baby"
+                                     th:min="0" th:max="1" th:field="${ticketSearchDTO.babyPassengerNumber}" th:onkeydown="return false"></br>
                 <label>Class: </label></br>
-                <input type="checkbox" th:field="${ticketSearchDTO.economyClass}" th:value="${true}" th:checked><a>-Phổ thông - Bay tiết kiệm, đáp ứng mọi nhu cầu cơ bản</a></br>
-                <input type="checkbox" th:field="${ticketSearchDTO.specialEconomyClass}" th:value="${true}" ><a>-Phổ thông đặc biệt - Chi phí hợp lý với bữa ăn ngon và chỗ để chân rộng rãi.</a></br>
-                <input type="checkbox" th:field="${ticketSearchDTO.businessClass}" th:value="${true}" ><a>-Thương gia - Bay đẳng cấp, với quầy làm thủ tục và khu ghế ngồi riêng.</a></br>
-                <input type="checkbox" th:field="${ticketSearchDTO.firstClass}" th:value="${true}" ><a>-Hạng nhất - Hạng cao cấp nhất, với dịch vụ 5 sao được cá nhân hoá.</a></br>
-                <input type="submit" value="Search">
+                <div >
+                    <input type="checkbox" th:field="${ticketSearchDTO.economyClass}"><a th:text="${flightClass.get(0).description}" ></a></br>
+                    <input type="checkbox" th:field="${ticketSearchDTO.specialEconomyClass}" ><a th:text="${flightClass.get(1).description}"></a></br>
+                    <input type="checkbox" th:field="${ticketSearchDTO.businessClass}" ><a th:text="${flightClass.get(2).description}"></a></br>
+                    <input type="checkbox" th:field="${ticketSearchDTO.firstClass}"  ><a th:text="${flightClass.get(3).description}"></a></br>
+                </div>
+               <input type="submit" value="Search" th:onclick="validateCheckboxes()">
             </fieldset>
         </form>
     </div>
-<!--    <button type="button" th:onclick="showAlert()">Show Alert</button>-->
 </header>
 
 </body>
 </html>
+
+<!--<label class="switch">-->
+<!--    <input class="switch-input" type="checkbox" onclick="showDiv()" />-->
+<!--    <span class="switch-label" ></span>-->
+<!--    <span class="switch-handle"></span>-->
+<!--</label>-->
+<!--<script type="text/javascript" th:src="@{/js/actions.js}"></script>-->
+<!--    <button type="button" th:onclick="showAlert()">Show Alert</button>-->

@@ -51,8 +51,8 @@ create table roles
     name    varchar(255) null
 );
 
-INSERT INTO flightbooking.roles (role_id, name) VALUES (1, 'USER');
-INSERT INTO flightbooking.roles (role_id, name) VALUES (2, 'ADMIN');
+INSERT INTO flightbooking.roles (id, name) VALUES (1, 'USER');
+INSERT INTO flightbooking.roles (id, name) VALUES (2, 'ADMIN');
 
 create table users
 (
@@ -112,3 +112,15 @@ create table tickets
 
 INSERT INTO flightbooking.tickets (id, airlines, airplane, arrival_time, cost, departure_time, estimated_time, sold, hand_luggage, registered_luggage, service_charge, taxes, flight_class_id, arrival_location_id, departure_location_id, flight_class_code, airlines_id, luggage_iconurl, fees) VALUES (1, 'VietName Arilines', 'Airbus A320', '2022-03-10 16:00:00', 250000, '2022-03-11 16:06:02', 2, false, 7, 0, 35000, 25000, 1, 2, 4, 'ECL', 1, 'https://www.iconpacks.net/icons/2/free-baggage-icon-1834-thumb.png', 10000);
 INSERT INTO flightbooking.tickets (id, airlines, airplane, arrival_time, cost, departure_time, estimated_time, sold, hand_luggage, registered_luggage, service_charge, taxes, flight_class_id, arrival_location_id, departure_location_id, flight_class_code, airlines_id, luggage_iconurl, fees) VALUES (2, 'Vietjet Air', 'VJ139', '2022-03-10 16:21:24', 300000, '2022-03-10 16:21:28', 3, false, 20, 1, 29000, 15000, 2, 3, 5, 'FCL', 2, 'https://www.iconpacks.net/icons/2/free-baggage-icon-1834-thumb.png', 11000);
+
+
+
+
+
+INSERT INTO flightbooking.airports (id, name, code, city)  VALUES  (1, 'Sân bay Nội Bài', 'HAN', 'Hà Nội');
+INSERT INTO flightbooking.airports (id, name, code, city) VALUES (2, 'Sân bay Tân Sơn Nhất', 'SGN', 'Hồ Chí Minh');
+INSERT INTO flightbooking.airports (id, name, code, city) VALUES (3, 'Sân bay Quốc Tế Đà Nẵng', 'DAD', 'Đà Nẵng');
+INSERT INTO flightbooking.airports (id, name, code, city) VALUES (4, 'Sân bay Cam Ranh', 'CXR', 'Nha Trang');
+INSERT INTO flightbooking.airports (id, name, code, city) VALUES (5, 'Sân bay quốc tế Phú Quốc', 'PQC', 'Phú Quốc');
+INSERT INTO flightbooking.airports (id, name, code, city) VALUES (6, 'Sân bay Quốc tế Phú Bài', 'HUI', 'Huế');
+INSERT INTO flightbooking.airports (id, name, code, city) VALUES (7, 'Sân bay Quốc Tế Cát Bi', 'HPH', 'Hải Phòng');
