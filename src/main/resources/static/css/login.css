@@ -1,0 +1,120 @@
+body {
+    height: 100%;
+    background-image: url("../images/plane_login_view.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+p {
+    font-size: 50px;
+    font-weight: bolder;
+}
+.notif {
+    background-color: rgba(220, 20, 60, 0.1);
+    border-radius: 25px;
+    height: 30px;
+    width: 350px;
+    text-align: center;
+}
+.failed-notif {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    color: red;
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+.login_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.form-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+.login_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 13%;
+    color: black;
+}
+fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 500px;
+    width: 420px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 25px;
+
+}
+._form-row {
+    display: flex;
+    flex-direction: row;
+    margin-top: 25px;
+    margin-right: 20px;
+}
+.form_label {
+    min-width: 90px;
+    width: 40px;
+    font-weight: bold;
+}
+.form_input {
+    height: 30px;
+    border-radius: 10px;
+    border: 1px black;
+}
+.button-28 {
+   background-color: floralwhite !important;
+   border: 2px solid black;
+   border-radius: 15px;
+   box-sizing: border-box;
+   cursor: pointer;
+   display: inline-block;
+   line-height: normal;
+   min-height: 60px;
+   min-width: 0;
+   outline: none;
+   padding: 16px 24px;
+   text-align: center;
+    margin-top: 20px;
+    width: 250px;
+    height: 40px;
+}
+
+.button-28:disabled {
+    pointer-events: none;
+}
+
+h3 {
+    color: black;
+    font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 25px;
+    font-weight: 600;
+}
+h3:hover {
+    color: white;
+}
+
+
+.button-28:hover {
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+}
+
+.button-28:active {
+    box-shadow: none;
+}
+.icon-section {
+    margin-top: 30px;
+}
+.icon-list {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
