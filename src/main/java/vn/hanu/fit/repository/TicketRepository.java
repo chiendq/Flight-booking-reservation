@@ -17,4 +17,8 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
     List<Ticket> findAllByArrivalTime(Timestamp time); // get by exactly time yyyy-MM-dd hh:mm:ss
 
+    List<Ticket> findAllByDepartureAirport_CodeAndArrivalAirport_Code(String fromCode, String toCode);
+
+    List<Ticket> findAllByDepartureAirport_CodeAndArrivalAirport_CodeAndFlightClass_Code(String fromCode, String toCode, String classCode);
+
 }
