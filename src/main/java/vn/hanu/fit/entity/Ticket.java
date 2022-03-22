@@ -29,9 +29,6 @@ public class Ticket implements Serializable {
     private FlightClass flightClass;
 
     @OneToOne
-    private Passenger passenger;
-
-    @OneToOne
     private Airplane airplane;
 
     private Timestamp departureTime;
