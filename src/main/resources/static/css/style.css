@@ -336,7 +336,7 @@ display:inline-block;
 
 
 #weather {
-    margin-top: 100px;
+
 }
 
 .weather-content {
@@ -544,6 +544,7 @@ display:inline-block;
     height: 20px;
 }
 .services {
+    margin-bottom: 100px;
     margin-top: 100px;
 }
 
