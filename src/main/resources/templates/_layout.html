@@ -11,13 +11,58 @@
         <a th:href="@{/login}">Log In</a>
         <a th:href="@{/join}">Sign Up</a>
     </header>
-    <div layout:fragment=”content”>
+    <section layout:fragment=”custom-content”>
 
-    </div>
-    <footer>
-        <p layout:fragment=”footer”>
-            &copy; 2021 ChieesnDdafo & Friends
-        </p>
+    </section>
+    <footer layout:fragment= "custom-footer"class = "footer">
+        <div class ="container2">
+            <div class = "row2">
+                <div class="special">
+                    <h1>Don't Miss Out</h1>
+                    <p> Enter email for our latest news and promos.<br>Chance to win free flight coupons.</p>
+                    <br>
+                    <input type ="email" id="email_input" placeholder="Email address"><br>
+                    <input type ="submit" class="submit">
+                    <h2>H-AIRLINES</h2>
+                    <p>Km9, Nguyen Trai, Nam Tu Liem, Hanoi City</p><br><p>+84 912 783 623</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="">About Us</a></li>
+                        <li><a href="">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Social Media</h4>
+                    <div class="social-links">
+                        <a href=""><i class="fa-brands fa-facebook"></i></a>
+                        <a href=""><i class="fa-brands fa-instagram"></i></a>
+                        <a href=""><i class="fa-brands fa-twitter-square"></i></a>
+                        <a href=""><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="">Manage Flight</a></li>
+                        <li><a href="">Flight Booking</a></li>
+                        <li><a href="">Check In</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="">Contact Us</a></li>
+                        <li><a href="">Refund</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr style="height:4px;border-width:0;color:gray;background-color:gray">
+            <div class="copy-right">
+                <h3>Copyright @SQA Project 2022</h3>
+            </div>
+        </div>
     </footer>
 </body>
 </html>

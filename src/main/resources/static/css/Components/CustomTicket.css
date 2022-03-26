@@ -1,0 +1,33 @@
+.cust-btn{
+    background-image: linear-gradient(to right, rgb(222, 98, 98) 0%, rgb(255, 184, 140) 51%, rgb(222, 98, 98) 100%);
+
+    font-family: 'Righteous', cursive;
+
+    font-size: 20px!important;
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: .5s;
+    background-size: 200% auto;
+    color: #d9edf7;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+    outline: none;
+    line-height: inherit;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 100%;
+
+}
+.cust-btn:hover {
+    background-position: 100%;
+    color: #fff;
+    text-decoration: none;
+}
+.flex-end {
+    display: flex;
+    justify-content: end!important;
+}
+
