@@ -22,7 +22,12 @@ p {
     font-size: 15px;
     font-weight: lighter;
 }
-
+::-webkit-input-placeholder {
+    text-align: center;
+}
+:-ms-input-placeholder {
+    text-align: center;
+}
 .login_body {
     display: flex;
     flex-direction: column;
@@ -102,7 +107,7 @@ h3:hover {
 
 
 .button-28:hover {
-    background-color: rgba(0, 0, 0, 0.6) !important;
+    background-color: rgba(72, 208, 59, 0.6) !important;
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
 }
 

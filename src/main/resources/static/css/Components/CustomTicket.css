@@ -21,13 +21,31 @@
     font-size: 100%;
 
 }
+.destination{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 10px;
+}
+.ticket-row{
+    display: flex;
+    padding: 5px 0px;
+    overflow: auto;
+
+}
 .cust-btn:hover {
     background-position: 100%;
     color: #fff;
     text-decoration: none;
 }
+.ticket-row label{
+    width:25%;
+}
 .flex-end {
     display: flex;
     justify-content: end!important;
 }
+
+
 
