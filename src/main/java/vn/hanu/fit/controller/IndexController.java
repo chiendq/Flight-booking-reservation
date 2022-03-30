@@ -88,4 +88,9 @@ public class IndexController {
         LOGGER.info(ticketSearchDTO.toString());
         return "payment";
     }
+
+    @RequestMapping("/booking/success")
+    public String bookingSuccess(){
+        return "booking_success";
+    }
 }
