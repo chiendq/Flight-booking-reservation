@@ -151,32 +151,47 @@
 
 <div class="container " >
     <div class="row justify-content-center align-items-center">
-        <div class="col-12 col-lg-9 col-xl-7 ">
+        <div class="col-12 col-lg-9 col-xl-7 " style="margin-bottom: 100px;">
             <div class="card shadow-2-strong card-registration  "
                  style="border-radius: 8px;background: rgb(251 74 74 / 20%);border: 3px solid rgb(34 33 33 / 60%);backdrop-filter: blur(60px);">
                 <div class="card-body p-4 p-md-5 ">
                     <div th:each="ticket  : ${tickets}">
-                        <fieldset>
-                            <div>
-                                <img th:src="${ticket.getAirline.imgAPI}" style="height: 30px; width: 94px">
+                        <fieldset style="font-size: 15px;">
+                            <div style=" font-size: 20px; font-weight: bold">
+                                <img th:src="${ticket.getAirline.imgAPI}" style="height: 60px; width: 90px">
                                 <a th:text="${ticket.getAirline.name}"></a>
-                                <a th:text="${ticket.airplane}"></a>
+                                (<a th:text="${ticket.airplane.code}"></a>)
                             </div>
-                            <div th:text="${ticket.departureTime.toGMTString()}"></div><a th:text="${ticket.departureAirport.code}"/>
-                            <div th:text="${ticket.arrivalTime.toGMTString()}"></div><a th:text="${ticket.arrivalAirport.code}"/>
-                            <div>
-                                Estimate time:
+                            <div class = "ticket-form">
+                                <div class="ticket-row" style="justify-content: space-between"><div style="display: flex; width: 50%;"><p th:text="${ticket.departureTime.toGMTString()}"></p><p th:text="${ticket.departureAirport.code}" style="padding-left: 10px; font-weight: bold"/></div>
+                                    <div style="display: flex; width: 50%;"><p th:text="${ticket.arrivalTime.toGMTString()}"></p><p th:text="${ticket.arrivalAirport.code}" style="padding-left: 10px; font-weight: bold"/></div>
+                                </div>
+
+
+
+                            <div class = "ticket-row">
+                                <label>Estimate time:</label>
                                 <a th:text="${ticket.estimatedTime}"></a>
                             </div>
-                            <div>
-                                <a th:text="${ticket.flightClass.name}"></a>
+                                <div class = "ticket-row">
+                                    <label>Flight Class Name:</label>
+                                    <a th:text="${ticket.flightClass.name}"></a>
+                                </div>
+                                <div class = "ticket-row">
+                                    <label>Hand Luggage:</label>
+                                    <a th:text="${ticket.handLuggage} +'kg'"></a>
+                                </div>
                                 <!--                    <img th:src="" style="height: 30px; width: 30px">-->
-                                <a>Hand Luggage:</a>
-                                <a th:text="${ticket.handLuggage} +'kg'"></a>
-                                <a>Registered Luggage:</a>
-                                <a th:text="${ticket.registeredLuggage}+'kg'"></a>
-                                <a>Cost: </a>
-                                <a th:text="${ticket.cost}+'đ'"></a>
+                                <div class = "ticket-row">
+                                    <label>Registered Luggage:</label>
+                                    <a th:text="${ticket.registeredLuggage}+'kg'"></a>
+                                </div>
+                                <div class = "ticket-row">
+                                    <label>Cost: </label>
+                                    <a th:text="${ticket.cost}+'đ'"></a>
+                                </div>
+
+
                             </div>
                             <form action="#" th:action="'/booking/' + ${ticket.id}" th:object="${ticketSearchDTO}" method="get">
                                 <input type="hidden" th:field="${ticketSearchDTO.departureAirportCode}">
@@ -190,7 +205,7 @@
                                 <input type="hidden" th:field="${ticketSearchDTO.specialEconomyClass}" th:value="${true}" >
                                 <input type="hidden" th:field="${ticketSearchDTO.businessClass}" th:value="${true}" >
                                 <input type="hidden" th:field="${ticketSearchDTO.firstClass}" th:value="${true}" >
-                                <div class="flex-end">
+                                <div class="flex-end" style="margin-top: -130px">
                                     <input class="cust-btn" type="submit" value="Select">
                                 </div>
                             </form>
@@ -202,7 +217,56 @@
     </div>
 </div>
 
-
+<footer class = "footer">
+    <div class ="container2">
+        <div class = "row2">
+            <div class="special">
+                <h1>Don't Miss Out</h1>
+                <p> Enter email for our latest news and promos.<br>Chance to win free flight coupons.</p>
+                <br>
+                <input type ="email" id="email_input" placeholder="Email address"><br>
+                <input type ="submit" class="submit">
+                <h2>H-AIRLINES</h2>
+                <p>Km9, Nguyen Trai, Nam Tu Liem, Hanoi City</p><br><p>+84 912 783 623</p>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="">About Us</a></li>
+                    <li><a href="">Terms of Use</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Social Media</h4>
+                <div class="social-links">
+                    <a href=""><i class="fa-brands fa-facebook"></i></a>
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                    <a href=""><i class="fa-brands fa-twitter-square"></i></a>
+                    <a href=""><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Our Services</h4>
+                <ul>
+                    <li><a href="">Manage Flight</a></li>
+                    <li><a href="">Flight Booking</a></li>
+                    <li><a href="">Check In</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="">Contact Us</a></li>
+                    <li><a href="">Refund</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr style="height:4px;border-width:0;color:gray;background-color:gray">
+        <div class="copy-right">
+            <h3>Copyright @SQA Project 2022</h3>
+        </div>
+    </div>
+</footer>
 
 </body>
 

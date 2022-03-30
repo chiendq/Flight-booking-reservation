@@ -336,7 +336,7 @@ display:inline-block;
 
 
 #weather {
-    margin-top: 100px;
+
 }
 
 .weather-content {
@@ -544,11 +544,12 @@ display:inline-block;
     height: 20px;
 }
 .services {
+    margin-bottom: 100px;
     margin-top: 100px;
 }
 
 .services .service-item {
-    background-color: #709dc5;
+    background-color: #838385;
     color: #fff;
     padding: 60px 30px 20px 30px;
     text-align: center;
