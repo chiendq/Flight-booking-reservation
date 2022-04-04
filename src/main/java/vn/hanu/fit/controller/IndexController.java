@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import vn.hanu.fit.dto.TicketSearchDTO;
+import vn.hanu.fit.dto.TicketSelectedDTO;
 import vn.hanu.fit.entity.Airport;
 import vn.hanu.fit.entity.FlightClass;
 import vn.hanu.fit.entity.Ticket;
@@ -82,10 +83,27 @@ public class IndexController {
 
     @RequestMapping("/booking/{id}")
     public String booking(@ModelAttribute("ticketSearchDTO") TicketSearchDTO ticketSearchDTO,
-                          Model model,
-                          @PathVariable("id")Long id){
+                          @PathVariable("id") Long id,
+                          Model model)
+    {
         model.addAttribute("ticketSearchDTO",ticketSearchDTO);
         LOGGER.info(ticketSearchDTO.toString());
+
+
+        TicketSelectedDTO ticketSelectedDTO =  new TicketSelectedDTO();
+
+        int adultNum = ticketSearchDTO.getAdultPassengerNumber();
+        int childNum = ticketSearchDTO.getChildPassengerNumber();
+        int babyNum = ticketSearchDTO.getBabyPassengerNumber();
+
+        ticketSelectedDTO.setTicketSearchDTO(ticketSearchDTO);
+        ticketSelectedDTO.setCustomerAdultInf(new ArrayList<>(adultNum));
+        if(childNum > 0 ) ticketSelectedDTO.setCustomerChildInf(new ArrayList<>(childNum));
+        if(babyNum > 0 ) ticketSelectedDTO.setCustomerBabyInf(new ArrayList<>(babyNum));
+
+
+
+        model.addAttribute("ticketSelectedDTO", ticketSelectedDTO);
         return "payment";
     }
 
