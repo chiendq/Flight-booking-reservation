@@ -31,7 +31,11 @@ public class AuthenticationController {
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @RequestMapping("/login")
-    public String loginError(@RequestParam(value = "error", defaultValue = "false") boolean loginError){
+    public String showLogin(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null) {
+            return "redirect:/";
+        }
         return "login";
     }
 

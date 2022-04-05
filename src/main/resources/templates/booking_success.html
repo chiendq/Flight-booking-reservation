@@ -38,8 +38,40 @@
     </ul>
 </nav>
 
-<h1>Booking Successfully</h1>
+<div>
+    <img th:src="'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfz3upZJUzgki4bn27faJf6gPIIo7Yo5HxZg&usqp=CAU'">
+    <h1>Booking Successfully</h1>
+    <p>Hướng dẫn chuyển khoản sẽ được gửi tới email của bạn. Vui lòng thanh toán trước</p>
+    <h4>23:01, T2, 04/04/2022</h4>
 
+    <h3>Thông tin thanh toán</h3>
+    <p>Loại hình thanh toán: </p>
+    <div th:if="${contactInfDTO.bankTransfer}==true" th:text="'Bank transfer'">    </div>
+    <div th:if="${contactInfDTO.qrpay}==true" th:text="'QR-PAY'">   </div>
+    <div th:if="${contactInfDTO.atmBankAccount}==true" th:text="'ATM/Bank account'">    </div>
+    <div th:if="${contactInfDTO.visaMasterCard}==true" th:text="'Visa/Master card'">    </div>
+    <div th:if="${contactInfDTO.caretaker}==true" th:text="'Caretaker'">    </div>
+
+    <h4>Mã thanh toán</h4>
+    <p>Trạng thái</p><p>Chờ xác nhận</p>
+    Chuyến bay Một chiều
+    <p>Thời gian bay : </p><p th:text="${ticket.departureTime}"></p>
+    <p>Nơi đi : </p><p th:text="${ticket.departureAirport.city} + ' (' + ${ticket.departureAirport.code} + ')'"></p>
+    <p>Thời gian đến: </p><p th:text="${ticket.arrivalTime}"></p>
+    <p>Nơi đến : </p><p th:text="${ticket.arrivalAirport.city} + ' (' + ${ticket.arrivalAirport.code} + ')'"></p>
+    <h4>Hành khách </h4>
+    <p th:text="${contactInfDTO.fullName}"></p>
+    <h4>Hành lí</h4>
+    <h4>Thông tin liên hệ</h4>
+    <p th:text="'Họ và tên: ' + ${contactInfDTO.fullName}"></p>
+    <p th:text="'Số điện thoại: ' + ${contactInfDTO.phoneNumber}"></p>
+    <p th:text="'Email: ' + ${contactInfDTO.email}"></p>
+    <p th:text="'CMND: ' + ${contactInfDTO.identityNumber}"></p>
+
+    <h3>Tổng tiền</h3>
+
+
+</div>
 
 <footer class = "footer">
     <div class ="container2">

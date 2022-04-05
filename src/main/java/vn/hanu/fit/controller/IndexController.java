@@ -5,21 +5,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import vn.hanu.fit.dto.ContactInfDTO;
 import vn.hanu.fit.dto.TicketSearchDTO;
-import vn.hanu.fit.dto.TicketSelectedDTO;
-import vn.hanu.fit.entity.Airport;
 import vn.hanu.fit.entity.FlightClass;
 import vn.hanu.fit.entity.Ticket;
-import vn.hanu.fit.repository.AirlineRepository;
 import vn.hanu.fit.repository.AirportRepository;
 import vn.hanu.fit.repository.FlightClassRepository;
 import vn.hanu.fit.repository.TicketRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -80,35 +76,71 @@ public class IndexController {
         return "searchTicket";
     }
 
-
     @RequestMapping("/booking/{id}")
     public String booking(@ModelAttribute("ticketSearchDTO") TicketSearchDTO ticketSearchDTO,
                           @PathVariable("id") Long id,
                           Model model)
     {
-        model.addAttribute("ticketSearchDTO",ticketSearchDTO);
-        LOGGER.info(ticketSearchDTO.toString());
+        ContactInfDTO contactInfDTO = new ContactInfDTO();
+        contactInfDTO.setTicketId(id);
+        Ticket ticket = ticketRepository.getById(id);
+        contactInfDTO.setTicketId(id);
+        mappingTicketSearchDTOToContactInfDTO(ticketSearchDTO,contactInfDTO);
+        contactInfDTO.setAdultNum(ticketSearchDTO.getAdultPassengerNumber());
+        contactInfDTO.setChildNum(ticketSearchDTO.getChildPassengerNumber());
+        contactInfDTO.setBabyNum(ticketSearchDTO.getBabyPassengerNumber());
+        LOGGER.info("/booking/" + id + " : " +contactInfDTO.toString());
+        model.addAttribute("contactInfDTO", contactInfDTO);
 
-
-        TicketSelectedDTO ticketSelectedDTO =  new TicketSelectedDTO();
-
-        int adultNum = ticketSearchDTO.getAdultPassengerNumber();
-        int childNum = ticketSearchDTO.getChildPassengerNumber();
-        int babyNum = ticketSearchDTO.getBabyPassengerNumber();
-
-        ticketSelectedDTO.setTicketSearchDTO(ticketSearchDTO);
-        ticketSelectedDTO.setCustomerAdultInf(new ArrayList<>(adultNum));
-        if(childNum > 0 ) ticketSelectedDTO.setCustomerChildInf(new ArrayList<>(childNum));
-        if(babyNum > 0 ) ticketSelectedDTO.setCustomerBabyInf(new ArrayList<>(babyNum));
-
-
-
-        model.addAttribute("ticketSelectedDTO", ticketSelectedDTO);
         return "payment";
     }
 
-    @RequestMapping("/booking/success")
-    public String bookingSuccess(){
+    @RequestMapping("/booking/paymentMethods")
+    public String showPaymentMethod(@ModelAttribute("contactInfDTO") ContactInfDTO contactInfDTO,
+                                    Model model){
+        LOGGER.info("/booking/paymentMethods " + contactInfDTO.toString());
+        model.addAttribute("contactInfDTO", contactInfDTO);
+        return "payment_methods";
+    }
+    @RequestMapping("/booking/paymentType")
+    public String showPaymentType(@ModelAttribute("contactInfDTO") ContactInfDTO contactInfDTO,
+                                  Model model){
+        if(contactInfDTO.isBankTransfer()){
+            contactInfDTO.setPaymentType("Bank Transfer");
+        }else if(contactInfDTO.isQrpay()){
+            contactInfDTO.setPaymentType("QR-PAY");
+        }else if(contactInfDTO.isAtmBankAccount()){
+            contactInfDTO.setPaymentType("ATM/Bank account");
+        }else if (contactInfDTO.isVisaMasterCard()){
+            contactInfDTO.setPaymentType("Visa/Master card");
+        }
+        contactInfDTO.setPaymentType("Caretaker");
+        model.addAttribute("contactInfDTO", contactInfDTO);
+        LOGGER.info("paymenttype : " + contactInfDTO.toString());
         return "booking_success";
+    }
+
+    @RequestMapping("/booking/success")
+    public String bookingSuccess(@ModelAttribute("contactInfDTO") ContactInfDTO contactInfDTO,
+                                 Model model){
+        LOGGER.info("Booking success : " + contactInfDTO.toString());
+
+        model.addAttribute("contactInfDTO",contactInfDTO);
+        model.addAttribute("ticket",ticketRepository.findById(contactInfDTO.getTicketId()).get());
+        return "booking_success";
+    }
+
+    private void mappingTicketSearchDTOToContactInfDTO(TicketSearchDTO ticketSearchDTO, ContactInfDTO contactInfDTO){
+        contactInfDTO.setDepartureAirportCode(ticketSearchDTO.getDepartureAirportCode());
+        contactInfDTO.setArrivalAirportCode(ticketSearchDTO.getArrivalAirportCode());
+        contactInfDTO.setDepartureTime(ticketSearchDTO.getDepartureTime());
+        contactInfDTO.setAdultPassengerNumber(ticketSearchDTO.getAdultPassengerNumber());
+        contactInfDTO.setChildPassengerNumber(ticketSearchDTO.getChildPassengerNumber());
+        contactInfDTO.setBabyPassengerNumber(ticketSearchDTO.getBabyPassengerNumber());
+        contactInfDTO.setEconomyClass(ticketSearchDTO.isEconomyClass());
+        contactInfDTO.setSpecialEconomyClass(ticketSearchDTO.isSpecialEconomyClass());
+        contactInfDTO.setBusinessClass(ticketSearchDTO.isBusinessClass());
+        contactInfDTO.setFirstClass(ticketSearchDTO.isFirstClass());
+
     }
 }

@@ -12,7 +12,14 @@
     <link rel="stylesheet" th:href="@{/css/slideshow.css}">
     <link crossorigin="anonymous" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css}">
     <script th:src="@{//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js}"></script>
-    <script th:src="@{/js/main.js}"></script>
+    <script type="text/javascript">
+        function onlyOne(checkbox) {
+            var checkboxes = new Array(document.getElementById('bankTransfer1'),document.getElementById('qrpay1'),document.getElementById('atmBankAccount1'),document.getElementById('visaMasterCard1'),document.getElementById('caretaker1'));
+            checkboxes.forEach((item) => {
+                if (item !== checkbox) item.checked = false
+            })
+        }
+    </script>
     <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css}">
 
 </head>
@@ -48,69 +55,52 @@
     </ul>
 </nav>
 
-    <form th:action="@{/booking/paymentMethods}" th:object="${contactInfDTO}" class="container4">
-        <div class="non-float">
-<!--        <div class="mini-row">-->
-<!--            <h2>Customer Information</h2>-->
-<!--            <select>-->
-<!--                <option th:text="'Male'" selected></option>-->
-<!--                <option th:text="'Female'"></option>-->
-<!--            </select>-->
-<!--            <input type="text" placeholder="Full name">-->
-<!--        </div>-->
-
+<form th:action="'/booking/success'" th:object="${contactInfDTO}" class="container4">
+    <div class="non-float">
         <div class="mini-row">
-            <h2>Contact information</h2>
-            <a>Reservation code will be sent to the contact information below</a></br>
-
-            <select th:field="${contactInfDTO.gender}">
-                <option th:text="'Mr'"  th:value="${true}"></option>
-                <option th:text="'Mrs'" th:value="${false}"></option>
-            </select>
-            <input type="text" placeholder="Full name" style="margin: 10px 0px" th:field="${contactInfDTO.fullName}">
-            <h3>Phone :</h3>
-            <input type="text" placeholder="Phone" style="margin: 10px 0px" th:field="${contactInfDTO.phoneNumber}">
-            <h3>Email:</h3>
-            <input type="email" placeholder="Email" style="margin: 10px 0px" th:field="${contactInfDTO.email}">
-            <h3>Date of birth:</h3>
-            <input type="date" placeholder="Date of birth" style="margin: 10px 0px" th:field="${contactInfDTO.dateOfBirth}">
-            <h3>IdentityNumber:</h3>
-            <input type="number" placeholder="IdentityNumber" style="margin: 10px 0px" th:field="${contactInfDTO.identityNumber}">
+            <h2 th:text="Voucher"></h2>
+            <input type="text">
         </div>
-
-        <div class="mini-row checkboxx">
-            <h2>Buy insurance</h2>
-            <input type="checkbox"><a th:text="'Buy insurance(30.000đ/person)'" style="padding-bottom: 7px"></a>
-            <a th:text="'x ' + (${contactInfDTO.adultPassengerNumber} + ${contactInfDTO.childPassengerNumber})+' person'"style="padding-bottom: 7px"></a>
+        <input type="hidden" th:value="${contactInfDTO}">
+        <div class="mini-row">
+            <h5 th:text="'After finish payment, e-ticket will be sent to you via your SMS and Email.'"></h5>
+            <input type="checkbox" class="payments" th:field="${contactInfDTO.bankTransfer}" th:value="${true}" name="check" onclick="onlyOne(this)" th:text="'Chuyển khoản ngân hàng'">
+            <input type="checkbox" class="payments" th:field="${contactInfDTO.qrpay}" th:value="${true}" name="check" onclick="onlyOne(this)" th:text="'Thanh toán QR-PAY'">
+            <input type="checkbox" class="payments" th:field="${contactInfDTO.atmBankAccount}" th:value="${true}" name="check" onclick="onlyOne(this)" th:text="'Thẻ ATM/Tài khoản ngân hàng'">
+            <input type="checkbox" class="payments" th:field="${contactInfDTO.visaMasterCard}" th:value="${true}" name="check" onclick="onlyOne(this)" th:text="'Thẻ Visa/Master card'">
+            <input type="checkbox" class="payments" th:field="${contactInfDTO.caretaker}" th:value="${true}" name="check" onclick="onlyOne(this)" th:text="'Giữ chỗ ( Chưa cần thanh toán ngay trong 6h)'">
         </div>
+        <div class="hidden">
+            <input type="hidden" th:field="${contactInfDTO.gender}" th:value="${contactInfDTO.gender}">
+            <input type="hidden" th:field="${contactInfDTO.fullName}" th:value="${contactInfDTO.fullName}">
+            <input type="hidden" th:field="${contactInfDTO.phoneNumber}" th:value="${contactInfDTO.phoneNumber}">
+            <input type="hidden" th:field="${contactInfDTO.email}" th:value="${contactInfDTO.email}">
+            <input type="hidden" th:field="${contactInfDTO.dateOfBirth}" th:value="${contactInfDTO.dateOfBirth}">
+            <input type="hidden" th:field="${contactInfDTO.identityNumber}" th:value="${contactInfDTO.dateOfBirth}">
 
-
-            <div class="submit-continue">
-                <span class="seat-check"><a th:href="@{/seat}" style="text-decoration: none;color: #ffffff; padding-top: 10px;padding-left: 5px;"> Check your seats</a></span>
-                <input type="submit" value="Continue">
-            </div>
+            <input type="hidden" th:field="${contactInfDTO.adultNum}" th:value="${contactInfDTO.adultNum}">
+            <input type="hidden" th:field="${contactInfDTO.childNum}" th:value="${contactInfDTO.childNum}">
+            <input type="hidden" th:field="${contactInfDTO.babyNum}" th:value="${contactInfDTO.babyNum}">
+            <input type="hidden" th:field="${contactInfDTO.ticketId}" th:value="${contactInfDTO.ticketId}">
         </div>
-        <div class="flex-price">
-            <div class="price-detail">
+        <div class="submit-continue">
+            <input type="submit" value="Continue">
+        </div>
+    </div>
+    <div class="flex-price">
+        <div class="price-detail">
             <h3>Price details</h3>
-                <div class="multi-row"><a th:text="'Adult x'+ ${contactInfDTO.adultPassengerNumber}"></a><a th:text="(${contactInfDTO.adultPassengerNumber}*360000) + 'đ'"></a></div>
-                <div class="multi-row"><a th:text="'Child x'+ ${contactInfDTO.childPassengerNumber}"></a><a th:text="(${contactInfDTO.adultPassengerNumber}*250000) + 'đ'"></a></div>
-                <div class="multi-row"> <a th:text="'Baby x'+ ${contactInfDTO.babyPassengerNumber}"></a><a th:text="'FREE'"></a></div>
-                <div class="multi-row"><a th:text="'Airport taxes and fees'"></a><a th:text="160000 + 'đ'"></a></div>
-                <div class="multi-row"><a th:text="'Service charge'"></a><a th:text="35000 + 'đ'"></a></div>
-                <div class="multi-row"><a th:text="'Tổng giá chiều đi'"></a><a th:text="(${contactInfDTO.adultPassengerNumber}*360000+ ${contactInfDTO.childPassengerNumber}*250000 + 160000+35000) + 'đ'"></a></div>
-                <hr style="height: 4px;background-color: #949393;">
-                <div class="multi-row"><h1 th:text="'Total   '"></h1><h2 th:text="(${contactInfDTO.adultPassengerNumber}*360000+ ${contactInfDTO.childPassengerNumber}*250000 + 160000+35000) + 'đ'"></h2></div>
-
-            </div>
-            <div class="hidden">
-                <input type="hidden" th:field="${contactInfDTO.adultNum}" th:value="${contactInfDTO.adultNum}">
-                <input type="hidden" th:field="${contactInfDTO.childNum}" th:value="${contactInfDTO.childNum}">
-                <input type="hidden" th:field="${contactInfDTO.babyNum}" th:value="${contactInfDTO.babyNum}">
-                <input type="hidden" th:field="${contactInfDTO.ticketId}" th:value="${contactInfDTO.ticketId}">
-            </div>
+            <div class="multi-row"><a th:text="'Adult x'+ ${contactInfDTO.adultPassengerNumber}"></a><a th:text="(${contactInfDTO.adultPassengerNumber}*360000) + 'đ'"></a></div>
+            <div class="multi-row"><a th:text="'Child x'+ ${contactInfDTO.childPassengerNumber}"></a><a th:text="(${contactInfDTO.adultPassengerNumber}*250000) + 'đ'"></a></div>
+            <div class="multi-row"> <a th:text="'Baby x'+ ${contactInfDTO.babyPassengerNumber}"></a><a th:text="'FREE'"></a></div>
+            <div class="multi-row"><a th:text="'Airport taxes and fees'"></a><a th:text="160000 + 'đ'"></a></div>
+            <div class="multi-row"><a th:text="'Service charge'"></a><a th:text="35000 + 'đ'"></a></div>
+            <div class="multi-row"><a th:text="'Tổng giá chiều đi'"></a><a th:text="(${contactInfDTO.adultPassengerNumber}*360000+ ${contactInfDTO.childPassengerNumber}*250000 + 160000+35000) + 'đ'"></a></div>
+            <hr style="height: 4px;background-color: #949393;">
+            <div class="multi-row"><h1 th:text="'Total   '"></h1><h2 th:text="(${contactInfDTO.adultPassengerNumber}*360000+ ${contactInfDTO.childPassengerNumber}*250000 + 160000+35000) + 'đ'"></h2></div>
         </div>
-    </form>
+    </div>
+</form>
 
 <footer class = "footer">
     <div class ="container2">
