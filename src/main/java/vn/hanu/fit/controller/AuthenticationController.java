@@ -33,7 +33,7 @@ public class AuthenticationController {
     @RequestMapping("/login")
     public String showLogin(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null) {
+        if (auth == null) {
             return "redirect:/";
         }
         return "login";
