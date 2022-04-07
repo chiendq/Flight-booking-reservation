@@ -35,8 +35,8 @@ public class IndexController {
     @Autowired
     AirportRepository airportRepository;
 
-    @RequestMapping({"","/home"})
-    public String home(Model model){
+    @RequestMapping({"", "/home"})
+    public String home(Model model) {
         model.addAttribute("airports", airportRepository.findAll());
         model.addAttribute("ticketSearchDTO", new TicketSearchDTO());
         model.addAttribute("flightClass", flightClassList);
@@ -44,14 +44,15 @@ public class IndexController {
     }
 
     @RequestMapping("/seat")
-    public String seat(Model model){
+    public String seat(Model model) {
         model.addAttribute("airports", airportRepository.findAll());
         model.addAttribute("ticketSearchDTO", new TicketSearchDTO());
         model.addAttribute("flightClass", flightClassList);
         return "seat";
     }
+
     @RequestMapping("/booking")
-    public String book(Model model){
+    public String book(Model model) {
         model.addAttribute("airports", airportRepository.findAll());
         model.addAttribute("ticketSearchDTO", new TicketSearchDTO());
         model.addAttribute("flightClass", flightClassList);
@@ -59,19 +60,20 @@ public class IndexController {
     }
 
     @RequestMapping("/search")
-    public String search(@ModelAttribute("ticketSearchDTO") TicketSearchDTO ticketSearchDTO, Model model){
+    public String search(@ModelAttribute("ticketSearchDTO") TicketSearchDTO ticketSearchDTO, Model model) {
         model.addAttribute("airports", airportRepository.findAll());
-
         String from = ticketSearchDTO.getDepartureAirportCode();
         String to = ticketSearchDTO.getArrivalAirportCode();
-        String code = "" ;
-        if(ticketSearchDTO.isEconomyClass()) code = flightClassList.get(0).getCode();
-        else if(ticketSearchDTO.isSpecialEconomyClass()) code = flightClassList.get(1).getCode();
-        else if(ticketSearchDTO.isBusinessClass()) code = flightClassList.get(2).getCode();
-        else if(ticketSearchDTO.isFirstClass()) code = flightClassList.get(3).getCode();
+        String code = "";
+
+        if (ticketSearchDTO.isEconomyClass()) code = flightClassList.get(0).getCode();
+        else if (ticketSearchDTO.isSpecialEconomyClass()) code = flightClassList.get(1).getCode();
+        else if (ticketSearchDTO.isBusinessClass()) code = flightClassList.get(2).getCode();
+        else if (ticketSearchDTO.isFirstClass()) code = flightClassList.get(3).getCode();
+
         LOGGER.info(code);
-        List<Ticket> tickets =  ticketRepository.findAllByDepartureAirport_CodeAndArrivalAirport_CodeAndFlightClass_Code(from, to, code);
-        LOGGER.info(String.valueOf(tickets));
+        List<Ticket> tickets = ticketRepository.findAllByDepartureAirport_CodeAndArrivalAirport_CodeAndFlightClass_Code(from, to, code);
+        LOGGER.info(String.valueOf(ticketSearchDTO));
         model.addAttribute("tickets", tickets);
         return "searchTicket";
     }
@@ -79,17 +81,16 @@ public class IndexController {
     @RequestMapping("/booking/{id}")
     public String booking(@ModelAttribute("ticketSearchDTO") TicketSearchDTO ticketSearchDTO,
                           @PathVariable("id") Long id,
-                          Model model)
-    {
+                          Model model) {
         ContactInfDTO contactInfDTO = new ContactInfDTO();
         contactInfDTO.setTicketId(id);
-        Ticket ticket = ticketRepository.getById(id);
+//        Ticket ticket = ticketRepository.getById(id);
         contactInfDTO.setTicketId(id);
-        mappingTicketSearchDTOToContactInfDTO(ticketSearchDTO,contactInfDTO);
+        mappingTicketSearchDTOToContactInfDTO(ticketSearchDTO, contactInfDTO);
         contactInfDTO.setAdultNum(ticketSearchDTO.getAdultPassengerNumber());
         contactInfDTO.setChildNum(ticketSearchDTO.getChildPassengerNumber());
         contactInfDTO.setBabyNum(ticketSearchDTO.getBabyPassengerNumber());
-        LOGGER.info("/booking/" + id + " : " +contactInfDTO.toString());
+        LOGGER.info("/booking/" + id + " : " + contactInfDTO);
         model.addAttribute("contactInfDTO", contactInfDTO);
 
         return "payment";
@@ -97,21 +98,22 @@ public class IndexController {
 
     @RequestMapping("/booking/paymentMethods")
     public String showPaymentMethod(@ModelAttribute("contactInfDTO") ContactInfDTO contactInfDTO,
-                                    Model model){
+                                    Model model) {
         LOGGER.info("/booking/paymentMethods " + contactInfDTO.toString());
         model.addAttribute("contactInfDTO", contactInfDTO);
         return "payment_methods";
     }
+
     @RequestMapping("/booking/paymentType")
     public String showPaymentType(@ModelAttribute("contactInfDTO") ContactInfDTO contactInfDTO,
-                                  Model model){
-        if(contactInfDTO.isBankTransfer()){
+                                  Model model) {
+        if (contactInfDTO.isBankTransfer()) {
             contactInfDTO.setPaymentType("Bank Transfer");
-        }else if(contactInfDTO.isQrpay()){
+        } else if (contactInfDTO.isQrpay()) {
             contactInfDTO.setPaymentType("QR-PAY");
-        }else if(contactInfDTO.isAtmBankAccount()){
+        } else if (contactInfDTO.isAtmBankAccount()) {
             contactInfDTO.setPaymentType("ATM/Bank account");
-        }else if (contactInfDTO.isVisaMasterCard()){
+        } else if (contactInfDTO.isVisaMasterCard()) {
             contactInfDTO.setPaymentType("Visa/Master card");
         }
         contactInfDTO.setPaymentType("Caretaker");
@@ -122,15 +124,15 @@ public class IndexController {
 
     @RequestMapping("/booking/success")
     public String bookingSuccess(@ModelAttribute("contactInfDTO") ContactInfDTO contactInfDTO,
-                                 Model model){
+                                 Model model) {
         LOGGER.info("Booking success : " + contactInfDTO.toString());
 
-        model.addAttribute("contactInfDTO",contactInfDTO);
-        model.addAttribute("ticket",ticketRepository.findById(contactInfDTO.getTicketId()).get());
+        model.addAttribute("contactInfDTO", contactInfDTO);
+        model.addAttribute("ticket", ticketRepository.findById(contactInfDTO.getTicketId()).get());
         return "booking_success";
     }
 
-    private void mappingTicketSearchDTOToContactInfDTO(TicketSearchDTO ticketSearchDTO, ContactInfDTO contactInfDTO){
+    private void mappingTicketSearchDTOToContactInfDTO(TicketSearchDTO ticketSearchDTO, ContactInfDTO contactInfDTO) {
         contactInfDTO.setDepartureAirportCode(ticketSearchDTO.getDepartureAirportCode());
         contactInfDTO.setArrivalAirportCode(ticketSearchDTO.getArrivalAirportCode());
         contactInfDTO.setDepartureTime(ticketSearchDTO.getDepartureTime());
@@ -141,6 +143,5 @@ public class IndexController {
         contactInfDTO.setSpecialEconomyClass(ticketSearchDTO.isSpecialEconomyClass());
         contactInfDTO.setBusinessClass(ticketSearchDTO.isBusinessClass());
         contactInfDTO.setFirstClass(ticketSearchDTO.isFirstClass());
-
     }
 }

@@ -33,7 +33,7 @@ public class AuthenticationController {
     @RequestMapping("/login")
     public String showLogin(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null) {
+        if (auth == null) {
             return "redirect:/";
         }
         return "login";
@@ -48,27 +48,5 @@ public class AuthenticationController {
         return "redirect:/";
     }
 
-    @RequestMapping("/signup")
-    public String showSignup(Model model){
-        model.addAttribute("newUser", new User());
-        return "signup";
-    }
 
-    @PostMapping("/signup")
-    public String validateSignup(@Valid  @ModelAttribute("newUser") User user,
-                                 BindingResult result,
-                                 @RequestParam(value = "validate", defaultValue = "false") boolean validate,
-                                 Model model){
-        if(result.hasErrors()){
-            List<FieldError> errors = result.getFieldErrors();
-            return "signup";
-        }
-        if(userRepository.existsByUsername(user.getUsername())){
-            user.setExist(true);
-            return "signup";
-        }
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return "redirect:/login?registed";
-    }
 }
