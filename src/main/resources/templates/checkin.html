@@ -50,84 +50,54 @@
         <li><a th:href="@{/admin}">About</a></li>
         <li><a th:href="@{/booking}">Booking</a></li>
         <li><a href="#">Contact</a></li>
-        <li><a th:href="@{/checkinpage}">Check in</a></li>
+        <li><a th:href="@{/checkin}">Check in</a></li>
     </ul>
 </nav>
 
-<div class="container3">
-    <div data-am-fadeshow="next-prev-navigation">
+<div class="tabs-content" style="z-index: -1">
+    Enter your booking code :
+    <form th:action="@{/checkin}">
+        <input type="text" th:name="code" placeholder="Your code here">
+        <input type="submit" value="Search">
+    </form>
 
-        <!-- Radio -->
-        <input type="radio" name="css-fadeshow" id="slide-1"/>
-        <input type="radio" name="css-fadeshow" id="slide-2"/>
-        <input type="radio" name="css-fadeshow" id="slide-3"/>
+    <div th:if="${exist}">
+        <div>
+            <h3>Thông tin thanh toán</h3>
+            <p>Loại hình thanh toán: </p>
+            <div th:text="${payment.paymentType}"></div>
 
-        <!-- Slides -->
-        <div class="fs-slides">
-            <div class="fs-slide"
-                 style="background-image: url(https://images.unsplash.com/photo-1504457047772-27faf1c00561?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1247&q=80);">
-                <!-- Add content to images (sample) -->
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-family: sans-serif; text-align: center; text-shadow: 0 0 20px rgba(0,0,0,0.5);">
-                    <h1 style="margin-top: 0; margin-bottom: 0.8vw; font-size: 5vw; font-weight: bold;">Enjoy the
-                        moments</h1>
-                    <p style="font-size: 2vw; font-weight: 100; margin-top: 0;">Providing the <strong>best</strong>
-                        experiences to the travelers</p>
+            <h4>Mã thanh toán</h4>
+            <p th:text="${booking.code}"></p>
+            <p>Trạng thái</p>
+            <div th:text="${payment.status}"></div>
+            Chuyến bay Một chiều
+            <p>Thời gian bay : </p>
+            <p th:text="${ticket.departureTime}"></p>
+            <p>Nơi đi : </p>
+            <p th:text="${ticket.departureAirport.city} + ' (' + ${ticket.departureAirport.code} + ')'"></p>
+            <p>Thời gian đến: </p>
+            <p th:text="${ticket.arrivalTime}"></p>
+            <p>Nơi đến : </p>
+            <p th:text="${ticket.arrivalAirport.city} + ' (' + ${ticket.arrivalAirport.code} + ')'"></p>
+            <h4>Hành khách </h4>
+            <p th:text="${passenger.fullName}"></p>
+            <h4>Hành lí</h4>
+            <h4>Thông tin liên hệ</h4>
+            <p th:text="'Họ và tên: ' + ${passenger.fullName}"></p>
+            <p th:text="'Số điện thoại: ' + ${passenger.phoneNumber}"></p>
+            <p th:text="'Email: ' + ${passenger.phoneNumber}"></p>
+            <p th:text="'CMND: ' + ${passenger.identityNumber}"></p>
 
-                </div>
-            </div>
-            <div class="fs-slide"
-                 style="background-image: url(https://images.unsplash.com/photo-1528127269322-539801943592?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);">
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-family: sans-serif; text-align: center; text-shadow: 0 0 20px rgba(0,0,0,0.5);">
-                    <h1 style="margin-top: 0; margin-bottom: 0.8vw; font-size: 5vw; font-weight: bold;">Best Hotels</h1>
-                    <p style="font-size: 2vw; font-weight: 100; margin-top: 0;">We associated with more than 100+
-                        hotels, resorts</p>
-                </div>
-            </div>
-
-            <div class="fs-slide"
-                 style="background-image: url(https://images.unsplash.com/photo-1547024843-70f7872e8a7a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1978&q=80);">
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-family: sans-serif; text-align: center; text-shadow: 0 0 20px rgba(0,0,0,0.5);">
-                    <h1 style="margin-top: 0; margin-bottom: 0.8vw; font-size: 5vw; font-weight: bold;">Best
-                        Services</h1>
-                    <p style="font-size: 2vw; font-weight: 100; margin-top: 0;">Our staffs are working 24/7, you can
-                        contact with us anywhere, any time.</p>
-                </div>
-            </div>
+            <h3>Tổng tiền</h3>
+            <p th:text="'CMND: ' + ${payment.amount}"></p>
         </div>
-        <div class="booknow">
-            <p style="font-size: 2vw; font-weight: 100; margin-top: 0;"> What are you waiting for? </p>
-            <div>
-                <a th:href="@{/booking}">BOOK NOW</a>
-            </div>
-        </div>
-        <!-- Quick Navigation -->
-        <div class="fs-quick-nav">
-            <label class="fs-quick-btn" for="slide-1"></label>
-            <label class="fs-quick-btn" for="slide-2"></label>
-            <label class="fs-quick-btn" for="slide-3"></label>
-        </div>
-
-        <!-- Prev Navigation -->
-        <div class="fs-prev-nav">
-            <label class="fs-prev-btn" for="slide-1"></label>
-            <label class="fs-prev-btn" for="slide-2"></label>
-            <label class="fs-prev-btn" for="slide-3"></label>
-        </div>
-
-        <!-- Next Navigation -->
-        <div class="fs-next-nav">
-            <label class="fs-next-btn" for="slide-1"></label>
-            <label class="fs-next-btn" for="slide-2"></label>
-            <label class="fs-next-btn" for="slide-3"></label>
-        </div>
-
+    </div>
+    <div th:if="!${exist}">
+        Your booking code is not exist!
     </div>
 </div>
-<section class="vh-100 mx-auto d-block ">
 
-</section>
-<!--    &nbsp;-->
-<!--    <i><span sec:authentication="principal.authorities">Roles</span></i>-->
 
 <div class="tabs-content" id="weather" style="z-index: -1">
     <div class="container">
@@ -570,7 +540,8 @@
                     <a href=""><i class="fa-brands fa-facebook"></i></a>
                     <a href=""><i class="fa-brands fa-instagram"></i></a>
                     <a href=""><i class="fa-brands fa-twitter-square"></i></a>
-                    <a href="'https://github.com/chiendq/Flight-booking-reservation'"><i class="fa-brands fa-github"></i></a>
+                    <a href="'https://github.com/chiendq/Flight-booking-reservation'"><i
+                            class="fa-brands fa-github"></i></a>
                 </div>
             </div>
             <div class="footer-col">

@@ -6,4 +6,5 @@ import vn.hanu.fit.entity.Booking;
 
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Long> {
+    Booking getBookingByCode(String code);
 }
