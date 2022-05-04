@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
@@ -49,18 +50,18 @@
 
 
                                  <!--=============Edit Profile Form Section=============-->
-                            <div class="wrapper bg-white mt-sm-5">
+                            <div class="wrapper bg-white mt-sm-5" th:object="${user}" >
                                 <h4 class="pb-4 border-bottom">Account settings</h4>
                                 <div class="py-2">
                                     <div class="row py-2">
                                         <div class="col-md-6">
-                                            <label for="FullName">Full Name</label>
-                                            <input type="text" class="bg-light form-control"
+                                            <label for="FullName" >Full Name</label>
+                                            <input type="text" class="bg-light form-control" th:value="*{fullName}"
                                                    placeholder="Steve Nguyễn">
                                         </div>
                                         <div class="col-md-6 pt-md-0 pt-3">
                                             <label for="Identity">Identity Number</label>
-                                            <input type="number" class="bg-light form-control"
+                                            <input type="number" class="bg-light form-control" th:value="*{identityNumber}"
                                                    placeholder="12756364438">
                                         </div>
 
@@ -78,7 +79,8 @@
                                     <div class="row py-2">
                                         <div class="col-md-6">
                                             <label for="email">Email Address</label>
-                                            <input type="text" class="bg-light form-control" placeholder="steve_@email.com">
+                                            <input type="text" class="bg-light form-control" th:value="*{email}"
+                                                   placeholder="steve_@email.com">
                                         </div>
                                         <div class="col-md-6 pt-md-0 pt-3">
                                             <label for="gender">Gender</label>
@@ -88,18 +90,21 @@
                                                 <option value="female" selected>Female</option>
                                                 <option value="male">Male</option>
                                                 <option value="other">Other</option>
+                                                <option th:if="${user.gender}=='true' " for="gender" th:text="Male">Gender</option>
+                                                <label th:if="${user.gender}=='false' " for="gender" th:text="Female">Gender</label>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="row py-2">
                                         <div class="col-md-6">
                                             <label for="phone">Phone Number</label>
-                                            <input type="tel" class="bg-light form-control"
+                                            <input type="tel" class="bg-light form-control" th:value="*{phoneNumber}"
                                                    placeholder="+84 33-548-6015">
                                         </div>
                                         <div class="col-md-6 pt-md-0 pt-3">
                                             <label for="date">Date of Birth</label>
-                                            <input type="date" class="bg-light form-control" placeholder="May/21/1998">
+                                            <input type="date" class="bg-light form-control" th:value="*{dateOfBirth}"
+                                                   placeholder="May/21/1998">
                                         </div>
                                     </div>
                                     <div class="py-3 pb-4 border-bottom">
