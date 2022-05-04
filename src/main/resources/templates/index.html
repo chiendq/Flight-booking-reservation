@@ -23,7 +23,7 @@
 <nav class="nav-one flex">
     <ul class="middle flex">
         <li><a th:href="@{comingsoon}">Support</a></li>
-        <li><a href="#">Language</a></li>
+        <li><a th:href="@{comingsoon}">Language</a></li>
     </ul>
     <ul sec:authorize="!isAuthenticated()" class="right flex">
         <li><a th:href="@{/login}">Sign In</a></li>
@@ -48,9 +48,9 @@
     </div>
     <ul class="flex">
         <li><a th:href="@{/}">Home</a></li>
-        <li><a th:href="@{/admin}">About</a></li>
+        <li><a th:href="@{comingsoon}">About</a></li>
         <li><a th:href="@{/booking}">Booking</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a th:href="@{comingsoon}">Contact</a></li>
         <li><a th:href="@{/checkinpage}">Check in</a></li>
     </ul>
 </nav>
@@ -193,7 +193,7 @@
                 <div class="service-item first-service">
                     <div class="service-icon"></div>
                     <h4>Foods&Drinks</h4>
-                    <p>Content</p>
+                    <p>Associated with Mc Donalds, KFC, Lotteria and many more...</p>
                     </a>
                 </div>
             </div>
@@ -201,7 +201,7 @@
                 <div class="service-item second-service">
                     <div class="service-icon"></div>
                     <h4>Delivery</h4>
-                    <p>Content</p>
+                    <p>Providing the fastest, most covenient delivery for the customer. </p>
                     </a>
                 </div>
             </div>
@@ -209,7 +209,7 @@
                 <div class="service-item third-service">
                     <div class="service-icon"></div>
                     <h4>Airports</h4>
-                    <p>Content</p>
+                    <p>100+ Airports from many countries</p>
                     </a>
                 </div>
             </div>
@@ -233,8 +233,8 @@
             <div class="footer-col">
                 <h4>Company</h4>
                 <ul>
-                    <li><a href="">About Us</a></li>
-                    <li><a href="">Terms of Use</a></li>
+                    <li><a th:href="@{/booking}">About Us</a></li>
+                    <li><a th:href="@{/booking}">Terms of Use</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -249,16 +249,16 @@
             <div class="footer-col">
                 <h4>Our Services</h4>
                 <ul>
-                    <li><a href="">Manage Flight</a></li>
-                    <li><a href="">Flight Booking</a></li>
-                    <li><a href="">Check In</a></li>
+                    <li><a th:href="@{/booking}">Manage Flight</a></li>
+                    <li><a th:href="@{/booking}">Flight Booking</a></li>
+                    <li><a th:href="@{/checkinpage}">Check In</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Support</h4>
                 <ul>
-                    <li><a href="">Contact Us</a></li>
-                    <li><a href="">Refund</a></li>
+                    <li><a th:href="@{comingsoon}">Contact Us</a></li>
+                    <li><a th:href="@{comingsoon}">Refund</a></li>
                 </ul>
             </div>
         </div>
