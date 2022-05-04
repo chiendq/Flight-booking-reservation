@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5
+" layout:decorate="_layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 >
 <head>
     <meta charset="UTF-8">
@@ -19,27 +21,8 @@
 
 </head>
 <body>
-<div class="logo1"><a th:href="@{/}"><img th:src="@{/img/logo.png}"></a></div>
-<nav class="nav-one flex">
-    <ul class="middle flex">
-        <li><a th:href="@{/}">Home</a></li>
-    </ul>
-    <ul sec:authorize="!isAuthenticated()" class="right flex">
-        <li><a th:href="@{/login}">Sign In</a></li>
-        <li><a th:href="@{/signup}">Sign Up</a></li>
-    </ul>
-    <ul sec:authorize="isAuthenticated()" class="right flex welcome-user">
-        <li>
-            <p sec:authorize="isAuthenticated()" style="padding-top: 5px">Welcome <span sec:authentication="name"
-                                                                                        style="text-decoration: underline"
-                                                                                        ;>Username</span></p>
-        </li>
-        <li>
-            <a th:href="@{/admin/manage}" sec:authorize="isAuthenticated()" style="padding-top: 5px">Management</a>
-        </li>
-        <li><a th:href="@{/logout}">Log Out</a></li>
-    </ul>
-</nav>
+
+<div layout:fragment="content">
 <div style="height: 100vh">
 <div class="container3 ">
     <div data-am-fadeshow="next-prev-navigation">
@@ -185,7 +168,7 @@
             <h3>Copyright @SQA Project 2022</h3>
         </div>
     </div>
-</footer>
+</footer></div>
 </body>
 </html>
 
