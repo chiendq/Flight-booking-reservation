@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+
       xmlns:sec="https://thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
@@ -50,7 +51,7 @@
     </ul>
 </nav>
 <div class="login_section" style="padding-bottom: 150px">
-    <form name="f" th:action="@{/login}" method="post">
+    <form name="f" th:action="@{/login/validate}" th:object="${signinDTO}" b method="post">
         <fieldset>
             <div class="login_body">
                 <p>Login</p>
@@ -64,11 +65,13 @@
                 <div class="_form-row" style="width: 250px;  margin: auto; margin-top: 10px">
 
                     <input style="width: 100%" type="text" class="form_input" id="username" name="username"
+                           th:field="*{username}"
                            placeholder="Username"/>
                 </div>
 
                 <div class="_form-row" style="width: 250px; margin: auto; margin-top: 10px">
                     <input type="password" class="form_input" style="width: 100%" id="password" name="password"
+                           th:field="*{password}"
                            placeholder="Password"/>
                 </div>
 

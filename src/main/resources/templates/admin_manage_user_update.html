@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>Update User</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}">
@@ -50,28 +51,75 @@
     </tr>
     </thead>
 </table>
-<form th:action="'/admin/manage/user/update/save/' + ${user.id}" th:object="${user}" th:method="post">
-    <h2>ID</h2>
-    <input type="text" th:field="*{id}" th:disabled="disabled">
-    <h2>Username</h2>
-    <input type="text" th:field="*{username}" th:disabled="disabled">
-    <h2>Password</h2>
-    <input type="text" th:field="*{password}" th:disabled="disabled">
-    <h2>FullName</h2>
-    <input type="text" th:field="*{fullName}">
-    <h2>Gender</h2>
-    <input type="text" th:field="*{gender}">
-    <h2>Date of birth</h2>
-    <input type="date" th:field="*{dateOfBirth}">
-    <h2>Email</h2>
-    <input type="text" th:field="*{email}">
-    <h2>Phone</h2>
-    <input type="text" th:field="*{phone}">
-    <h2>Identity Number</h2>
-    <input type="text" th:field="*{identityNumber}">
-    <input type="submit" th:value="Save">
-</form>
 
+
+            <!--=============Edit Profile Form Section=============-->
+<form class="wrapper bg-white mt-sm-5" th:action="'/admin/manage/user/update/save/' + ${user.id}" th:object="${user}" th:method="post">
+    <h4 class="pb-4 border-bottom">Account settings</h4>
+    <div class="py-2">
+        <div class="row py-2">
+            <div class="col-md-6">
+    <label>ID</label>
+    <input class="bg-light form-control disabled" style="background-color: #d0d5db!important;" type="text" th:field="*{id}" th:disabled="disabled">
+            </div>
+            <div class="col-md-6 pt-md-0 pt-3">
+    <label>Username</label>
+    <input class="bg-light form-control disabled"  style="background-color: #d0d5db!important;" type="text"
+           th:field="*{username}" th:disabled="disabled">
+            </div>
+        </div>
+
+
+        <div class="row py-2">
+            <div class="col-md-6">
+    <label>Password</label>
+    <input  class="bg-light form-control disabled" style="background-color: #d0d5db!important;" type="text" th:field="*{password}" th:disabled="disabled">
+            </div>
+            <div class="col-md-6 pt-md-0 pt-3">
+    <label>FullName</label>
+    <input class="bg-light form-control" type="text" th:field="*{fullName}">
+            </div>
+        </div>
+
+
+        <div class="row py-2">
+            <div class="col-md-6">
+    <label>Gender</label>
+    <input class="bg-light form-control" type="text" th:field="*{gender}">
+            </div>
+            <div class="col-md-6 pt-md-0 pt-3">
+    <label>Date of birth</label>
+    <input class="bg-light form-control" type="date" th:field="*{dateOfBirth}">
+            </div>
+        </div>
+
+        <div class="row py-2">
+            <div class="col-md-6">
+    <label>Email</label>
+    <input class="bg-light form-control" type="text" th:field="*{email}">
+            </div>
+            <div class="col-md-6 pt-md-0 pt-3">
+    <label>Phone</label>
+    <input class="bg-light form-control" type="text" th:field="*{phone}">
+            </div>
+        </div>
+
+        <div class="row py-2">
+            <div class="col-md-12">
+    <label>Identity Number</label>
+    <input class="bg-light form-control" type="text" th:field="*{identityNumber}">
+
+            </div>
+        </div>
+
+
+        <div class="py-3 pb-4 border-bottom">
+        <input  class="btn btn-primary mr-3" type="submit" th:value="Save">
+            <button class="btn border button">Cancel</button>
+        </div>
+    </div>
+</form>
+<!--=============Edit Profile Form Section=============-->
 <footer class="footer">
     <div class="container2">
         <div class="row2">

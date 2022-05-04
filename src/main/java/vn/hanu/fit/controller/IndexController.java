@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import vn.hanu.fit.dto.TicketSearchDTO;
 import vn.hanu.fit.entity.FlightClass;
@@ -16,6 +17,10 @@ import java.util.List;
 public class IndexController {
     private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 
+    @GetMapping("/comingsoon")
+    public String comingsoon(){
+        return "comingsoon";
+    }
     @Autowired
     TicketRepository ticketRepository;
 

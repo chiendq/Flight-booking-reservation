@@ -22,12 +22,6 @@ p {
     font-size: 15px;
     font-weight: lighter;
 }
-::-webkit-input-placeholder {
-    text-align: center;
-}
-:-ms-input-placeholder {
-    text-align: center;
-}
 .login_body {
     display: flex;
     flex-direction: column;
@@ -69,7 +63,9 @@ fieldset {
     font-weight: bold;
 }
 .form_input {
-    height: 30px;
+    height: 40px;
+    font-size: 1.5rem;
+    padding-left: 15px;
     border-radius: 10px;
     border: 1px black;
 }

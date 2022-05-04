@@ -20,7 +20,7 @@ public class RoleController {
     }
 
     @GetMapping(value = {"/{id}"})
-    public Role getRoleById(@PathVariable(value = "id") Long id){
+    public Role getRoleById(@PathVariable(value = "id") int id){
         return roleRepository.findById(id).get();
     }
 
@@ -33,7 +33,7 @@ public class RoleController {
     public void updateRole(
             @PathVariable(value = "id") Integer id,
             @RequestBody Role role) {
-        if (roleRepository.existsById(Long.valueOf(id))) {
+        if (roleRepository.existsById(id)) {
             role.setId(id);
             roleRepository.save(role);
         }
@@ -41,7 +41,7 @@ public class RoleController {
 
     @DeleteMapping(value = "/{id}")
     public void deleteRole(
-            @PathVariable(value = "id") Long id) {
+            @PathVariable(value = "id") int id) {
         if (roleRepository.existsById(id)) {
             Role role = roleRepository.getById(id);
             roleRepository.delete(role);

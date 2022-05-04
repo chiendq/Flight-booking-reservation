@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5
+" layout:decorate="_layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
 <head>
     <meta charset="UTF-8">
     <title>Flight Booking</title>
@@ -17,467 +20,110 @@
     <link rel="stylesheet" th:href="@{/css/fontAwesome.css}">
 
 </head>
-<body>
-<div class="logo1"><a th:href="@{/}"><img th:src="@{img/logo.png}"></a></div>
-<nav class="nav-one flex">
-    <ul class="middle flex">
-        <li><a href="#">Support</a></li>
-        <li><a href="#">Language</a></li>
-    </ul>
-    <ul sec:authorize="!isAuthenticated()" class="right flex">
-        <li><a th:href="@{/login}">Sign In</a></li>
-        <li><a th:href="@{/signup}">Sign Up</a></li>
-    </ul>
-    <ul sec:authorize="isAuthenticated()" class="right flex welcome-user">
-        <li>
-            <p sec:authorize="isAuthenticated()" style="padding-top: 5px">Welcome <span sec:authentication="name"
-                                                                                        style="text-decoration: underline"
-                                                                                        ;>Username</span></p>
-        </li>
-        <li>
-            <a th:href="@{/admin/manage}" sec:authorize="isAuthenticated()" style="padding-top: 5px">Management</a>
-        </li>
-        <li><a th:href="@{/logout}">Log Out</a></li>
-    </ul>
-</nav>
-<nav class="nav-second flex">
-    <div class="brand-name" onclick="location.href='#';" style="cursor: pointer;">
-        <h1>H-AIRLINES</h1>
-        <p>HANU Flight Booking System</p>
-    </div>
-    <ul class="flex">
-        <li><a th:href="@{/}">Home</a></li>
-        <li><a th:href="@{/admin}">About</a></li>
-        <li><a th:href="@{/booking}">Booking</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a th:href="@{/checkin}">Check in</a></li>
-    </ul>
-</nav>
+<body onload="DefaultScreen()">
+<div layout:fragment="content">
 
-<div class="tabs-content" style="z-index: -1">
-    Enter your booking code :
-    <form th:action="@{/checkin}">
-        <input type="text" th:name="code" placeholder="Your code here">
-        <input type="submit" value="Search">
-    </form>
 
-    <div th:if="${exist}">
-        <div>
-            <h3>Thông tin thanh toán</h3>
-            <p>Loại hình thanh toán: </p>
-            <div th:text="${payment.paymentType}"></div>
 
-            <h4>Mã thanh toán</h4>
-            <p th:text="${booking.code}"></p>
-            <p>Trạng thái</p>
-            <div th:text="${payment.status}"></div>
-            Chuyến bay Một chiều
-            <p>Thời gian bay : </p>
-            <p th:text="${ticket.departureTime}"></p>
-            <p>Nơi đi : </p>
-            <p th:text="${ticket.departureAirport.city} + ' (' + ${ticket.departureAirport.code} + ')'"></p>
-            <p>Thời gian đến: </p>
-            <p th:text="${ticket.arrivalTime}"></p>
-            <p>Nơi đến : </p>
-            <p th:text="${ticket.arrivalAirport.city} + ' (' + ${ticket.arrivalAirport.code} + ')'"></p>
-            <h4>Hành khách </h4>
-            <p th:text="${passenger.fullName}"></p>
-            <h4>Hành lí</h4>
-            <h4>Thông tin liên hệ</h4>
-            <p th:text="'Họ và tên: ' + ${passenger.fullName}"></p>
-            <p th:text="'Số điện thoại: ' + ${passenger.phoneNumber}"></p>
-            <p th:text="'Email: ' + ${passenger.phoneNumber}"></p>
-            <p th:text="'CMND: ' + ${passenger.identityNumber}"></p>
-
-            <h3>Tổng tiền</h3>
-            <p th:text="'CMND: ' + ${payment.amount}"></p>
+    <section class="services">
+        <div class="col-md-12">
+            <div class="section-heading">
+                <h2>Enter your booking code</h2>
+            </div>
         </div>
-    </div>
-    <div th:if="!${exist}">
-        Your booking code is not exist!
-    </div>
-</div>
+        <center>
+        <div class="tabs-content" style="z-index: -1">
+            <h2>Filled in this field:</h2>
+            <form th:action="@{/checkin}" style="font-size: 2em;">
+                <input type="text" th:name="code" placeholder="Your code here" >
+                <input type="submit" value="Search">
+            </form>
 
+            <div th:if="${exist}">
+                <div>
+                    <h3>Thông tin thanh toán</h3>
+                    <p>Loại hình thanh toán: </p>
+                    <div th:text="${payment.paymentType}"></div>
 
-<div class="tabs-content" id="weather" style="z-index: -1">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="section-heading">
-                    <h2>Check Weather For The Week</h2>
+                    <h4>Mã thanh toán</h4>
+                    <p th:text="${booking.code}"></p>
+                    <p>Trạng thái</p>
+                    <div th:text="${payment.status}"></div>
+                    Chuyến bay Một chiều
+                    <p>Thời gian bay : </p>
+                    <p th:text="${ticket.departureTime}"></p>
+                    <p>Nơi đi : </p>
+                    <p th:text="${ticket.departureAirport.city} + ' (' + ${ticket.departureAirport.code} + ')'"></p>
+                    <p>Thời gian đến: </p>
+                    <p th:text="${ticket.arrivalTime}"></p>
+                    <p>Nơi đến : </p>
+                    <p th:text="${ticket.arrivalAirport.city} + ' (' + ${ticket.arrivalAirport.code} + ')'"></p>
+                    <h4>Hành khách </h4>
+                    <p th:text="${passenger.fullName}"></p>
+                    <h4>Hành lí</h4>
+                    <h4>Thông tin liên hệ</h4>
+                    <p th:text="'Họ và tên: ' + ${passenger.fullName}"></p>
+                    <p th:text="'Số điện thoại: ' + ${passenger.phone}"></p>
+                    <p th:text="'Email: ' + ${passenger.email}"></p>
+                    <p th:text="'CMND: ' + ${passenger.identityNumber}"></p>
+
+                    <h3>Tổng tiền</h3>
+                    <p th:text="'CMND: ' + ${payment.amount}"></p>
                 </div>
             </div>
-            <div class="wrapper">
-                <div class="col-md-12">
-                    <div class="weather-content">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <ul class="tabs clearfix" data-tabgroup="second-tab-group">
-                                    <li><a href="#monday" class="active">Monday</a></li>
-                                    <li><a href="#tuesday">tuesday</a></li>
-                                    <li><a href="#wednesday">Wednesday</a></li>
-                                    <li><a href="#thursday">Thursday</a></li>
-                                    <li><a href="#friday">Friday</a></li>
-                                    <li><a href="#saturday">Saturday</a></li>
-                                    <li><a href="#sunday">Sunday</a></li>
+            <div th:if="!${exist}">
+                Your booking code is not exist!
+            </div>
+        </div></center>
+    </section>
+    <section class="services">
+        <div class="col-md-12">
+            <div class="section-heading">
+                <h2>Weather for the next 5 days</h2>
+            </div>
+        </div>
+        <center>
+            <h1 id="Para1">Enter City Name</h1>
 
-                                </ul>
-                            </div>
-                            <div class="col-md-12">
-                                <section id="second-tab-group" class="weathergroup">
-                                    <div id="monday">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="weather-item">
-                                                    <h6>Hue</h6>
-                                                    <div class="weather-icon">
-                                                        <img src="img/weather-icon-03.png" alt="">
-                                                    </div>
-                                                    <span>32&deg;C</span>
-                                                    <ul class="time-weather">
-                                                        <li>6AM <span>26&deg;</span></li>
-                                                        <li>12PM <span>32&deg;</span></li>
-                                                        <li>6PM <span>28&deg;</span></li>
-                                                        <li>12AM <span>22&deg;</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="weather-item">
-                                                    <h6>Ha Noi</h6>
-                                                    <div class="weather-icon">
-                                                        <img src="img/weather-icon-02.png" alt="">
-                                                    </div>
-                                                    <span>28&deg;C</span>
-                                                    <ul class="time-weather">
-                                                        <li>6AM <span>20&deg;</span></li>
-                                                        <li>12PM <span>28&deg;</span></li>
-                                                        <li>6PM <span>26&deg;</span></li>
-                                                        <li>12AM <span>18&deg;</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="weather-item">
-                                                    <h6>Ho Chi Minh City</h6>
-                                                    <div class="weather-icon">
-                                                        <img src="img/weather-icon-01.png" alt="">
-                                                    </div>
-                                                    <span>33&deg;C</span>
-                                                    <ul class="time-weather">
-                                                        <li>6AM <span>26&deg;</span></li>
-                                                        <li>12PM <span>33&deg;</span></li>
-                                                        <li>6PM <span>29&deg;</span></li>
-                                                        <li>12AM <span>27&deg;</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="tuesday">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="weather-item">
-                                                    <h6>Hue</h6>
-                                                    <div class="weather-icon">
-                                                        <img src="img/weather-icon-02.png" alt="">
-                                                    </div>
-                                                    <span>28&deg;C</span>
-                                                    <ul class="time-weather">
-                                                        <li>6AM <span>18&deg;</span></li>
-                                                        <li>12PM <span>27&deg;</span></li>
-                                                        <li>6PM <span>25&deg;</span></li>
-                                                        <li>12AM <span>17&deg;</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="weather-item">
-                                                    <h6>Ha Noi</h6>
-                                                    <div class="weather-icon">
-                                                        <img src="img/weather-icon-03.png" alt="">
-                                                    </div>
-                                                    <span>31&deg;C</span>
-                                                    <ul class="time-weather">
-                                                        <li>6AM <span>19&deg;</span></li>
-                                                        <li>12PM <span>28&deg;</span></li>
-                                                        <li>6PM <span>22&deg;</span></li>
-                                                        <li>12AM <span>18&deg;</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="weather-item">
-                                                    <h6>Ho Chi Minh City</h6>
-                                                    <div class="weather-icon">
-                                                        <img src="img/weather-icon-01.png" alt="">
-                                                    </div>
-                                                    <span>26&deg;C</span>
-                                                    <ul class="time-weather">
-                                                        <li>6AM <span>19&deg;</span></li>
-                                                        <li>12PM <span>26&deg;</span></li>
-                                                        <li>6PM <span>22&deg;</span></li>
-                                                        <li>12AM <span>20&deg;</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="wednesday">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="weather-item">
-                                                    <h6>Hue</h6>
-                                                    <div class="weather-icon">
-                                                        <img src="img/weather-icon-03.png" alt="">
-                                                    </div>
-                                                    <span>31&deg;C</span>
-                                                    <ul class="time-weather">
-                                                        <li>6AM <span>19&deg;</span></li>
-                                                        <li>12PM <span>28&deg;</span></li>
-                                                        <li>6PM <span>22&deg;</span></li>
-                                                        <li>12AM <span>18&deg;</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="weather-item">
-                                                    <h6>Ha Noi</h6>
-                                                    <div class="weather-icon">
-                                                        <img src="img/weather-icon-01.png" alt="">
-                                                    </div>
-                                                    <span>34&deg;C</span>
-                                                    <ul class="time-weather">
-                                                        <li>6AM <span>28&deg;</span></li>
-                                                        <li>12PM <span>34&deg;</span></li>
-                                                        <li>6PM <span>30&deg;</span></li>
-                                                        <li>12AM <span>29&deg;</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="weather-item">
-                                                    <h6>Ho Chi Minh City</h6>
-                                                    <div class="weather-icon">
-                                                        <img src="img/weather-icon-02.png" alt="">
-                                                    </div>
-                                                    <span>28&deg;C</span>
-                                                    <ul class="time-weather">
-                                                        <li>6AM <span>18&deg;</span></li>
-                                                        <li>12PM <span>27&deg;</span></li>
-                                                        <li>6PM <span>25&deg;</span></li>
-                                                        <li>12AM <span>17&deg;</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="thursday">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="weather-item">
-                                                    <h6>Hue</h6>
-                                                    <div class="weather-icon">
-                                                        <img src="img/weather-icon-01.png" alt="">
-                                                    </div>
-                                                    <span>27&deg;C</span>
-                                                    <ul class="time-weather">
-                                                        <li>6AM <span>21&deg;</span></li>
-                                                        <li>12PM <span>27&deg;</span></li>
-                                                        <li>6PM <span>22&deg;</span></li>
-                                                        <li>12AM <span>18&deg;</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="weather-item">
-                                                    <h6>Ha Noi</h6>
-                                                    <div class="weather-icon">
-                                                        <img src="img/weather-icon-02.png" alt="">
-                                                    </div>
-                                                    <span>28&deg;C</span>
-                                                    <ul class="time-weather">
-                                                        <li>6AM <span>18&deg;</span></li>
-                                                        <li>12PM <span>27&deg;</span></li>
-                                                        <li>6PM <span>25&deg;</span></li>
-                                                        <li>12AM <span>17&deg;</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="weather-item">
-                                                    <h6>Ho Chi Minh</h6>
-                                                    <div class="weather-icon">
-                                                        <img src="img/weather-icon-03.png" alt="">
-                                                    </div>
-                                                    <span>31&deg;C</span>
-                                                    <ul class="time-weather">
-                                                        <li>6AM <span>19&deg;</span></li>
-                                                        <li>12PM <span>28&deg;</span></li>
-                                                        <li>6PM <span>22&deg;</span></li>
-                                                        <li>12AM <span>18&deg;</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="friday">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="weather-item">
-                                                    <h6>Hue</h6>
-                                                    <div class="weather-icon">
-                                                        <img src="img/weather-icon-01.png" alt="">
-                                                    </div>
-                                                    <span>27&deg;C</span>
-                                                    <ul class="time-weather">
-                                                        <li>6AM <span>21&deg;</span></li>
-                                                        <li>12PM <span>27&deg;</span></li>
-                                                        <li>6PM <span>22&deg;</span></li>
-                                                        <li>12AM <span>18&deg;</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="weather-item">
-                                                    <h6>Ha Noi</h6>
-                                                    <div class="weather-icon">
-                                                        <img src="img/weather-icon-02.png" alt="">
-                                                    </div>
-                                                    <span>28&deg;C</span>
-                                                    <ul class="time-weather">
-                                                        <li>6AM <span>18&deg;</span></li>
-                                                        <li>12PM <span>27&deg;</span></li>
-                                                        <li>6PM <span>25&deg;</span></li>
-                                                        <li>12AM <span>17&deg;</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="weather-item">
-                                                    <h6>Ho Chi Minh</h6>
-                                                    <div class="weather-icon">
-                                                        <img src="img/weather-icon-03.png" alt="">
-                                                    </div>
-                                                    <span>31&deg;C</span>
-                                                    <ul class="time-weather">
-                                                        <li>6AM <span>19&deg;</span></li>
-                                                        <li>12PM <span>28&deg;</span></li>
-                                                        <li>6PM <span>22&deg;</span></li>
-                                                        <li>12AM <span>18&deg;</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="saturday">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="weather-item">
-                                                    <h6>Hue</h6>
-                                                    <div class="weather-icon">
-                                                        <img src="img/weather-icon-01.png" alt="">
-                                                    </div>
-                                                    <span>27&deg;C</span>
-                                                    <ul class="time-weather">
-                                                        <li>6AM <span>21&deg;</span></li>
-                                                        <li>12PM <span>27&deg;</span></li>
-                                                        <li>6PM <span>22&deg;</span></li>
-                                                        <li>12AM <span>18&deg;</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="weather-item">
-                                                    <h6>Ha Noi</h6>
-                                                    <div class="weather-icon">
-                                                        <img src="img/weather-icon-02.png" alt="">
-                                                    </div>
-                                                    <span>28&deg;C</span>
-                                                    <ul class="time-weather">
-                                                        <li>6AM <span>18&deg;</span></li>
-                                                        <li>12PM <span>27&deg;</span></li>
-                                                        <li>6PM <span>25&deg;</span></li>
-                                                        <li>12AM <span>17&deg;</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="weather-item">
-                                                    <h6>Ho Chi Minh</h6>
-                                                    <div class="weather-icon">
-                                                        <img src="img/weather-icon-03.png" alt="">
-                                                    </div>
-                                                    <span>31&deg;C</span>
-                                                    <ul class="time-weather">
-                                                        <li>6AM <span>19&deg;</span></li>
-                                                        <li>12PM <span>28&deg;</span></li>
-                                                        <li>6PM <span>22&deg;</span></li>
-                                                        <li>12AM <span>18&deg;</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="sunday">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="weather-item">
-                                                    <h6>Hue</h6>
-                                                    <div class="weather-icon">
-                                                        <img src="img/weather-icon-01.png" alt="">
-                                                    </div>
-                                                    <span>27&deg;C</span>
-                                                    <ul class="time-weather">
-                                                        <li>6AM <span>21&deg;</span></li>
-                                                        <li>12PM <span>27&deg;</span></li>
-                                                        <li>6PM <span>22&deg;</span></li>
-                                                        <li>12AM <span>18&deg;</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="weather-item">
-                                                    <h6>Ha Noi</h6>
-                                                    <div class="weather-icon">
-                                                        <img src="img/weather-icon-02.png" alt="">
-                                                    </div>
-                                                    <span>28&deg;C</span>
-                                                    <ul class="time-weather">
-                                                        <li>6AM <span>18&deg;</span></li>
-                                                        <li>12PM <span>27&deg;</span></li>
-                                                        <li>6PM <span>25&deg;</span></li>
-                                                        <li>12AM <span>17&deg;</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="weather-item">
-                                                    <h6>Ho Chi Minh</h6>
-                                                    <div class="weather-icon">
-                                                        <img src="img/weather-icon-03.png" alt="">
-                                                    </div>
-                                                    <span>31&deg;C</span>
-                                                    <ul class="time-weather">
-                                                        <li>6AM <span>19&deg;</span></li>
-                                                        <li>12PM <span>28&deg;</span></li>
-                                                        <li>6PM <span>22&deg;</span></li>
-                                                        <li>12AM <span>18&deg;</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </section>
-                            </div>
-                        </div>
+            <p id="inputContainer"><input type="text" id="cityInput"></p>
+            <button type="button" onclick="GetInfo()">Check Weather</button>
+            <h2 id="cityName">---London---</h2>
+            <div id = "weatherContainer">
+                <div id="iconsContainer">
+                    <div class = "icons">
+                        <p class="weather" id="day1"></p>
+                        <div class="image"><img src="dots.png" class="imgClass" id="img1"></div>
+                        <p class="minValues" id="day1Min">Loading...</p>
+                        <p class="maxValues" id="day1Max">Loading...</p>
+                    </div>
+                    <div class = "icons">
+                        <p class="weather" id="day2"></p>
+                        <div class="image"><img src="dots.png" class="imgClass" id="img2"></div>
+                        <p class="minValues" id="day2Min">Loading...</p>
+                        <p class="maxValues" id="day2Max">Loading...</p>
+                    </div>
+                    <div class = "icons">
+                        <p class="weather" id="day3"></p>
+                        <div class="image"><img src="dots.png" class="imgClass" id="img3"></div>
+                        <p class="minValues" id="day3Min">Loading...</p>
+                        <p class="maxValues" id="day3Max">Loading...</p>
+                    </div>
+                    <div class = "icons">
+                        <p class="weather" id="day4"></p>
+                        <div class="image"><img src="dots.png" class="imgClass" id="img4"></div>
+                        <p class="minValues" id="day4Min">Loading...</p>
+                        <p class="maxValues" id="day4Max">Loading...</p>
+                    </div>
+                    <div class = "icons">
+                        <p class="weather" id="day5"></p>
+                        <div class="image"><img src="dots.png" class="imgClass" id="img5"></div>
+                        <p class="minValues" id="day5Min">Loading...</p>
+                        <p class="maxValues" id="day5Max">Loading...</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+        </center>
+    </section>
 <section class="services">
     <div class="col-md-12">
         <div class="section-heading">
@@ -566,5 +212,21 @@
         </div>
     </div>
 </footer>
+    <script>
+        var d = new Date();
+        var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        function CheckDay(day) {
+            if (day + d.getDay() > 6) {
+                return day + d.getDay() - 7;
+            }
+            else {
+                return day + d.getDay();
+            }
+        }
+        for (i = 0; i < 5; i++) {
+            document.getElementById("day" + (i + 1)).innerHTML = weekday[CheckDay(i)];
+        }
+    </script></div>
+
 </body>
 </html>

@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import vn.hanu.fit.entity.Role;
 import vn.hanu.fit.entity.User;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -20,6 +21,29 @@ public class MyUserDetails implements UserDetails {
         this.user = user;
     }
 
+    public String getFullName(){
+        return user.getFullName();
+    }
+
+    public String getEmail(){
+        return user.getEmail();
+    }
+
+    public String getIdentityNumber(){
+        return user.getIdentityNumber();
+    }
+
+    public Date getDateOfBirth(){
+        return user.getDateOfBirth();
+    }
+
+    public String getPhoneNumber(){
+        return user.getPhone();
+    }
+
+    public boolean getGender(){
+        return user.isGender();
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Role role = user.getRole();
