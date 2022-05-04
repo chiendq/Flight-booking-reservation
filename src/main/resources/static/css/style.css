@@ -747,4 +747,40 @@ display:inline-block;
     margin-bottom: 5px;
     margin-left: 5px;
 }
+.checkin-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.checkin-content {
+    width: 400px;
+    background-color: white;
+    padding: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-size: 16px;
+}
+.total-price-checkin {
+    width: 300px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 10px;
+    padding: 5px;
+    display: flex;
+    margin-top: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.contact-information-header {
+    margin-top: 10px;
+}
+.ticket-status-tag-checkin {
+    min-width: 120px;
+    text-align: left;
+    margin-left: 50px;
+}
+.total-price-checkin-tag {
+    margin-right: 40px;
+}
 

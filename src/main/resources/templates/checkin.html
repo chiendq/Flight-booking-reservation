@@ -22,9 +22,6 @@
 </head>
 <body onload="DefaultScreen()">
 <div layout:fragment="content">
-
-
-
     <section class="services">
         <div class="col-md-12">
             <div class="section-heading">
@@ -32,49 +29,90 @@
             </div>
         </div>
         <center>
-        <div class="tabs-content" style="z-index: -1">
-            <h2>Filled in this field:</h2>
-            <form th:action="@{/checkin}" style="font-size: 2em;">
-                <input type="text" th:name="code" placeholder="Your code here" >
-                <input type="submit" value="Search">
-            </form>
+            <div class="tabs-content" style="z-index: -1">
+                <h2>Filled in this field:</h2>
+                <form th:action="@{/checkin}" style="font-size: 2em;">
+                    <input type="text" th:name="code" placeholder="Your code here">
+                    <input type="submit" value="Search">
+                </form>
 
-            <div th:if="${exist}">
-                <div>
-                    <h3>Thông tin thanh toán</h3>
-                    <p>Loại hình thanh toán: </p>
-                    <div th:text="${payment.paymentType}"></div>
+                <div th:if="${exist}">
+                    <div class="checkin-container">
+                        <div class="checkin-content">
+                            <h1>Thông tin thanh toán</h1>
 
-                    <h4>Mã thanh toán</h4>
-                    <p th:text="${booking.code}"></p>
-                    <p>Trạng thái</p>
-                    <div th:text="${payment.status}"></div>
-                    Chuyến bay Một chiều
-                    <p>Thời gian bay : </p>
-                    <p th:text="${ticket.departureTime}"></p>
-                    <p>Nơi đi : </p>
-                    <p th:text="${ticket.departureAirport.city} + ' (' + ${ticket.departureAirport.code} + ')'"></p>
-                    <p>Thời gian đến: </p>
-                    <p th:text="${ticket.arrivalTime}"></p>
-                    <p>Nơi đến : </p>
-                    <p th:text="${ticket.arrivalAirport.city} + ' (' + ${ticket.arrivalAirport.code} + ')'"></p>
-                    <h4>Hành khách </h4>
-                    <p th:text="${passenger.fullName}"></p>
-                    <h4>Hành lí</h4>
-                    <h4>Thông tin liên hệ</h4>
-                    <p th:text="'Họ và tên: ' + ${passenger.fullName}"></p>
-                    <p th:text="'Số điện thoại: ' + ${passenger.phone}"></p>
-                    <p th:text="'Email: ' + ${passenger.email}"></p>
-                    <p th:text="'CMND: ' + ${passenger.identityNumber}"></p>
+                            <div class="ticket-status">
+                                <p class="ticket-status-tag-checkin">Thanh toán: </p>
+                                <div th:text="${payment.paymentType}"></div>
+                            </div>
+                            <div class="ticket-status">
+                                <p class="ticket-status-tag-checkin">Mã thanh toán:</p>
+                                <p th:text="${booking.code}"></p>
+                            </div>
+                            <div class="ticket-status">
+                                <p class="ticket-status-tag-checkin">Trạng thái</p>
+                                <div th:text="${payment.status}"></div>
+                            </div>
+                            <div class="ticket-status">
+                                <p class="ticket-status-tag-checkin">Type:</p>
+                                <div>Chuyến bay Một chiều</div>
+                            </div>
+                            <div class="ticket-status">
+                                <p class="ticket-status-tag-checkin">Thời gian bay: </p>
+                                <p th:text="${ticket.departureTime}"></p>
+                            </div>
+                            <div class="ticket-status">
+                                <p class="ticket-status-tag-checkin">Nơi đi: </p>
+                                <p th:text="${ticket.departureAirport.city} + ' (' + ${ticket.departureAirport.code} + ')'"></p>
+                            </div>
+                            <div class="ticket-status">
+                                <p class="ticket-status-tag-checkin">Thời gian đến: </p>
+                                <p th:text="${ticket.arrivalTime}"></p>
+                            </div>
+                            <div class="ticket-status">
+                                <p class="ticket-status-tag-checkin">Nơi đến: </p>
+                                <p th:text="${ticket.arrivalAirport.city} + ' (' + ${ticket.arrivalAirport.code} + ')'"></p>
+                            </div>
+                            <div class="ticket-status">
+                                <p class="ticket-status-tag-checkin">Hành khách: </p>
+                                <p th:text="${passenger.fullName}"></p>
+                            </div>
+                            <div class="ticket-status">
+                                <p class="ticket-status-tag-checkin">Hành lí:</p>
+                            </div>
+                            <div class="divide-line"></div>
+                            <div class="contact-information">
+                                <h1 class="contact-information-header">Thông tin liên hệ</h1>
+                                <div class="ticket-status">
+                                    <p class="ticket-status-tag-checkin">Họ và tên: </p>
+                                    <p th:text="${passenger.fullName}"></p>
+                                </div>
+                                <div class="ticket-status">
+                                    <p class="ticket-status-tag-checkin">Số điện thoại: </p>
+                                    <p th:text="${passenger.phoneNumber}"></p>
+                                </div>
+                                <div class="ticket-status">
+                                    <p class="ticket-status-tag-checkin">Email: </p>
+                                    <p th:text="${passenger.email}"></p>
+                                </div>
+                                <div class="ticket-status">
+                                    <p class="ticket-status-tag-checkin">CMND: </p>
+                                    <p th:text="${passenger.identityNumber}"></p>
+                                </div>
+                            </div>
+                            <div class="total-price-checkin">
+                                <h2 class="total-price-checkin-tag">Tổng tiền</h2>
+                                <p th:text="${payment.amount}"></p>
+                            </div>
 
-                    <h3>Tổng tiền</h3>
-                    <p th:text="'CMND: ' + ${payment.amount}"></p>
+                        </div>
+                    </div>
+                </div>
+                <div th:if="!${exist}">
+                    Your booking code is not exist!
                 </div>
             </div>
-            <div th:if="!${exist}">
-                Your booking code is not exist!
-            </div>
-        </div></center>
+        </center>
     </section>
     <section class="services">
         <div class="col-md-12">
@@ -88,33 +126,33 @@
             <p id="inputContainer"><input type="text" id="cityInput"></p>
             <button type="button" onclick="GetInfo()">Check Weather</button>
             <h2 id="cityName">---London---</h2>
-            <div id = "weatherContainer">
+            <div id="weatherContainer">
                 <div id="iconsContainer">
-                    <div class = "icons">
+                    <div class="icons">
                         <p class="weather" id="day1"></p>
                         <div class="image"><img src="dots.png" class="imgClass" id="img1"></div>
                         <p class="minValues" id="day1Min">Loading...</p>
                         <p class="maxValues" id="day1Max">Loading...</p>
                     </div>
-                    <div class = "icons">
+                    <div class="icons">
                         <p class="weather" id="day2"></p>
                         <div class="image"><img src="dots.png" class="imgClass" id="img2"></div>
                         <p class="minValues" id="day2Min">Loading...</p>
                         <p class="maxValues" id="day2Max">Loading...</p>
                     </div>
-                    <div class = "icons">
+                    <div class="icons">
                         <p class="weather" id="day3"></p>
                         <div class="image"><img src="dots.png" class="imgClass" id="img3"></div>
                         <p class="minValues" id="day3Min">Loading...</p>
                         <p class="maxValues" id="day3Max">Loading...</p>
                     </div>
-                    <div class = "icons">
+                    <div class="icons">
                         <p class="weather" id="day4"></p>
                         <div class="image"><img src="dots.png" class="imgClass" id="img4"></div>
                         <p class="minValues" id="day4Min">Loading...</p>
                         <p class="maxValues" id="day4Max">Loading...</p>
                     </div>
-                    <div class = "icons">
+                    <div class="icons">
                         <p class="weather" id="day5"></p>
                         <div class="image"><img src="dots.png" class="imgClass" id="img5"></div>
                         <p class="minValues" id="day5Min">Loading...</p>
@@ -124,109 +162,111 @@
             </div>
         </center>
     </section>
-<section class="services">
-    <div class="col-md-12">
-        <div class="section-heading">
-            <h2>Addtional Services</h2>
-        </div>
-    </div>
-    <div class="container" style="z-index: -1">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="service-item first-service">
-                    <div class="service-icon"></div>
-                    <h4>Foods&Drinks</h4>
-                    <p>Content</p>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="service-item second-service">
-                    <div class="service-icon"></div>
-                    <h4>Delivery</h4>
-                    <p>Content</p>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="service-item third-service">
-                    <div class="service-icon"></div>
-                    <h4>Airports</h4>
-                    <p>Content</p>
-                    </a>
-                </div>
+    <section class="services">
+        <div class="col-md-12">
+            <div class="section-heading">
+                <h2>Addtional Services</h2>
             </div>
         </div>
-    </div>
-</section>
+        <div class="container" style="z-index: -1">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="service-item first-service">
+                        <div class="service-icon"></div>
+                        <h4>Foods&Drinks</h4>
+                        <p>Content</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-item second-service">
+                        <div class="service-icon"></div>
+                        <h4>Delivery</h4>
+                        <p>Content</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-item third-service">
+                        <div class="service-icon"></div>
+                        <h4>Airports</h4>
+                        <p>Content</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<footer class="footer">
-    <div class="container2">
-        <div class="row2">
-            <div class="special">
-                <h1>Don't Miss Out</h1>
-                <p> Enter email for our latest news and promos.<br>Chance to win free flight coupons.</p>
-                <br>
-                <input type="email" id="email_input" placeholder="Email address"><br>
-                <input type="submit" class="submit">
-                <h2>H-AIRLINES</h2>
-                <p>Km9, Nguyen Trai, Nam Tu Liem, Hanoi City</p><br>
-                <p>+84 912 783 623</p>
-            </div>
-            <div class="footer-col">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="">About Us</a></li>
-                    <li><a href="">Terms of Use</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Social Media</h4>
-                <div class="social-links">
-                    <a href=""><i class="fa-brands fa-facebook"></i></a>
-                    <a href=""><i class="fa-brands fa-instagram"></i></a>
-                    <a href=""><i class="fa-brands fa-twitter-square"></i></a>
-                    <a href="'https://github.com/chiendq/Flight-booking-reservation'"><i
-                            class="fa-brands fa-github"></i></a>
+    <footer class="footer">
+        <div class="container2">
+            <div class="row2">
+                <div class="special">
+                    <h1>Don't Miss Out</h1>
+                    <p> Enter email for our latest news and promos.<br>Chance to win free flight coupons.</p>
+                    <br>
+                    <input type="email" id="email_input" placeholder="Email address"><br>
+                    <input type="submit" class="submit">
+                    <h2>H-AIRLINES</h2>
+                    <p>Km9, Nguyen Trai, Nam Tu Liem, Hanoi City</p><br>
+                    <p>+84 912 783 623</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="">About Us</a></li>
+                        <li><a href="">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Social Media</h4>
+                    <div class="social-links">
+                        <a href=""><i class="fa-brands fa-facebook"></i></a>
+                        <a href=""><i class="fa-brands fa-instagram"></i></a>
+                        <a href=""><i class="fa-brands fa-twitter-square"></i></a>
+                        <a href="'https://github.com/chiendq/Flight-booking-reservation'"><i
+                                class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="">Manage Flight</a></li>
+                        <li><a href="">Flight Booking</a></li>
+                        <li><a href="">Check In</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="">Contact Us</a></li>
+                        <li><a href="">Refund</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="footer-col">
-                <h4>Our Services</h4>
-                <ul>
-                    <li><a href="">Manage Flight</a></li>
-                    <li><a href="">Flight Booking</a></li>
-                    <li><a href="">Check In</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="">Contact Us</a></li>
-                    <li><a href="">Refund</a></li>
-                </ul>
+            <hr style="height:4px;border-width:0;color:gray;background-color:gray">
+            <div class="copy-right">
+                <h3>Copyright @SQA Project 2022</h3>
             </div>
         </div>
-        <hr style="height:4px;border-width:0;color:gray;background-color:gray">
-        <div class="copy-right">
-            <h3>Copyright @SQA Project 2022</h3>
-        </div>
-    </div>
-</footer>
+    </footer>
     <script>
         var d = new Date();
         var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
         function CheckDay(day) {
             if (day + d.getDay() > 6) {
                 return day + d.getDay() - 7;
-            }
-            else {
+            } else {
                 return day + d.getDay();
             }
         }
+
         for (i = 0; i < 5; i++) {
             document.getElementById("day" + (i + 1)).innerHTML = weekday[CheckDay(i)];
         }
-    </script></div>
+    </script>
+</div>
 
 </body>
 </html>
