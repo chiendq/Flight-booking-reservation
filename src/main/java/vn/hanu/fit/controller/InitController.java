@@ -174,8 +174,8 @@ public class InitController {
             log.info("NOT NEED INIT");
             return;
         }
-        roleRepository.save(new Role(1, "", "USER"));
-        roleRepository.save(new Role(1, "", "ADMIN"));
+        roleRepository.save(new Role(1, "USER", "USER"));
+        roleRepository.save(new Role(2, "ADMIN", "ADMIN"));
         log.info("INITIALIZED ROLES");
     }
 
@@ -183,10 +183,10 @@ public class InitController {
     public void initAdmin() {
         Role adminRole = roleRepository.getById(2);
         User admin = new User(
-                adminRole,
                 "ADMIN VIP PRO",
-                "admin",
-                "$2a$10$G9xgysnAa5Y6Mj9jWRfsa.iKXEchPGKbkeWGqBT0yR2jBxUcdOV6G",
+                "adminadminadmin",
+                "$2a$10$P614HueYHNF0Z8ZRf2EHDun6ZXxd8k9p2ipjhNdhebmrfvQJJF6r.",
+                // 12345678
                 "0123456789",
                 true,
                 null,
@@ -195,6 +195,11 @@ public class InitController {
                 true,
                 "0123456789"
         );
+        userRepository.save(admin);
+        User adminUpdate = userRepository.findUserByUsername("adminadminadmin");
+        adminUpdate.setRole(roleRepository.getById(2));
+        userRepository.save(adminUpdate);
+
         log.info("INITIALIZED ADMIN");
 
     }

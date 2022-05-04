@@ -49,8 +49,7 @@ public class User implements Serializable {
 
     private String identityNumber;
 
-    public User(Role role, String fullName, String username, String password, String phone, boolean gender, Date dateOfBirth, String email, boolean enabled, boolean isExist, String identityNumber) {
-        this.role = role;
+    public User(String fullName, String username, String password, String phone, boolean gender, Date dateOfBirth, String email, boolean enabled, boolean isExist, String identityNumber) {
         this.fullName = fullName;
         this.username = username;
         this.password = password;
