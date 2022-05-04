@@ -1,197 +1,192 @@
-    <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
 <head>
     <meta charset="UTF-8">
     <title>Flight Booking</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name ="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}">
     <link rel="stylesheet" th:href="@{/css/fontAwesome.css}">
     <link rel="stylesheet" th:href="@{/css/slideshow.css}">
-    <link crossorigin="anonymous" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-          rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css}">
+    <link crossorigin="anonymous" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css}">
     <script th:src="@{//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js}"></script>
     <script th:src="@{/js/main.js}"></script>
     <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css}">
-    <script th:src="@{/js/bookingPage.js}"></script>
+
 </head>
-<body>
-<div class="logo1"><a th:href="@{/}"><img th:src="@{img/logo.png}"></a></div>
-<nav class="nav-one flex">
-    <ul class="middle flex">
-        <li><a href="#">Support</a></li>
-        <li><a href="#">Language</a></li>
-    </ul>
-    <ul sec:authorize="!isAuthenticated()" class="right flex">
-        <li><a th:href="@{/login}">Sign In</a></li>
-        <li><a th:href="@{/signup}">Sign Up</a></li>
-    </ul>
-    <ul sec:authorize="isAuthenticated()" class="right flex welcome-user">
-        <li>
-            <p sec:authorize="isAuthenticated()" style="padding-top: 5px">Welcome <span sec:authentication="name"
-                                                                                        style="text-decoration: underline"
-                                                                                        ;>Username</span></p>
-        </li>
-        <li><a th:href="@{/logout}">Log Out</a></li>
-    </ul>
-</nav>
-<nav class="nav-second flex">
-    <div class="brand-name" onclick="location.href='#';" style="cursor: pointer;">
-        <h1>H-AIRLINES</h1>
-        <p>HANU Flight Booking System</p>
-    </div>
-    <ul class="flex">
-        <li><a th:href="@{/}">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Booking</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Check in</a></li>
-    </ul>
-</nav>
-<img th:src="@{/img/Group10.png}" style="position: absolute;left: 10%;z-index: -1">
-<section class="vh-100 gradient-custom rounded mx-auto d-block " style="z-index: 1;">
-    <div class="container py-5 h-100 ">
-        <div class="row justify-content-center align-items-center h-100 formchuan">
-            <div class="col-12 col-lg-9 col-xl-7 ">
-                <div class="card shadow-2-strong card-registration " style="border-radius:15px;">
-                    <div class="card-body p-4 p-md-5 ">
-                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 form-title">Suburb Flights</h3>
-                        <form action="#" th:action="@{/search}" th:object="${ticketSearchDTO}" method="get"
-                              class="form-content">
-                            <div class="row">
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <label>From:</label>
-                                        <select th:field="${ticketSearchDTO.departureAirportCode}">
-                                            <option th:each="airport : ${airports}" th:value="${airport.code}"
-                                                    th:selected="${airport.code}"
-                                                    th:text="${airport.city}+' - '+${airport.name}">
-                                            </option>
-                                        </select>
+    <body>
+    <div class ="logo1"><a th:href="@{/}"><img th:src="@{img/logo.png}" ></a></div>
+    <nav class = "nav-one flex">
+        <ul class="middle flex">
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Language</a></li>
+        </ul>
+        <ul sec:authorize="!isAuthenticated()" class="right flex" >
+            <li><a th:href="@{/login}">Sign In</a></li>
+            <li><a th:href="@{/signup}">Sign Up</a></li>
+        </ul>
+        <ul sec:authorize="isAuthenticated()" class="right flex welcome-user" >
+            <li>
+                <p sec:authorize="isAuthenticated()" style="padding-top: 5px">Welcome <span sec:authentication="name" style="text-decoration: underline";>Username</span></p>
+            </li>
+            <li><a th:href="@{/logout}">Log Out</a></li>
+        </ul>
+    </nav>
+    <nav class="nav-second flex">
+        <div class="brand-name" onclick="location.href='#';" style="cursor: pointer;">
+            <h1>H-AIRLINES</h1>
+            <p>HANU Flight Booking System</p>
+        </div>
+        <ul class="flex">
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Booking</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Check in</a></li>
+        </ul>
+    </nav>
+    <div><img th:src="@{/img/Group10.png}"  style="position: absolute;z-index: -1;width: 100%" >
+    <section class="vh-100 gradient-custom rounded mx-auto d-block " style="z-index: 1;">
+        <div class="container py-5 h-100 ">
+            <div class="row justify-content-center align-items-center h-100 formchuan">
+                <div class="col-12 col-lg-9 col-xl-7 ">
+                    <div class="card shadow-2-strong card-registration " style="border-radius:15px;">
+                        <div class="card-body p-4 p-md-5 ">
+                            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 form-title">Suburb Flights</h3>
+                            <form action="#" th:action="@{/search}" th:object="${ticketSearchDTO}" method="get"
+                                  class="form-content">
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <label>From:</label>
+                                            <select th:field="${ticketSearchDTO.departureAirportCode}">
+                                                <option th:each="airport : ${airports}" th:value="${airport.code}"
+                                                        th:selected="${airport.code}"
+                                                        th:text="${airport.city}+' - '+${airport.name}">
+                                                </option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <label>To:</label>
-                                        <select th:field="${ticketSearchDTO.arrivalAirportCode}">
-                                            <option th:each="airport : ${airports}" th:value="${airport.code}"
-                                                    th:selected="${airport.code}"
-                                                    th:text="${airport.city}+'-'+${airport.name}">
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-4 ">
-                                    <label for="departuretime">Departure time:</label>
-                                    <input type="date" th:field="${ticketSearchDTO.departureTime}"
-                                           th:required="required"
-                                           id="departuretime"></br>
-                                </div>
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <label for="arrivaltime">Arrival time:</label>
-                                        <input type="date" th:field="${ticketSearchDTO.arrivalTime}"
-                                               th:required="required"
-                                               id="arrivaltime"></br>
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <label>To:</label>
+                                            <select th:field="${ticketSearchDTO.arrivalAirportCode}">
+                                                <option th:each="airport : ${airports}" th:value="${airport.code}"
+                                                        th:selected="${airport.code}"
+                                                        th:text="${airport.city}+'-'+${airport.name}">
+                                                </option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6 mb-4 pb-2">
-                                        <label>Number of passenger:</label><br>
-                                        <a>Adult: </a><input type="number" name="adult" th:min="1" th:max="9"
-                                                             th:required="required"
-                                                             th:field="${ticketSearchDTO.adultPassengerNumber}">
-                                        <a>Child: </a><input type="number" name="child" th:min="0" th:max="3"
-                                                             th:field="${ticketSearchDTO.childPassengerNumber}">
-                                        <a>Baby: </a><input type="number" name="baby" th:min="0" th:max="1"
-                                                            th:field="${ticketSearchDTO.babyPassengerNumber}">
+                                    <div class="col-md-6 mb-4 ">
+                                        <label for="departuretime">Departure time:</label>
+                                        <input type="date" th:field="${ticketSearchDTO.departureTime}"  th:required="required"
+                                               id="departuretime"></br>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <label for="arrivaltime">Arrival time:</label>
+                                            <input type="date" th:field="${ticketSearchDTO.arrivalTime}" th:required="required"
+                                                   id="arrivaltime"></br>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4 pb-2">
+                                            <label>Number of passenger:</label><br>
+                                            <a>Adult: </a><input type="number" name="adult" th:min="1" th:max="9" th:required="required"
+                                                                 th:field="${ticketSearchDTO.adultPassengerNumber}">
+                                            <a>Child: </a><input type="number" name="child" th:min="0" th:max="3"
+                                                                 th:field="${ticketSearchDTO.childPassengerNumber}">
+                                            <a>Baby: </a><input type="number" name="baby" th:min="0" th:max="1"
+                                                                th:field="${ticketSearchDTO.babyPassengerNumber}">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label>Class: </label></br>
+                                            <input type="checkbox" th:field="${ticketSearchDTO.economyClass}"
+                                                   th:value="${true}" th:checked>-Phổ thông - Bay tiết kiệm, đáp ứng mọi
+                                            nhu cầu cơ bản</br>
+                                            <input type="checkbox" th:field="${ticketSearchDTO.specialEconomyClass}"
+                                                   th:value="${true}">-Phổ thông đặc biệt - Chi phí hợp lý với bữa ăn ngon
+                                            và chỗ để chân rộng rãi.</br>
+                                            <input type="checkbox" th:field="${ticketSearchDTO.businessClass}"
+                                                   th:value="${true}">-Thương gia - Bay đẳng cấp, với quầy làm thủ tục và
+                                            khu ghế ngồi riêng.</br>
+                                            <input type="checkbox" th:field="${ticketSearchDTO.firstClass}"
+                                                   th:value="${true}">-Hạng nhất - Hạng cao cấp nhất, với dịch vụ 5 sao
+                                            được cá nhân hoá.
+                                        </div>
+                                    </div>
+                                    <div class="btn-container"
+                                         style="text-align: center;padding-top: 30px;border: none;">
+                                        <input type="submit" style="padding: 10px;height: 40px;width: 50%;"
+                                               value="Search"></input>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <label>Class: </label></br>
-                                        <input type="checkbox" th:field="${ticketSearchDTO.economyClass}"
-                                               th:value="${true}" th:checked>-Phổ thông - Bay tiết kiệm, đáp ứng mọi
-                                        nhu cầu cơ bản</br>
-                                        <input type="checkbox" th:field="${ticketSearchDTO.specialEconomyClass}"
-                                               th:value="${true}">-Phổ thông đặc biệt - Chi phí hợp lý với bữa ăn ngon
-                                        và chỗ để chân rộng rãi.</br>
-                                        <input type="checkbox" th:field="${ticketSearchDTO.businessClass}"
-                                               th:value="${true}">-Thương gia - Bay đẳng cấp, với quầy làm thủ tục và
-                                        khu ghế ngồi riêng.</br>
-                                        <input type="checkbox" th:field="${ticketSearchDTO.firstClass}"
-                                               th:value="${true}">-Hạng nhất - Hạng cao cấp nhất, với dịch vụ 5 sao
-                                        được cá nhân hoá.
-                                    </div>
-                                </div>
-                                <div class="btn-container"
-                                     style="text-align: center;padding-top: 30px;border: none;">
-                                    <input type="submit" style="padding: 10px;height: 40px;width: 50%;"
-                                           value="Search"></input>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
     </div>
-</section>
-<footer class="footer">
-    <div class="container2">
-        <div class="row2">
-            <div class="special">
-                <h1>Don't Miss Out</h1>
-                <p> Enter email for our latest news and promos.<br>Chance to win free flight coupons.</p>
-                <br>
-                <input type="email" id="email_input" placeholder="Email address"><br>
-                <input type="submit" class="submit">
-                <h2>H-AIRLINES</h2>
-                <p>Km9, Nguyen Trai, Nam Tu Liem, Hanoi City</p><br>
-                <p>+84 912 783 623</p>
-            </div>
-            <div class="footer-col">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="">About Us</a></li>
-                    <li><a href="">Terms of Use</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Social Media</h4>
-                <div class="social-links">
-                    <a href=""><i class="fa-brands fa-facebook"></i></a>
-                    <a href=""><i class="fa-brands fa-instagram"></i></a>
-                    <a href=""><i class="fa-brands fa-twitter-square"></i></a>
-                    <a href=""><i class="fa-brands fa-github"></i></a>
+    <footer class = "footer">
+        <div class ="container2">
+            <div class = "row2">
+                <div class="special">
+                    <h1>Don't Miss Out</h1>
+                    <p> Enter email for our latest news and promos.<br>Chance to win free flight coupons.</p>
+                    <br>
+                    <input type ="email" id="email_input" placeholder="Email address"><br>
+                    <input type ="submit" class="submit">
+                    <h2>H-AIRLINES</h2>
+                    <p>Km9, Nguyen Trai, Nam Tu Liem, Hanoi City</p><br><p>+84 912 783 623</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="">About Us</a></li>
+                        <li><a href="">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Social Media</h4>
+                    <div class="social-links">
+                        <a href=""><i class="fa-brands fa-facebook"></i></a>
+                        <a href=""><i class="fa-brands fa-instagram"></i></a>
+                        <a href=""><i class="fa-brands fa-twitter-square"></i></a>
+                        <a href=""><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="">Manage Flight</a></li>
+                        <li><a href="">Flight Booking</a></li>
+                        <li><a href="">Check In</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="">Contact Us</a></li>
+                        <li><a href="">Refund</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="footer-col">
-                <h4>Our Services</h4>
-                <ul>
-                    <li><a href="">Manage Flight</a></li>
-                    <li><a href="">Flight Booking</a></li>
-                    <li><a href="">Check In</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="">Contact Us</a></li>
-                    <li><a href="">Refund</a></li>
-                </ul>
+            <hr style="height:4px;border-width:0;color:gray;background-color:gray">
+            <div class="copy-right">
+                <h3>Copyright @SQA Project 2022</h3>
             </div>
         </div>
-        <hr style="height:4px;border-width:0;color:gray;background-color:gray">
-        <div class="copy-right">
-            <h3>Copyright @SQA Project 2022</h3>
-        </div>
-    </div>
-</footer>
+    </footer>
 
-</body>
+    </body>
 </html>
