@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import vn.hanu.fit.entity.Role;
 
 @Repository
-public interface RoleRepository extends JpaRepository<Role, Long> {
+public interface RoleRepository extends JpaRepository<Role, Integer> {
 }

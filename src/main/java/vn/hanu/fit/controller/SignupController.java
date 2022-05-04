@@ -2,6 +2,7 @@ package vn.hanu.fit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import vn.hanu.fit.entity.User;
+import vn.hanu.fit.repository.RoleRepository;
 import vn.hanu.fit.repository.UserRepository;
 
 import javax.validation.Valid;
@@ -20,6 +22,9 @@ import java.util.List;
 public class SignupController {
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -41,7 +46,10 @@ public class SignupController {
             user.setExist(true);
             return "signup";
         }
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setRole(roleRepository.findById(1).get());
+        PasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = bCryptPasswordEncoder.encode( user.getPassword());
+        user.setPassword(encodedPassword);
         userRepository.save(user);
         return "redirect:/login?registed";
     }

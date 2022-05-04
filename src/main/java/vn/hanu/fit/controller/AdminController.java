@@ -34,7 +34,7 @@ public class AdminController {
 
     @RequestMapping("/manage")
     public String showManageList(){
-        if(!isAdmin()) return "redirect:/manage";
+        if(!isAdmin()) return "redirect:/";
         return "admin_manage";
     }
 

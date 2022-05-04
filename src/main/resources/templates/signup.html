@@ -59,9 +59,10 @@
                                 </div>
                                 <div class="col-md-9 pe-5">
                                     <input type="text" class="form-control form-control-lg" id="username"
+                                           th:field="${newUser.username}"
                                            placeholder="Username" />
                                     <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
-                                       class="error" />
+                                       class="error"></p>
                                 </div>
                             </div>
                             <div class="row align-items-center pt-4 pb-3">

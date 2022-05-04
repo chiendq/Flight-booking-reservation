@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import vn.hanu.fit.controller.AuthenticationController;
 import vn.hanu.fit.service.UserDetailsServiceImpl;
 
@@ -56,6 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable();
                 http
             .authorizeRequests()
+//                        .antMatchers("/admin/**").hasRole("ADMIN")
             .anyRequest().permitAll()
             .and()
             .formLogin()// Cho phép người dùng xác thực bằng form login
