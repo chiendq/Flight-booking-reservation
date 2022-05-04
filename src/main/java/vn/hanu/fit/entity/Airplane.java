@@ -1,6 +1,8 @@
 package vn.hanu.fit.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,6 +10,8 @@ import java.io.Serializable;
 @Entity
 @Data
 @Table(name = "airplanes")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Airplane implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

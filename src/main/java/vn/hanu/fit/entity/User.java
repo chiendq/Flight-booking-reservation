@@ -2,6 +2,7 @@ package vn.hanu.fit.entity;
 
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -13,6 +14,7 @@ import java.sql.Date;
 @Entity
 @Table(name = "users")
 @Data
+@NoArgsConstructor
 public class User implements Serializable {
 
     @Id
@@ -47,5 +49,17 @@ public class User implements Serializable {
 
     private String identityNumber;
 
-
+    public User(Role role, String fullName, String username, String password, String phone, boolean gender, Date dateOfBirth, String email, boolean enabled, boolean isExist, String identityNumber) {
+        this.role = role;
+        this.fullName = fullName;
+        this.username = username;
+        this.password = password;
+        this.phone = phone;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.enabled = enabled;
+        this.isExist = isExist;
+        this.identityNumber = identityNumber;
+    }
 }
