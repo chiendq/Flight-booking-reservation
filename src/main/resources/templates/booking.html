@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5
+" layout:decorate="_layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 >
 <head>
     <meta charset="UTF-8">
@@ -18,36 +20,7 @@
 
 </head>
     <body>
-    <div class ="logo1"><a th:href="@{/}"><img th:src="@{img/logo.png}" ></a></div>
-    <nav class = "nav-one flex">
-        <ul class="middle flex">
-            <li><a href="#">Support</a></li>
-            <li><a href="#">Language</a></li>
-        </ul>
-        <ul sec:authorize="!isAuthenticated()" class="right flex" >
-            <li><a th:href="@{/login}">Sign In</a></li>
-            <li><a th:href="@{/signup}">Sign Up</a></li>
-        </ul>
-        <ul sec:authorize="isAuthenticated()" class="right flex welcome-user" >
-            <li>
-                <p sec:authorize="isAuthenticated()" style="padding-top: 5px">Welcome <span sec:authentication="name" style="text-decoration: underline";>Username</span></p>
-            </li>
-            <li><a th:href="@{/logout}">Log Out</a></li>
-        </ul>
-    </nav>
-    <nav class="nav-second flex">
-        <div class="brand-name" onclick="location.href='#';" style="cursor: pointer;">
-            <h1>H-AIRLINES</h1>
-            <p>HANU Flight Booking System</p>
-        </div>
-        <ul class="flex">
-            <li><a th:href="@{/}">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Booking</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Check in</a></li>
-        </ul>
-    </nav>
+    <div layout:fragment="content">
     <div><img th:src="@{/img/Group10.png}"  style="position: absolute;z-index: -1;width: 100%" >
     <section class="vh-100 gradient-custom rounded mx-auto d-block " style="z-index: 1;">
         <div class="container py-5 h-100 ">
@@ -187,6 +160,6 @@
             </div>
         </div>
     </footer>
-
+    </div>
     </body>
 </html>
