@@ -140,11 +140,11 @@
         .seat:nth-child(3) {
           margin-right: 14.28571428571429%;
         }
-        input[type=checkbox] {
+        .cabin input[type=checkbox] {
             position: absolute;
             opacity: 0;
           }
-          input[type=checkbox]:checked + label{
+.cabin  input[type=checkbox]:checked + label{
              
               background: #bada55;      
               -webkit-animation-name: rubberBand;
@@ -153,11 +153,11 @@
               animation-fill-mode: both;
             
           }
-          input[type=checkbox]:disabled +label {
+.cabin input[type=checkbox]:disabled +label {
               background: #b1afaf;
               text-indent: -9999px;
               overflow: hidden;}
-              input[type=checkbox]:disabled +label:after {
+.cabin input[type=checkbox]:disabled +label:after {
                 content: "X";
                 text-indent: 0;
                 position: absolute;
@@ -165,7 +165,7 @@
                 left: 50%;
                 transform: translate(-50%, 0%);
               }
-              input[type=checkbox]:disabled +label:hover {
+.cabin input[type=checkbox]:disabled +label:hover {
                 box-shadow: none;
                 cursor: not-allowed;
               }

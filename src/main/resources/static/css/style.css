@@ -9,7 +9,6 @@
     display:flex;
     justify-content: space-between;
     align-items: center;
-
 }
 body{
     width:100%;
@@ -211,7 +210,6 @@ position:relative;
     color:#C5C5C5;
     padding-left:26px;
     font-size: 15px;
-
 }
 
 .nav-second li{
@@ -262,7 +260,6 @@ position:relative;
     background: #fff;
     transition: width 0.3s ease 0s, left 0.3s ease 0s;
     width: 0;
-
 }
 .nav-one a:hover:after {
     width: 100%;
@@ -278,7 +275,9 @@ position:relative;
     font-family: 'Archivo Black', sans-serif;
     font-style: italic;
 }
-
+.formchuan{
+    padding-top: 150px;
+    }
 .form-content{
     font-size: 15px;
 }
@@ -336,7 +335,116 @@ display:inline-block;
 }
 
 
+#weather {
 
+}
+
+.weather-content {
+    background-image: url(../img/weather-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    text-align: center;
+}
+
+#weather .tabs {
+    list-style: none;
+    margin-top: 0px;
+    padding-right: 0px;
+    background-color: rgba(31, 54, 70, 0.5);}
+
+#weather .tabs li {
+    display: inline-block;
+    text-align: center;
+    margin: 0px -2px;
+    width: 20%;
+}
+
+#weather .tabs li:last-child {
+    margin-left: 2px;
+}
+
+#weather .tabs a {
+    display:block;
+    transition: all 0.5s;
+    text-align: left;
+    text-decoration:none;
+    text-transform:uppercase;
+    letter-spacing: 0.5px;
+    color:#fff;
+    font-size: 15px;
+    font-weight: 700;
+    display: inline-block;
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    padding-left: 0px;
+    text-align: center;
+}
+
+#weather .tabs a em {
+    font-style: normal;
+    font-weight: 700;
+}
+
+#weather .tabs .active {
+    background-color: #ffe165;
+}
+
+#weather .weather-item {
+    padding: 40px 30px 30px 30px;
+    text-align: center;
+    display: block;
+    background-color: rgba(250, 250, 250, 0.3);
+}
+
+.weathergroup {
+    padding: 80px 30px;
+}
+
+.weather-item h6 {
+    font-size: 18px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 40px;
+    margin-top: 0px;
+}
+
+.weather-item .weather-icon {
+    display: inline-block;
+    margin-bottom: 40px;
+    width: 64px;
+    height: 64px;
+}
+
+.weather-item span {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.weather-item ul {
+    background-color: rgba(255, 255, 255, 0.75);
+    margin-top: 40px;
+    padding: 30px 20px;
+}
+
+.weather-item ul li {
+    display: inline-block;
+    margin: 0px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #121212;
+}
+
+.weather-item ul li span {
+    margin-top: 15px;
+    font-size: 12px;
+    color: #121212;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 5px 8px;
+}
 
 
 .container4{
@@ -499,26 +607,80 @@ display:inline-block;
     background-image: url(../img/airport-colored.png);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@media (max-width: 768px) {
-
+.booking-success-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px;
+}
+.booking-success-content {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: white;
+    width: fit-content;
+    height: fit-content;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border-radius: 10px;
+}
+.success-icon {
+    height: 200px;
+    width: auto;
+    margin-top: 10px;
+}
+.success-text {
+    margin-top: 15px;
+}
+.transaction-information {
+    display: flex;
+    flex-direction: column;
+    background-color: #f8fafc;
+    height: fit-content;
+    width: 400px;
+    padding: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+.transaction-type-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.transaction-type {
+    margin-left: 9px;
+}
+.ticket-information {
+    margin-top: 20px;
+    width: 420px;
+    padding: 15px;
+}
+.ticket-status {
+    display: flex;
+    flex-direction: row;
+}
+.ticket-status-tag {
+    margin-left: 5px;
+    min-width: 160px;
+}
+.transaction-code-number {
+    text-align: center;
+}
+.divide-line {
+    height: 1px;
+    background-color: gray;
+}
+.total-price {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 5px;
 }
 
 @media (max-width: 480px) {
-
 }
 #cityInput, #cityName, #inputContainer,button{
     margin: 3px;
@@ -552,7 +714,6 @@ display:inline-block;
     height: 140px;
     width: 100%;
 }
-
 .imgClass{
     height: 140px;
     width: 100%;
@@ -565,7 +726,6 @@ display:inline-block;
     text-align: center;
     font-weight: bold;
 }
-
 .minValues{
     text-align: center;
     display: inline-block;
@@ -574,21 +734,17 @@ display:inline-block;
     width: 85px;
     margin: 0;
     margin-bottom: 5px;
-
 }
-.icons{
+.icons {
     font-size: larger;
 }
-
-.maxValues{
+.maxValues {
     text-align: center;
     display: inline-block;
-
     height: 25px;
     width: 85px;
     margin: 0;
     margin-bottom: 5px;
     margin-left: 5px;
 }
-
 

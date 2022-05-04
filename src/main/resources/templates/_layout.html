@@ -23,7 +23,7 @@
 <nav class="nav-one flex">
     <ul class="middle flex">
         <li><a th:href="@{comingsoon}">Support</a></li>
-        <li><a href="#">Language</a></li>
+        <li><a th:href="@{comingsoon}">Language</a></li>
     </ul>
     <ul sec:authorize="!isAuthenticated()" class="right flex">
         <li><a th:href="@{/login}">Sign In</a></li>
@@ -48,9 +48,9 @@
     </div>
     <ul class="flex">
         <li><a th:href="@{/}">Home</a></li>
-        <li><a th:href="@{/admin}">About</a></li>
+        <li><a th:href="@{comingsoon}">About</a></li>
         <li><a th:href="@{/booking}">Booking</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a th:href="@{comingsoon}">Contact</a></li>
         <li><a th:href="@{/checkinpage}">Check in</a></li>
     </ul>
 </nav>
