@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import vn.hanu.fit.entity.Booking;
+import vn.hanu.fit.entity.Passenger;
 import vn.hanu.fit.repository.BookingRepository;
 
 @Controller
@@ -36,7 +37,9 @@ public class CheckInController {
         }
         model.addAttribute("booking", booking);
         model.addAttribute("exist", true);
-        model.addAttribute("passenger", booking.getPassenger());
+        Passenger passenger = booking.getPassenger();
+        if(passenger != null) model.addAttribute("passenger", passenger);
+        else model.addAttribute("passenger", booking.getUser());
         model.addAttribute("payment", booking.getPayment());
         model.addAttribute("ticket", booking.getTicket());
 
