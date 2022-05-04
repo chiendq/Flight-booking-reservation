@@ -50,6 +50,8 @@ public class SignupController {
         PasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = bCryptPasswordEncoder.encode( user.getPassword());
         user.setPassword(encodedPassword);
+        user.setEnabled(true);
+        user.setExist(true);
         userRepository.save(user);
         return "redirect:/login?registed";
     }
