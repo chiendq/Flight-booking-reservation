@@ -19,7 +19,9 @@
 
 </head>
 <body>
+
 <div class="logo1"><a th:href="@{/}"><img th:src="@{/img/logo.png}"></a></div>
+
 <nav class="nav-one flex">
     <ul class="middle flex">
         <li><a th:href="@{/}">Home</a></li>
@@ -30,9 +32,9 @@
     </ul>
     <ul sec:authorize="isAuthenticated()" class="right flex welcome-user">
         <li>
-            <p sec:authorize="isAuthenticated()" style="padding-top: 5px">Welcome <span sec:authentication="name"
-                                                                                        style="text-decoration: underline"
-                                                                                        ;>Username</span></p>
+            <p sec:authorize="isAuthenticated()">Welcome <span sec:authentication="name"
+                                                               style="text-decoration: underline"
+                                                               ;>Username</span></p>
         </li>
         <li>
             <a th:href="@{/admin/manage}" sec:authorize="isAuthenticated()" style="padding-top: 5px">Management</a>
@@ -40,48 +42,94 @@
         <li><a th:href="@{/logout}">Log Out</a></li>
     </ul>
 </nav>
-
-<div>
-    <img th:src="'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfz3upZJUzgki4bn27faJf6gPIIo7Yo5HxZg&usqp=CAU'">
-    <h1>Booking Successfully</h1>
-    <p>Hướng dẫn chuyển khoản sẽ được gửi tới email của bạn. Vui lòng thanh toán trước</p>
-    <h4>23:01, T2, 04/04/2022</h4>
-
-    <h3>Thông tin thanh toán</h3>
-    <p>Loại hình thanh toán: </p>
-    <div th:if="${contactInfDTO.bankTransfer}==true" th:text="'Bank transfer'"></div>
-    <div th:if="${contactInfDTO.qrpay}==true" th:text="'QR-PAY'"></div>
-    <div th:if="${contactInfDTO.atmBankAccount}==true" th:text="'ATM/Bank account'"></div>
-    <div th:if="${contactInfDTO.visaMasterCard}==true" th:text="'Visa/Master card'"></div>
-    <div th:if="${contactInfDTO.caretaker}==true" th:text="'Caretaker'"></div>
-
-    <h4>Mã thanh toán</h4>
-    <p th:text="${bookingCode}"></p>
-    <p>Trạng thái</p>
-    <p>Chờ xác nhận</p>
-    Chuyến bay Một chiều
-    <p>Thời gian bay : </p>
-    <p th:text="${ticket.departureTime}"></p>
-    <p>Nơi đi : </p>
-    <p th:text="${ticket.departureAirport.city} + ' (' + ${ticket.departureAirport.code} + ')'"></p>
-    <p>Thời gian đến: </p>
-    <p th:text="${ticket.arrivalTime}"></p>
-    <p>Nơi đến : </p>
-    <p th:text="${ticket.arrivalAirport.city} + ' (' + ${ticket.arrivalAirport.code} + ')'"></p>
-    <h4>Hành khách </h4>
-    <p th:text="${contactInfDTO.fullName}"></p>
-    <h4>Hành lí</h4>
-    <h4>Thông tin liên hệ</h4>
-    <p th:text="'Họ và tên: ' + ${contactInfDTO.fullName}"></p>
-    <p th:text="'Số điện thoại: ' + ${contactInfDTO.phoneNumber}"></p>
-    <p th:text="'Email: ' + ${contactInfDTO.email}"></p>
-    <p th:text="'CMND: ' + ${contactInfDTO.identityNumber}"></p>
-
-    <h3>Tổng tiền</h3>
-
-
+<div class="booking-success-container">
+    <div class="booking-success-content">
+        <img class="success-icon" th:src="@{/img/booking-success.png}">
+        <h1 class="success-text">Booking Successfully</h1>
+        <p>Hướng dẫn chuyển khoản sẽ được gửi tới email của bạn. Vui lòng thanh toán trước</p>
+        <h4>23:01, T2, 04/04/2022</h4>
+        <div class="transaction-information">
+            <h3>Thông tin thanh toán</h3>
+            <div class="transaction-type-container">
+                <p>Loại hình thanh toán: </p>
+                <div class="transaction-type" th:if="${contactInfDTO.bankTransfer}==true"
+                     th:text="'Bank transfer'"></div>
+                <div class="transaction-type" th:if="${contactInfDTO.qrpay}==true" th:text="'QR-PAY'"></div>
+                <div class="transaction-type" th:if="${contactInfDTO.atmBankAccount}==true"
+                     th:text="'ATM/Bank account'"></div>
+                <div class="transaction-type" th:if="${contactInfDTO.visaMasterCard}==true"
+                     th:text="'Visa/Master card'"></div>
+                <div class="transaction-type" th:if="${contactInfDTO.caretaker}==true" th:text="'Caretaker'"></div>
+            </div>
+            <div class="transaction-code">
+                <h3>Mã thanh toán</h3>
+                <p class="transaction-code-number" th:text="${bookingCode}"></p>
+            </div>
+        </div>
+        <div class="ticket-information">
+            <div class="ticket-status">
+                <p class="ticket-status-tag">Trạng thái:</p>
+                <p>Chờ xác nhận</p>
+            </div>
+            <div class="divide-line"></div>
+            <div class="ticket-status">
+                <p class="ticket-status-tag">Chuyến bay:</p>
+                <p>Một chiều</p>
+            </div>
+            <div class="divide-line"></div>
+            <div class="ticket-status">
+                <p class="ticket-status-tag">Thời gian bay : </p>
+                <p th:text="${ticket.departureTime}"></p>
+            </div>
+            <div class="divide-line"></div>
+            <div class="ticket-status">
+                <p class="ticket-status-tag">Nơi đi: </p>
+                <p th:text="${ticket.departureAirport.city} + ' (' + ${ticket.departureAirport.code} + ')'"></p>
+            </div>
+            <div class="divide-line"></div>
+            <div class="ticket-status">
+                <p class="ticket-status-tag">Thời gian đến: </p>
+                <p th:text="${ticket.arrivalTime}"></p>
+            </div>
+            <div class="divide-line"></div>
+            <div class="ticket-status">
+                <p class="ticket-status-tag">Nơi đến: </p>
+                <p th:text="${ticket.arrivalAirport.city} + ' (' + ${ticket.arrivalAirport.code} + ')'"></p>
+            </div>
+            <div class="divide-line"></div>
+            <div class="ticket-status">
+                <p class="ticket-status-tag">Hành khách:</p>
+                <p th:text="${contactInfDTO.fullName}"></p>
+            </div>
+            <div class="divide-line"></div>
+            <div class="ticket-status">
+                <p class="ticket-status-tag">Hành lí:</p>
+            </div>
+            <h2>Thông tin liên hệ</h2>
+            <div class="divide-line"></div>
+            <div class="ticket-status">
+                <p class="ticket-status-tag">Họ và tên:</p>
+                <p th:text="${contactInfDTO.fullName}"></p>
+            </div>
+            <div class="ticket-status">
+                <p class="ticket-status-tag">Số điện thoại:</p>
+                <p th:text="${contactInfDTO.phoneNumber}"></p>
+            </div>
+            <div class="ticket-status">
+                <p class="ticket-status-tag">Email:</p>
+                <p th:text="${contactInfDTO.email}"></p>
+            </div>
+            <div class="ticket-status">
+                <p class="ticket-status-tag">CMND:</p>
+                <p th:text="${contactInfDTO.identityNumber}"></p>
+            </div>
+            <div class="divide-line"></div>
+            <div class="total-price">
+                <h2>Tổng tiền</h2>
+            </div>
+        </div>
+    </div>
 </div>
-
 <footer class="footer">
     <div class="container2">
         <div class="row2">
